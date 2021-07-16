@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Wing Design &#8212; Math Magik LPP 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Generating Covering" href="03-covering.html" />
+    <link rel="prev" title="Getting Started" href="01-getting-started.html" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/logo.png" alt="PyLiT" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="03-covering.html" title="Generating Covering"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="01-getting-started.html" title="Getting Started"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../lpp-design.html" accesskey="U">Designing a Limited Pennyplane</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Wing Design</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../contents.html">
+              <img class="logo" src="../_static/badge.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Wing Design</a><ul>
+<li><a class="reference internal" href="#wing-ribs">Wing Ribs</a><ul>
+<li><a class="reference internal" href="#template-rib-library-module">Template Rib Library Module</a></li>
+<li><a class="reference internal" href="#generating-wing-ribs">Generating Wing Ribs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#leading-and-trailing-edges">Leading and Trailing Edges</a></li>
+<li><a class="reference internal" href="#assembling-the-center-section">Assembling the Center Section</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="01-getting-started.html"
+                        title="previous chapter">Getting Started</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="03-covering.html"
+                        title="next chapter">Generating Covering</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/lpp-design/02-wing-design.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>Read time: 10.7 minutes (1074 words)</p>
+<section id="wing-design">
+<h1>Wing Design<a class="headerlink" href="#wing-design" title="Permalink to this headline">¶</a></h1>
+<p>I decided to make this wing fairly simple. Basically it uses a constant chord
+with rounded tips. The wing uses a conventional flat center section, with the
+tips raised to provide the needed stability. Here is the general layout:</p>
+<div class="figure" style="text-align: center">
+<p><img  src="../_images/tikz-15ca8c3aa0b2c31cfb2b1e34143b804b3e2dcef0.png" alt="Figure made with TikZ" /></p>
+</div><p>The center section is a simple rectangular structure with a constant chord. The
+span of this section is a design decision. Setting this dimension will have an
+effect on the span of the tips, since the total projected wing span is fixed by
+the rule constraints. I decoded to set up the dimensions for the center section
+in a data file that will be placed in a <strong>wing</strong> subdirectory under the main
+design directory</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">math-magik-lpp/scad/wing/wing_data.scad</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//#####################################</span>
+<span class="linenos"> 2</span><span class="c1">// wing.data</span>
+<span class="linenos"> 3</span><span class="c1">// (c) 2021 by Roie R. Black</span>
+<span class="linenos"> 4</span><span class="c1">//=====================================</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;</span><span class="p">..</span><span class="o">/</span><span class="n">constraints</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="c1">// center section dimensions</span>
+<span class="linenos"> 8</span><span class="n">center_span</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="n">spar_size</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+<span class="linenos">10</span><span class="n">rib_chord</span> <span class="o">=</span> <span class="n">max_wing_chord</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">spar_size</span><span class="p">;</span>
+<span class="linenos">11</span><span class="n">rib_camber</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="linenos">12</span><span class="n">num_center_ribs</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="c1">// tip section dimensions</span>
+<span class="linenos">15</span><span class="n">tip_dihedral</span> <span class="o">=</span> <span class="mf">1.75</span><span class="p">;</span>
+<span class="linenos">16</span><span class="n">tip_radius</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos">17</span><span class="n">a</span> <span class="o">=</span> <span class="n">tip_dihedral</span><span class="p">;</span>
+<span class="linenos">18</span><span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_projected_wing_span</span> <span class="o">-</span> <span class="n">center_span</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos">19</span><span class="n">tip_span</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="p">);</span>
+<span class="linenos">20</span><span class="n">tip_dihedral_angle</span> <span class="o">=</span> <span class="n">atan2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="linenos">21</span><span class="n">tip_le_span</span> <span class="o">=</span> <span class="n">tip_span</span> <span class="o">-</span> <span class="n">tip_radius</span><span class="p">;</span>
+<span class="linenos">22</span><span class="n">tip_rib_chord</span> <span class="o">=</span> <span class="n">max_wing_chord</span> <span class="o">-</span> <span class="n">tip_radius</span> <span class="o">-</span> <span class="n">spar_size</span><span class="p">;</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">echo</span><span class="p">(</span><span class="n">tip_dihedral_angle</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>Notice that we <em>include</em> the <strong>constraints.data</strong> file so we can refer to
+constants defined there. The path to that file shows that it is in the
+directory above the <strong>wing</strong> directory (the main design directory).</p>
+<p>For reference, here are the named constants we are using and the symbols from
+the figure above:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>constant</p></th>
+<th class="head"><p>figure</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>center_span</p></td>
+<td><p><span class="math notranslate nohighlight">\(2 * y_t\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>chord</p></td>
+<td><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>tip_radius</p></td>
+<td><p><span class="math notranslate nohighlight">\(r_t\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<section id="wing-ribs">
+<h2>Wing Ribs<a class="headerlink" href="#wing-ribs" title="Permalink to this headline">¶</a></h2>
+<p>I decided to use a simple circular arc airfoil for this design. The arc is
+defined by specifying the <em>camber</em> as a percentage of the chord. Figuring out
+the actual arc radius involves a bit of math, byyt a nice Python tool called
+<em>SymPy</em> makes this pretty easy (see the appendix for details). The formula for
+the arc is given below:</p>
+<div class="math notranslate nohighlight">
+\[r = \frac{c^2}{8t} + \frac{t}{2}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(c\)</span> is the airfoil chord, and <span class="math notranslate nohighlight">\(t\)</span> is the thickness. This last
+value is simply calculated form the chord and camber (<span class="math notranslate nohighlight">\(T\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[t = \frac{Tc}{100}\]</div>
+<p>There are two ways to build this rib. One way involves bending a strip of wood
+over a form to produce the rib. The second way uses a template to cut the rib
+out of sheet stock. In the first case, there is a problem you might not notice
+in building a real airplane. Suppose you want to make the front and rear spars
+out of simple square stock, and you want to mage the rib using the same size as
+the spars. If you slice off the arc at the leading and trailing edges, the
+height of the rib at both points is actually larger than the spar sizes. This
+is easy to see using <em>OpenSCAD</em>, which led me to use the template approach.</p>
+<p>If you use a template, the arc is used to make a first cut, then the template
+is slid down by the spar size and a second cut produces a rib with exactly the
+right height on both ends. The problem is finding a way to create this rib
+using <em>OpenSCAD</em> code.</p>
+<section id="template-rib-library-module">
+<h3>Template Rib Library Module<a class="headerlink" href="#template-rib-library-module" title="Permalink to this headline">¶</a></h3>
+<p>I ended up using the <em>linear extrude</em> feature of <em>OpenSCAD</em> to create a general rib
+shape. This <em>OpenSCAD</em> <em>module</em> is our first <em>library module</em>. The parameters of
+this module allow us to create ribs as needed for any design.</p>
+<p>The outline of the rib is a 2D figure produced using the above formulas to
+calculate the radius of the arc we need. The outline is formed by creating two
+circles, shifted by the height of the rib. These circles are trimmed using 2D
+square shapes.  Finally the outline is extruded to generate the 3D rib.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">MMlib/circle-template-rib.scad</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//####################################</span>
+<span class="linenos"> 2</span><span class="c1">// rib.scad - circle template rib</span>
+<span class="linenos"> 3</span><span class="c1">// (c) 2021 by Roie R. Black</span>
+<span class="linenos"> 4</span><span class="c1">//====================================</span>
+<span class="linenos"> 5</span><span class="n">$fn</span><span class="o">=</span><span class="mi">360</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="n">module</span> <span class="nf">circle_template_rib</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span><span class="n">camber</span><span class="p">,</span><span class="n">height</span><span class="p">,</span><span class="n">thickness</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>  <span class="c1">// calculate the radius for this arc</span>
+<span class="linenos"> 9</span>  <span class="n">camber</span> <span class="o">=</span> <span class="n">chord</span> <span class="o">*</span> <span class="n">camber</span> <span class="o">/</span> <span class="mi">100</span><span class="p">;</span>
+<span class="linenos">10</span>  <span class="n">radius</span> <span class="o">=</span> <span class="p">(</span><span class="n">chord</span> <span class="o">*</span> <span class="n">chord</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">camber</span><span class="p">)</span> <span class="o">+</span> <span class="n">camber</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos">11</span>  <span class="c1">// generate the rib</span>
+<span class="linenos">12</span>  <span class="n">translate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">thickness</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos">13</span>    <span class="n">rotate</span><span class="p">([</span><span class="mi">90</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos">14</span>      <span class="n">linear_extrude</span><span class="p">(</span><span class="n">height</span> <span class="o">=</span> <span class="n">thickness</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">15</span>        <span class="n">intersection</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">16</span>          <span class="n">difference</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">17</span>            <span class="n">square</span><span class="p">([</span><span class="n">chord</span><span class="p">,</span><span class="mi">1</span><span class="p">]);</span>
+<span class="linenos">18</span>            <span class="n">translate</span><span class="p">([</span><span class="n">chord</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">radius</span> <span class="o">+</span> <span class="n">camber</span><span class="p">])</span> <span class="n">circle</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">radius</span><span class="p">);</span>
+<span class="linenos">19</span>          <span class="p">}</span>
+<span class="linenos">20</span>          <span class="n">translate</span><span class="p">([</span><span class="n">chord</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">radius</span> <span class="o">+</span> <span class="n">camber</span> <span class="o">+</span> <span class="n">height</span><span class="p">])</span> <span class="n">circle</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">radius</span><span class="p">);</span>
+<span class="linenos">21</span>        <span class="p">}</span>
+<span class="linenos">22</span>      <span class="p">}</span>
+<span class="linenos">23</span><span class="p">}</span>
+<span class="linenos">24</span><span class="c1">//====================================</span>
+<span class="linenos">25</span><span class="c1">// display this shape</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="n">circle_template_rib</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">32</span><span class="p">);</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>
+</pre></div>
+</div>
+</div>
+<p>This is a bit scary on first look, but line by line it should make sense. The
+<em>OpenSCAD</em> <em>module</em> is a reusable chunk of code we will need when generating our
+actual ribs. The parameters we need to supply are these:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>chord - the trimmed length of the rib (not including the spars)</p></li>
+<li><p>camber - the thickness as a percentage of the chord</p></li>
+<li><p>height - basically the height of the leading and trailing edge spars</p></li>
+<li><p>thickness - the thickness of the sheet we will use to form the ribs</p></li>
+</ul>
+</div></blockquote>
+<p>Notice that there is code after the <em>module8 definition that serves to display
+the shape if we load this *library module</em> file in <em>OpenSCAD</em>. This code will not be
+run when we generate actual ribs using this module. This technique is handy
+when debugging code.</p>
+<p>It is important to note the position of the rib in the coordinate system. The
+origin of this system is sitting in the center of the leading edge, with the
+bottom of thr rib sitting on the <strong>X-Y</strong> plane. The rib is oriented so the
+<strong>Z</strong> is “up”. The <strong>Z</strong> axis runs through the center of the rib. We will need
+this information when we place ribs in the actual design.</p>
+</section>
+<section id="generating-wing-ribs">
+<h3>Generating Wing Ribs<a class="headerlink" href="#generating-wing-ribs" title="Permalink to this headline">¶</a></h3>
+<p>Now, we can create a rib <em>module</em> for wing ribs. All we need to do here is set
+the correct values for the parameters:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">math-magik-lpp/wing/center/rib/rib.scad</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//###################################################</span>
+<span class="linenos"> 2</span><span class="c1">// rib.scad</span>
+<span class="linenos"> 3</span><span class="c1">// (c) 2021 - Roie R. Black</span>
+<span class="linenos"> 4</span><span class="c1">//***************************************************</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">wing_data</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">use</span> <span class="o">&lt;</span><span class="n">MMlib</span><span class="o">/</span><span class="n">circle_template_rib</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="n">module</span> <span class="n">rib</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">10</span>    <span class="n">circle_template_rib</span><span class="p">(</span><span class="n">rib_chord</span><span class="p">,</span> <span class="n">rib_camber</span><span class="p">,</span> <span class="n">spar_size</span><span class="p">,</span> <span class="n">spar_size</span><span class="p">);</span>
+<span class="linenos">11</span><span class="p">}</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">rib</span><span class="p">();</span>
+<span class="linenos">14</span>
+</pre></div>
+</div>
+</div>
+<p>We will use five of these ribs, each properly positioned to form the wing
+center section.</p>
+<p>Here is the basic rib shape, ready for placement in the wing:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/wing-rib.png"><img alt="../_images/wing-rib.png" src="../_images/wing-rib.png" style="width: 500px;" /></a>
+</figure>
+</section>
+</section>
+<section id="leading-and-trailing-edges">
+<h2>Leading and Trailing Edges<a class="headerlink" href="#leading-and-trailing-edges" title="Permalink to this headline">¶</a></h2>
+<p>The leading and trailing edge spars are something of a letdown! They are simple
+square spars of a defined length. Again, it is handy to generate a <em>library
+module</em> for a basic square spar.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">MMlib/square_spar.scad</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//####################################</span>
+<span class="linenos"> 2</span><span class="c1">// square_spar.scad</span>
+<span class="linenos"> 3</span><span class="c1">// (c) 2021 by Roie R. Black</span>
+<span class="linenos"> 4</span><span class="c1">//====================================</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">module</span> <span class="nf">square_spar</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 8</span>  <span class="n">translate</span><span class="p">([</span><span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
+<span class="linenos"> 9</span>    <span class="n">cube</span><span class="p">([</span><span class="n">size</span><span class="p">,</span><span class="n">length</span><span class="p">,</span><span class="n">size</span><span class="p">],</span> <span class="n">center</span><span class="o">=</span><span class="nb">true</span><span class="p">);</span>
+<span class="linenos">10</span><span class="p">}</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">square_spar</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>The spars created using this module are centered along the <strong>Y</strong> axis, again
+sitting on the <strong>X-Y</strong> plane. This will be convenient for assembling the wing
+center section.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/wing-spar.png"><img alt="../_images/wing-spar.png" src="../_images/wing-spar.png" style="width: 500px;" /></a>
+</figure>
+</section>
+<section id="assembling-the-center-section">
+<h2>Assembling the Center Section<a class="headerlink" href="#assembling-the-center-section" title="Permalink to this headline">¶</a></h2>
+<p>We have defined the parts needed to build the center section frame. All we need
+to do is place the parts in the right positions. We will let <em>OpenSCAD</em> do the
+calculations needed for this step.</p>
+<p>We need to decide how to organize these parts before building this section. WHile it is possible to do this all in one file, doing the analytical work to predict the weight and balance data will be more difficult if we do that. Instead, I decided to create directories for each part, and set up placement data files that control where each part sits in the final model. Although this creates a lot of directories, it keeps things more organized as we generate additional files during the analysis phase.</p>
+<p>For the wing center section, we will need eight new direcroties, five for the ribs, one each for leading and trailing edges, and a final one for the covering.</p>
+<p>The ribs and spars are created using our library modulae. We will add a placement data file in each part directoriy that defines exactly where the part sits in the assembly we are creating.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This plaement is not where the part sits in the final model. We will move assemblies into place as we build the final model.</p>
+</div>
+<p>Let’s look at the rib at the left side (pilot’s view”) of the center section.</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">wing/center/center.scad</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//#####################################</span>
+<span class="linenos"> 2</span><span class="c1">// center.scad</span>
+<span class="linenos"> 3</span><span class="c1">// (c) 2021 by Roie R. Black</span>
+<span class="linenos"> 4</span><span class="c1">//=====================================</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">colors</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span><span class="n">include</span> <span class="o">&lt;</span><span class="p">.</span><span class="o">/</span><span class="n">center_pos</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="n">use</span> <span class="o">&lt;</span><span class="n">MMlib</span><span class="o">/</span><span class="n">position</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 9</span><span class="n">use</span> <span class="o">&lt;</span><span class="p">.</span><span class="o">/</span><span class="n">spar</span><span class="o">/</span><span class="n">spar</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">10</span><span class="n">use</span> <span class="o">&lt;</span><span class="p">.</span><span class="o">/</span><span class="n">rib</span><span class="o">/</span><span class="n">rib</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">11</span><span class="c1">//use &lt;./covering/covering.scad&gt;</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">module</span> <span class="n">center</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">14</span>  <span class="n">color</span><span class="p">(</span><span class="n">WOOD_Balsa</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">15</span>    <span class="n">align</span><span class="p">(</span><span class="n">le_pos</span><span class="p">)</span> <span class="n">spar</span><span class="p">();</span>
+<span class="linenos">16</span>    <span class="n">align</span><span class="p">(</span><span class="n">rib1_pos</span><span class="p">)</span> <span class="n">rib</span><span class="p">();</span>
+<span class="linenos">17</span>    <span class="n">align</span><span class="p">(</span><span class="n">rib2_pos</span><span class="p">)</span> <span class="n">rib</span><span class="p">();</span>
+<span class="linenos">18</span>    <span class="n">align</span><span class="p">(</span><span class="n">rib3_pos</span><span class="p">)</span> <span class="n">rib</span><span class="p">();</span>
+<span class="linenos">19</span>    <span class="n">align</span><span class="p">(</span><span class="n">rib4_pos</span><span class="p">)</span> <span class="n">rib</span><span class="p">();</span>
+<span class="linenos">20</span>    <span class="n">align</span><span class="p">(</span><span class="n">rib5_pos</span><span class="p">)</span> <span class="n">rib</span><span class="p">();</span>
+<span class="linenos">21</span>    <span class="n">align</span><span class="p">(</span><span class="n">te_pos</span><span class="p">)</span> <span class="n">spar</span><span class="p">();</span>
+<span class="linenos">22</span>  <span class="p">}</span>
+<span class="linenos">23</span>  <span class="c1">//align(covering_pos) covering();</span>
+<span class="linenos">24</span><span class="p">}</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="c1">//====================================</span>
+<span class="linenos">28</span><span class="c1">// display this shape</span>
+<span class="linenos">29</span><span class="n">center</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This code is set up to color the material. The <strong>colors.scad</strong> file
+containg a number of useful color definitions was found on the Internet,
+and I added a color for Balsa. The eliminates the ugly green color that is
+generated by default when <em>OpenSCAD</em> creates images.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="03-covering.html" title="Generating Covering"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="01-getting-started.html" title="Getting Started"
+             >previous</a> |</li>
+        <li><a href="../index.html">Home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../lpp-design.html" >Designing a Limited Pennyplane</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Wing Design</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Roie R. Black.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+MMlpp Center Section Spars
+##########################
+
+Both the leading and trailing edges are square spars. The ribs for the stab are
+two percent camber.
+
+..  literalinclude::    ../../../../../scad/stab/spar/spar.scad
+    :linenos:
+

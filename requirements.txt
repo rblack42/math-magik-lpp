@@ -1,4 +1,7 @@
 sphinx
 sphinxcontrib-spelling
 sphinxcontrib-programoutput
-
+sphinxcontrib-tikz
+jupyter
+sympy
+texext

@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Positioning Components &#8212; Math Magik LPP 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Change Log" href="../changes.html" />
+    <link rel="prev" title="Building the Covering Module" href="04-covering-module.html" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/logo.png" alt="PyLiT" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../changes.html" title="Change Log"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="04-covering-module.html" title="Building the Covering Module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../lpp-design.html" accesskey="U">Designing a Limited Pennyplane</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Positioning Components</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../contents.html">
+              <img class="logo" src="../_static/badge.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Positioning Components</a><ul>
+<li><a class="reference internal" href="#coordinate-systems">Coordinate Systems</a></li>
+<li><a class="reference internal" href="#align-function">Align Function</a></li>
+<li><a class="reference internal" href="#calculating-alignment-values">Calculating Alignment Values</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="04-covering-module.html"
+                        title="previous chapter">Building the Covering Module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../changes.html"
+                        title="next chapter">Change Log</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/lpp-design/05-apositioning-components.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>Read time: 4.6 minutes (458 words)</p>
+<section id="positioning-components">
+<h1>Positioning Components<a class="headerlink" href="#positioning-components" title="Permalink to this headline">¶</a></h1>
+<p>One of the issues with designing wit <em>OpenSCAD</em> is getting things positioned
+correctly. In a traditional <em>CAD</em> program, you just drag things arond and
+things pop into place. Not so with OSC. You need to think through exactly where
+things need to go, and that involves knowing exactly where the parts are
+located in the coordinate system.</p>
+<section id="coordinate-systems">
+<h2>Coordinate Systems<a class="headerlink" href="#coordinate-systems" title="Permalink to this headline">¶</a></h2>
+<p>Every individual part and assembly is created in its own coordinate system.
+When moving parts around, the part or assembly is translated and/or rotated
+into the proper position within this coordinate system.</p>
+<p>For example, when designing an individual rib, the coordinate ssystem is
+located at the leading edge. The rib is centered in the <strong>X_Z</strong> plane, and the
+lower point on the rib sits flat on the <strong>X-Y</strong> plane.</p>
+<p>When we use this rib in the wing assembly, the coordinate system is different.
+For the wing, the leading and trailing edge spars should end up sitting on the
+<strong>X-Y</strong> plane, ans the wing is centered relative t the <strong>X-Z</strong> plane.</p>
+<p>That means we need to position the rib within the wing’s coordinate system. The
+critical point we need to remember is the location of the origin of the rib’s
+coordinate system (bottom of the leading edge, right in the middle of the rib).
+That point must me moved into the proper position in the wing’s coordinate
+system. The translations need to slide the rib to the right spot, and any
+rotations needed to properly align the rib need ot happen before moving.</p>
+</section>
+<section id="align-function">
+<h2>Align Function<a class="headerlink" href="#align-function" title="Permalink to this headline">¶</a></h2>
+<p>To make this a bit easier, I wrote an <em>align</em> function that takes a list of six
+values:</p>
+<div class="math notranslate nohighlight">
+\[[x_y, y_t, z_t, x_r, y_r, z_r]\]</div>
+<p>Using this function involves calculating exactly what translations and
+rotations are needed to properly position that part. Since individual parts do
+not need to be aligned (unless you need to do that to properly create the
+part, I set up a file named <em>partname_pos.scad</em> within each assembly directory. This file lists the alignment values need to build the assembly out of the required components.</p>
+<p>Using this concept, constructing an assembly is as simple as listing the
+components and aligning each one:</p>
+</section>
+<section id="calculating-alignment-values">
+<h2>Calculating Alignment Values<a class="headerlink" href="#calculating-alignment-values" title="Permalink to this headline">¶</a></h2>
+<p>In setting up the alignment values, you need to access design values.
+The dimensions of each component are important in figuring this out. There is
+no easy to avoid needing to do some annoying calculations. For instance, when
+positioning the wing posts on the side of the motor stick, we need to know how
+thick the motor-stick is and how thick the wing posts are. The offset needed is
+one half the sum of these two values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">post_x_offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">motor_stick_thickness</span> <span class="o">+</span> <span class="n">wing_post_size</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>I have tried to name these dimensions to make it clear what the calculations
+involve. Unfortunately, some calculations need access to dimensional values
+defined in other directories. To make this a bit easier to manage, I am placing
+a data file in each directory where these values are either defined, of
+calculated as needed to define the component in the associated directory.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../changes.html" title="Change Log"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="04-covering-module.html" title="Building the Covering Module"
+             >previous</a> |</li>
+        <li><a href="../index.html">Home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../lpp-design.html" >Designing a Limited Pennyplane</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Positioning Components</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Roie R. Black.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.3.
+    </div>
+  </body>
+</html>

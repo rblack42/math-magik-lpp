@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Generating Covering &#8212; Math Magik LPP 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Building the Covering Module" href="04-covering-module.html" />
+    <link rel="prev" title="Wing Design" href="02-wing-design.html" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/logo.png" alt="PyLiT" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="04-covering-module.html" title="Building the Covering Module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="02-wing-design.html" title="Wing Design"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../lpp-design.html" accesskey="U">Designing a Limited Pennyplane</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Generating Covering</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../contents.html">
+              <img class="logo" src="../_static/badge.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Generating Covering</a><ul>
+<li><a class="reference internal" href="#stl-files">STL Files</a></li>
+<li><a class="reference internal" href="#function-grapher">Function Grapher</a></li>
+<li><a class="reference internal" href="#generating-covering-points">Generating Covering Points</a><ul>
+<li><a class="reference internal" href="#rib-height">Rib Height</a></li>
+<li><a class="reference internal" href="#id1">Rib Height</a></li>
+<li><a class="reference internal" href="#wing-outline">Wing Outline</a></li>
+<li><a class="reference internal" href="#covering-grid">Covering grid</a><ul>
+<li><a class="reference internal" href="#wing-and-stab-center-sections">Wing and Stab Center Sections</a></li>
+<li><a class="reference internal" href="#tip-sections">Tip sections</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="02-wing-design.html"
+                        title="previous chapter">Wing Design</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="04-covering-module.html"
+                        title="next chapter">Building the Covering Module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/lpp-design/03-covering.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>Read time: 15.2 minutes (1516 words)</p>
+<section id="generating-covering">
+<h1>Generating Covering<a class="headerlink" href="#generating-covering" title="Permalink to this headline">¶</a></h1>
+<p>Building the basic framework of an indoor model airplane with <em>OpenSCAD</em> is fairly
+easy. Covering is another matter entirely. There is no simple way to generate a
+thin film that covers flying surface frameworks using just <em>OpenSCAD</em>. We need to
+take another approach.</p>
+<p>Since we are using math to figure out a lot of this design, let’s see what we
+can do if we think this through.</p>
+<section id="stl-files">
+<h2>STL Files<a class="headerlink" href="#stl-files" title="Permalink to this headline">¶</a></h2>
+<p><em>OpenSCAD</em> is a 3D solid modeling tool most often used in generating 3D printer
+products. Part of that generation process involves converting the 3D objects
+into <em>STL</em> files. These files are then post-processed to generate input data
+files for the 3D printer. An <em>STL</em> file is a (long) list of triangles that
+“wrap” the surface in question. These triangles are all connected in such a way
+that the surface is called water tight, meaning there are no gaps anywhere. If
+the triangles are big, the surface will not resemble the original shape very
+much, but if we make them tiny, he resulting surface will look very good. What
+this means is that our entire model can be reduced to a giant list of triangles
+surrounding the structure. The closer the points on these triangles are to each
+other, the closer our approximation to the real shape gets.</p>
+<p>For the covering the shape is a very thin film. Suppose we generate a grid of
+points on that surface and use those points  and generate our own triangles,
+each suitably thin, to represent the covering over any shape we need. The grid
+will look like a rectangular mesh, but we an run a diagonal across each
+four-point grid element producing two triangles. This is exactly what an <em>STL</em>
+file looks like.</p>
+<p><em>OpenSCAD</em> can create an <em>STL</em> file, and it can load them for display. Perhaps the way
+to generate a covering for our model involves creating our own <em>STL</em> file for
+the covering, or something similar to that.</p>
+</section>
+<section id="function-grapher">
+<h2>Function Grapher<a class="headerlink" href="#function-grapher" title="Permalink to this headline">¶</a></h2>
+<p>Suppose you can build a mathematical function describing the covering surface
+you need:</p>
+<div class="math notranslate nohighlight">
+\[Surface = f(x,y)\]</div>
+<p>If we create a matrix of points covering the projected wing plan form, we can
+use this function to generate the two-dimensional matrix of data points needed
+for <em>OpenSCAD</em> work. Python can write these points out so that <em>OpenSCAD</em> can read the
+file produced. Sounds simple enough for a Python programmer.</p>
+<p>Once we have this matrix, we can use it to generate a 3D surface using <em>OpenSCAD</em>
+code. <a class="reference external" href="https://openhome.cc/eGossip/OpenSCAD/FunctionGrapher.html">Justin Lin</a> created a tool for displaying a 3D function, input as a
+collection of 3D points, using the <strong>polyhedron</strong> tool in <em>OpenSCAD</em>. His function
+takes the rectangular array of 3D <em>X-Y</em> points and extrudes them to create an
+identical surface some defined thickness in the <strong>Z</strong> direction. Justin has a
+library that uses this scheme on his website, and I started off by extracting
+just part of that code for use in this project. This scheme is suitable for
+indoor models, but will not work for more general model building, so I plan on
+replacing this code at a later time.</p>
+</section>
+<section id="generating-covering-points">
+<h2>Generating Covering Points<a class="headerlink" href="#generating-covering-points" title="Permalink to this headline">¶</a></h2>
+<p>The challenge in using this approach is generating the matrix of points. I
+elected to do this work in Python, and created a function that generates the
+needed point array we can use for the covering.</p>
+<p>Let’s start off by looking at the rib height function.</p>
+<section id="rib-height">
+<h3>Rib Height<a class="headerlink" href="#rib-height" title="Permalink to this headline">¶</a></h3>
+<p>Here is our basic geometry:</p>
+<div class="figure" style="text-align: center">
+<p><img  src="../_images/tikz-9884623c3de5cbcaef415f5f979dd5e2b2604e3a.png" alt="Figure made with TikZ" /></p>
+</div><p>From this figure, we can generate two equations:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}t = r - r sin(\alpha)\\C = 2 r cos(\alpha)\end{aligned}\end{align} \]</div>
+<p>Here <strong>C</strong> is the rib chord and <strong>t</strong> is the rib thickness. We need to figure out the radius, <strong>r</strong> and the angle :math`alpha`.</p>
+<p>Rather than doing this manually, let’s introduce Python <a class="reference external" href="https://www.sympy.org/en/index.html">SymPy</a>, a neat tool you wish you had back in your school days.</p>
+<p>Here is a piece of code that will give up the results we are after:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
+
+ <span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> \
+   <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;r c t alpha&#39;</span><span class="p">)</span>
+
+ <span class="n">eq1</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">r</span> <span class="o">*</span> <span class="n">sympy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">-</span> <span class="n">c</span>
+ <span class="n">eq2</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">r</span> <span class="o">*</span> <span class="n">sympy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">-</span> <span class="n">t</span>
+ <span class="n">sol</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">([</span><span class="n">eq1</span><span class="p">,</span><span class="n">eq2</span><span class="p">],[</span><span class="n">r</span><span class="p">,</span><span class="n">alpha</span><span class="p">])</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://www.sympy.org/en/index.html">SymPy</a> requires that you name your equations, and set them up as expressions
+that evaluate to zero. So we move the left-hand side of each equation over to
+the right and come up with some usable name.</p>
+<p>The neat feature is the line where we solve these two equations for the two
+unknowns. <a class="reference external" href="https://www.sympy.org/en/index.html">SymPy</a> will produce the solutions we are after!</p>
+<p>Here they are, nicely formatted:</p>
+<div class="math notranslate nohighlight">
+\[\left( \frac{c^{2}}{8 t} + \frac{t}{2}, \  \operatorname{acos}{\left(\frac{4 c t}{c^{2} + 4 t^{2}} \right)}\right)\]</div>
+<p>The first solution gives us the arc radius, the second on gives <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
+<p>Let’s check these equations out with a little Python code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="mf">5.0</span>       <span class="c1"># chord</span>
+<span class="n">camber</span> <span class="o">=</span> <span class="mf">5.0</span>  <span class="c1"># percent of c</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">camber</span> <span class="o">*</span> <span class="n">c</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">t</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">t</span><span class="s1">&#39;(c**2 + 4*t**2)) * 180.0/math.pi</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here is what we get:</p>
+<div class="math notranslate nohighlight">
+\[\left( 12.625, \  78.5788137250007\right)\]</div>
+<p>As  check, let’s calculate the thickness using these values:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">thickness</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">r</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">180.0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thickness</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[0.25\]</div>
+<p>That is what we expect, so things look fine.</p>
+</section>
+<section id="id1">
+<h3>Rib Height<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>To generate the height function needed to create our covering data array, we
+need a bit of geometry. Since we are using a circular arc airfoil, the figure
+below show basically what we need to generate the function:</p>
+<div class="figure" style="text-align: center">
+<p><img  src="../_images/tikz-1e1b6ad982377da549f57b0fc93ea1e75415a15b.png" alt="Figure made with TikZ" /></p>
+</div><p>The height of the rib at some point <span class="math notranslate nohighlight">\(P\)</span> is given as follows:</p>
+<p>Given a camber, chord, and radius, we can come up with the following equations:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}t = camber \frac{C}{100}\\w = \frac{C}{2}\\h = t - r\\r^2 = (x - w)^2 + (z - h)^2\end{aligned}\end{align} \]</div>
+<p>That last equation is the general equation for a circle centered at <span class="math notranslate nohighlight">\((w,y)\)</span>.
+We need to solve these equations for the height, <span class="math notranslate nohighlight">\(z\)</span>. <a class="reference external" href="https://www.sympy.org/en/index.html">SymPy</a> to the rescue!</p>
+<p>For some specified <span class="math notranslate nohighlight">\(x, r, w, and h\)</span> we want to find the height,
+<span class="math notranslate nohighlight">\(z\)</span>: <a class="reference external" href="https://www.sympy.org/en/index.html">SymPy</a> to the rescue!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
+
+<span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">beta</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x z h w r c t beta&#39;</span><span class="p">)</span>
+<span class="n">eq3</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">z</span><span class="o">-</span><span class="n">h</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">sol2</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">eq3</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sol2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[h + \sqrt{\left(r - w + x\right) \left(r + w - x\right)}\]</div>
+<p>Let’s make some substitutions. First, we eliminate <span class="math notranslate nohighlight">\(w\)</span>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eq4</span> <span class="o">=</span> <span class="n">sol2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">eq5</span> <span class="o">=</span> <span class="n">eq4</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eq5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[h + \sqrt{\left(- \frac{c}{2} + r + x\right) \left(\frac{c}{2} + r - x\right)}\]</div>
+<p>Next, we eliminate <span class="math notranslate nohighlight">\(h\)</span>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eq6</span> <span class="o">=</span> <span class="n">eq5</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">t</span><span class="o">-</span><span class="n">r</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eq6</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[- r + t + \sqrt{\left(- \frac{c}{2} + r + x\right) \left(\frac{c}{2} + r - x\right)}\]</div>
+<p>Now we have an equation we can use to build our height function.</p>
+<p>Here it is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rib_height</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">camber</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;return the height for some fraction of the chord x&quot;&quot;&quot;</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="n">chord</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">c</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">camber</span> <span class="o">*</span> <span class="n">chord</span> <span class="o">/</span> <span class="mi">100</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">chord</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">t</span><span class="o">/</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">r</span> <span class="o">+</span><span class="n">t</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="o">-</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">r</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">r</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Let’s test this out. The height at the midpoint should be the thickness:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">rib_height</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[0.0905776039459969\]</div>
+<p>This gives us the height function needed for the circular arc airfoil. Next we
+need to work on the wing outline.</p>
+</section>
+<section id="wing-outline">
+<h3>Wing Outline<a class="headerlink" href="#wing-outline" title="Permalink to this headline">¶</a></h3>
+<p>The wing is constructed using s rectangular center section and two rectangular tip sections with a rounded leading edge. Here is the geometry we are using:</p>
+<div class="figure" style="text-align: center">
+<p><img  src="../_images/tikz-316b7be6a84d6f8fb4f3c9a147262586597630df.png" alt="Figure made with TikZ" /></p>
+</div><p>In this figure, we need to provide four parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Which chord</p></li>
+<li><p>Total wingspan</p></li>
+<li><p>Center section span</p></li>
+<li><p>Tip radius</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this figure, the total span is the flat span, not the span set by the
+rules. The rules ilmit the span with dihedral!</p>
+</div>
+<p>The leading edge offset, beginning where the circular section starts is defined
+by another general circle equation. Let’s consider a coordinate system
+positioned at the start of the leading edge arc. Here is the equation for the tip arc:</p>
+<div class="math notranslate nohighlight">
+\[(x -r)^2 + y^2 = r^2\]</div>
+<p><a class="reference external" href="https://www.sympy.org/en/index.html">SymPy</a> will give us our equation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
+
+<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">r</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x y r&#39;</span><span class="p">)</span>
+<span class="n">eq7</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">r</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">sol3</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">eq7</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sol3</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[r - \sqrt{\left(r - y\right) \left(r + y\right)}\]</div>
+<p>This equation gives us the leading edge offset along the arc. A function that
+gives us that offset for some percentage of the wing span looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">xle</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;s is the half span, r is the tip radius and Y ranges from 0 to 1&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">s</span> <span class="o">-</span> <span class="n">r</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">yt</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span> <span class="o">-</span> <span class="n">r</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">r</span><span class="o">-</span><span class="n">yt</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">yt</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>We now have all the pieces needed to generate the covering for our model.</p>
+</section>
+<section id="covering-grid">
+<h3>Covering grid<a class="headerlink" href="#covering-grid" title="Permalink to this headline">¶</a></h3>
+<p>A simple way to generate the covering matrix is to divide up the chord into
+<strong>nx</strong> points, and the span into <strong>ny</strong> points. Actually, we will be generating
+covering shapes for each part of the model, not the assembled parts.</p>
+<section id="wing-and-stab-center-sections">
+<h4>Wing and Stab Center Sections<a class="headerlink" href="#wing-and-stab-center-sections" title="Permalink to this headline">¶</a></h4>
+<p>For the wing and stab, the grid is simple. We set up simple loops to generate
+<strong>X,Y</strong> pairs, and use the height function to find the height.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is a subtle point here. The ribs normally start at the inner edge of
+the leading edge and trailing edges. That means our airfoil is not really a
+pure circular arc. Rather than complicate things, I am gong to generate the
+covering as an arc, and position it so it connects to the leading and
+trailing edge outer points. Visually, this will be fine and the analysis
+will still be good. The covering will “float” above the actual framework a
+tiny amunt.</p>
+</div>
+</section>
+<section id="tip-sections">
+<h4>Tip sections<a class="headerlink" href="#tip-sections" title="Permalink to this headline">¶</a></h4>
+<p>The tip sections are more of a puzzle. They will be canted upward to generate
+the dihedral. Modelers normally build and cover the wings flat, and deal with
+the covering at the joint using a variety of schemes. To make thing look proper
+in <em>OpenSCAD</em> we need to do better.</p>
+<p>Here is a look at the junction of two circular arc sections joined at some
+dihedral angle:</p>
+<a class="reference internal image-reference" href="../_images/tip-joint.png"><img alt="../_images/tip-joint.png" class="align-center" src="../_images/tip-joint.png" style="width: 400px;" /></a>
+<p>If you look closely, the intersection is along a plane cutting through this
+joint at an angle (one half of the dihedral). That means the end rib should
+really be canted on the center section, something builders do not so.</p>
+<p>Therefore, the joint we are going to create will not be a circular arc on the
+tip, but a slight ellipse. The tip covering starts at the edge of yhe center
+section, which we can calculate easily. There will be no rib at the inner edge
+of the tip, but we can use the center section rib points, suitably transformed
+to figure out the tip covering edge.</p>
+<p>Phew!.</p>
+<p>Here is the geometry we are dealing with:</p>
+<div class="figure" style="text-align: center">
+<p><img  src="../_images/tikz-dac7670740b3f285bcc28d0e243681e5a3a50df5.png" alt="Figure made with TikZ" /></p>
+</div><p>In this figure, we assume the tip covering runs in a straight line from the
+center section to the flat tip rib. (Close enough for this study!)</p>
+<p>But this means that our rib height function will not work for the tips. Instead, we need to use a straight line running from center section o the the tip and find the height of that line as needed. More math work!</p>
+<p>Consider the general equation defining a line in 3D space:</p>
+<p>Given two points in 3D space:</p>
+<div class="math notranslate nohighlight">
+\[p1 = (x1,y1,z2)
+p2 = (x2,y2,z2)\]</div>
+<p>Now, we define these constants:</p>
+<div class="math notranslate nohighlight">
+\[l = (x2 - x1)
+m = (y2 - y1)
+n = (z2 - z1)\]</div>
+<p>Then this equation defines the line:</p>
+<div class="math notranslate nohighlight">
+\[(\frac{x - x1}{l} = \frac{y - y1}{m} = \frac{z - z1}{n}\]</div>
+<p>If we set one coordinate value we can calculate the other two from this.</p>
+<p>The only remaining problem is finding the set of points that represent the
+inner edge of the tip covering surface. For this, we need to do a simple
+transformation.</p>
+<div class="figure" style="text-align: center">
+<p><img  src="../_images/tikz-27d1260bff673aa3068d1d6eca676e5026bad99a.png" alt="Figure made with TikZ" /></p>
+</div><p>If the height of the rib at this edge is <span class="math notranslate nohighlight">\(h_r\)</span>, then the length of the position along the tip leading edge is:</p>
+<div class="math notranslate nohighlight">
+\[h_r \sin(\theta)\]</div>
+<p>And the height of the tip covering at this point is:</p>
+<div class="math notranslate nohighlight">
+\[h_r * \cos(\theta)\]</div>
+<p>Now, finally we have all the pieces to write the covering module!</p>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="04-covering-module.html" title="Building the Covering Module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="02-wing-design.html" title="Wing Design"
+             >previous</a> |</li>
+        <li><a href="../index.html">Home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../lpp-design.html" >Designing a Limited Pennyplane</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Generating Covering</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Roie R. Black.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.3.
+    </div>
+  </body>
+</html>

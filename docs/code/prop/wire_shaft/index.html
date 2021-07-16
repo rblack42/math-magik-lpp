@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>MMlpp Prop Wire Shaft &#8212; Math Magik LPP 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx13.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="MMlpp Rubber Motor" href="../../rubber_motor/index.html" />
+    <link rel="prev" title="MMlpp Prop Spar" href="../spar/index.html" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../../index.html">Home</a></li>
+    <li><a href="../../../usage/installation.html">Get it</a></li>
+    <li><a href="../../../contents.html">Docs</a></li>
+    <li><a href="../../../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../../../index.html">
+      <img src="../../../_static/logo.png" alt="PyLiT" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../rubber_motor/index.html" title="MMlpp Rubber Motor"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../spar/index.html" title="MMlpp Prop Spar"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">Home</a>&#160;|</li>
+        <li><a href="../../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Math-Magick-lpp Code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">MMlpp Propeller</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MMlpp Prop Wire Shaft</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../contents.html">
+              <img class="logo" src="../../../_static/badge.svg" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../spar/index.html"
+                        title="previous chapter">MMlpp Prop Spar</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../rubber_motor/index.html"
+                        title="next chapter">MMlpp Rubber Motor</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/code/prop/wire_shaft/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>Read time: 0.5 minutes (45 words)</p>
+<section id="mmlpp-prop-wire-shaft">
+<h1>MMlpp Prop Wire Shaft<a class="headerlink" href="#mmlpp-prop-wire-shaft" title="Permalink to this headline">¶</a></h1>
+<p>The wire shaft is a bit complex. Basically, the straight parts are just
+cylinders. The curved parts are formed using a <em>rotate-extrude</em> function that
+takes a circle and spins it around a circle of some radius. The code shows
+this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>//######################################
+<span class="linenos"> 2</span>// wire-shaft.scad
+<span class="linenos"> 3</span>// (c) 2021 Roie R. Black
+<span class="linenos"> 4</span>//**************************************
+<span class="linenos"> 5</span>include &lt;colors.scad&gt;
+<span class="linenos"> 6</span>include &lt;wire_shaft.data&gt;
+<span class="linenos"> 7</span>$fn=100;
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>module wire_shaft() {
+<span class="linenos">11</span>  r = wire_diameter/2;
+<span class="linenos">12</span>  translate([length,0,0]) {
+<span class="linenos">13</span>    rotate([0,90,-90])
+<span class="linenos">14</span>      color(METAL_Steel) {
+<span class="linenos">15</span>        // hook
+<span class="linenos">16</span>        translate([-hook_radius/2,1.5*hook_radius,0])
+<span class="linenos">17</span>        rotate_extrude(angle=270, convexity=10)
+<span class="linenos">18</span>          translate([hook_radius, 0])
+<span class="linenos">19</span>            circle(r);
+<span class="linenos">20</span>
+<span class="linenos">21</span>        // 90 degree bend
+<span class="linenos">22</span>        translate([-hook_radius/2,0,0])
+<span class="linenos">23</span>          rotate_extrude(angle=90, convexity=10)
+<span class="linenos">24</span>            translate([hook_radius/2, 0])
+<span class="linenos">25</span>              circle(r);
+<span class="linenos">26</span>
+<span class="linenos">27</span>        // straight shaft
+<span class="linenos">28</span>        translate([0,0,0])
+<span class="linenos">29</span>          rotate([90,0,0])
+<span class="linenos">30</span>            cylinder(r=r,h=length);
+<span class="linenos">31</span>
+<span class="linenos">32</span>        // 90 degree bend
+<span class="linenos">33</span>        translate([-hook_radius/2,-length,0])
+<span class="linenos">34</span>          rotate_extrude(angle=-90, convexity=10)
+<span class="linenos">35</span>            translate([hook_radius/2,0])
+<span class="linenos">36</span>              circle(r);
+<span class="linenos">37</span>
+<span class="linenos">38</span>        // final straight
+<span class="linenos">39</span>        translate([-hook_radius/2,-length- hook_radius/2,0])
+<span class="linenos">40</span>          rotate([0,-90,0])
+<span class="linenos">41</span>            cylinder(r=r,h=stub_length);
+<span class="linenos">42</span>    }
+<span class="linenos">43</span>  }
+<span class="linenos">44</span>}
+<span class="linenos">45</span>
+<span class="linenos">46</span>//-------------------------------------
+<span class="linenos">47</span>// debug display
+<span class="linenos">48</span>
+<span class="linenos">49</span>wire_shaft();
+</pre></div>
+</div>
+<p>Here is an image of the final part:</p>
+<img alt="../../../_images/wire_shaft.png" class="align-center" src="../../../_images/wire_shaft.png" />
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../rubber_motor/index.html" title="MMlpp Rubber Motor"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../spar/index.html" title="MMlpp Prop Spar"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">Home</a>&#160;|</li>
+        <li><a href="../../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Math-Magick-lpp Code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >MMlpp Propeller</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MMlpp Prop Wire Shaft</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Roie R. Black.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.3.
+    </div>
+  </body>
+</html>

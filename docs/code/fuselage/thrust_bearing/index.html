@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>MMlpp Thrust Bearing &#8212; Math Magik LPP 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx13.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="MMlpp Rear Hook" href="../rear_hook/index.html" />
+    <link rel="prev" title="MMlpp Fin Post" href="../fin_post/index.html" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../../index.html">Home</a></li>
+    <li><a href="../../../usage/installation.html">Get it</a></li>
+    <li><a href="../../../contents.html">Docs</a></li>
+    <li><a href="../../../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../../../index.html">
+      <img src="../../../_static/logo.png" alt="PyLiT" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../rear_hook/index.html" title="MMlpp Rear Hook"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../fin_post/index.html" title="MMlpp Fin Post"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">Home</a>&#160;|</li>
+        <li><a href="../../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Math-Magick-lpp Code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">MMlpp Fuselage</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MMlpp Thrust Bearing</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../contents.html">
+              <img class="logo" src="../../../_static/badge.svg" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../fin_post/index.html"
+                        title="previous chapter">MMlpp Fin Post</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../rear_hook/index.html"
+                        title="next chapter">MMlpp Rear Hook</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/code/fuselage/thrust_bearing/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>Read time: 1.2 minutes (125 words)</p>
+<section id="mmlpp-thrust-bearing">
+<h1>MMlpp Thrust Bearing<a class="headerlink" href="#mmlpp-thrust-bearing" title="Permalink to this headline">¶</a></h1>
+<p>In experimenting with <em>OpenSCAD</em> I started off trying to build a wire thrust
+bearing. That effort was partially successful, bu tin the end, I decided to go
+with as bent aluminum beaing. This took a bit of work, but it was not so bad.
+Basically, is is a a simple piece of rectangular stock with rounded pieces on
+the bearing ends.</p>
+<p>Here is the data file needed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">#####################################</span>
+<span class="linenos"> 2</span><span class="o">//</span> <span class="n">thrust_bearing_data</span><span class="o">.</span><span class="n">scad</span>
+<span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">by</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
+<span class="linenos"> 4</span><span class="o">//=====================================</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">colors</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">thickness</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">32</span><span class="p">;</span>
+<span class="linenos"> 8</span><span class="n">length</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="n">height</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+<span class="linenos">10</span><span class="n">width</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+<span class="linenos">11</span><span class="n">front_height</span> <span class="o">=</span> <span class="n">height</span><span class="o">/</span><span class="mi">3</span><span class="p">;</span>
+<span class="linenos">12</span><span class="n">top_length</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+<span class="linenos">13</span><span class="n">wire_size</span> <span class="o">=</span> <span class="mf">0.025</span><span class="p">;</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="n">thrust_bearing_color</span> <span class="o">=</span> <span class="n">METAL_Aluminium</span><span class="p">;</span>
+<span class="linenos">17</span><span class="n">density</span> <span class="o">=</span> <span class="mf">168.77</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The rectangular part of he bearing was created using a 2D shape that was then extruded to form the basic part, Two cylinderical sections wee added to cap off this part.</p>
+<p>Here is the 2D file, created as a library file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>//######################################
+<span class="linenos"> 2</span>// prop_bearing_2D.scad
+<span class="linenos"> 3</span>// (c) Roie R. Black
+<span class="linenos"> 4</span>//**************************************
+<span class="linenos"> 5</span>use &lt;MMlib/circular_arc_strip.scad&gt;
+<span class="linenos"> 6</span>$fn=100;
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>module prop_bearing_2D(
+<span class="linenos"> 9</span>  length = 0.4,         // prop to rear
+<span class="linenos">10</span>  height = 0.15,         // top to prop-shaft
+<span class="linenos">11</span>  front_height = 3/64,  // nose height
+<span class="linenos">12</span>  top_length = 0.2,     // top flat length
+<span class="linenos">13</span>  thickness = 1/64      // material thickness
+<span class="linenos">14</span>) {
+<span class="linenos">15</span>  bend_radius = 2 * thickness;
+<span class="linenos">16</span>
+<span class="linenos">17</span>  // geometry calculations
+<span class="linenos">18</span>  d = height - bend_radius;
+<span class="linenos">19</span>  ky = d - front_height;
+<span class="linenos">20</span>  kx = length - 2 * bend_radius - top_length;
+<span class="linenos">21</span>  b = sqrt(kx*kx + ky*ky);
+<span class="linenos">22</span>  alpha = atan2(kx,ky);
+<span class="linenos">23</span>  echo(b,d,kx,ky,alpha,thickness);
+<span class="linenos">24</span>
+<span class="linenos">25</span>  // locate bend centers
+<span class="linenos">26</span>  p1 = [2 * thickness, front_height];
+<span class="linenos">27</span>  p2 = p1 + [kx,ky];
+<span class="linenos">28</span>  p3 = [length - 2 * thickness,d];
+<span class="linenos">29</span>
+<span class="linenos">30</span>  // front flat
+<span class="linenos">31</span>  square([thickness,front_height]);
+<span class="linenos">32</span>
+<span class="linenos">33</span>  // first bend at p1
+<span class="linenos">34</span>  translate(p1) circular_arc_strip(bend_radius,180-alpha,180,thickness);
+<span class="linenos">35</span>
+<span class="linenos">36</span>  // sloped front flat
+<span class="linenos">37</span>  translate(p1 + [-bend_radius * cos(alpha), bend_radius*sin(alpha)])
+<span class="linenos">38</span>    rotate(-alpha)
+<span class="linenos">39</span>      square([thickness, b]);
+<span class="linenos">40</span>
+<span class="linenos">41</span>  // second bend at p2
+<span class="linenos">42</span>  translate(p2) circular_arc_strip(bend_radius, 90,180-alpha,thickness);
+<span class="linenos">43</span>
+<span class="linenos">44</span>  // top flat
+<span class="linenos">45</span>  translate([p2.x,p2.y + thickness]) square([top_length,thickness]);
+<span class="linenos">46</span>
+<span class="linenos">47</span>  // third bend at p3
+<span class="linenos">48</span>  translate(p3) circular_arc_strip(bend_radius, 0,90,thickness);
+<span class="linenos">49</span>  // segment 5 - top
+<span class="linenos">50</span>  // back flat
+<span class="linenos">51</span>  translate([length - thickness,0])
+<span class="linenos">52</span>    square([thickness,d]);
+<span class="linenos">53</span>}
+<span class="linenos">54</span>
+<span class="linenos">55</span>//---------------------------------------
+<span class="linenos">56</span>// debug display
+<span class="linenos">57</span>
+<span class="linenos">58</span>prop_bearing_2D();
+</pre></div>
+</div>
+<p>And the code that generates the part:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>//#####################################
+<span class="linenos"> 2</span>// thrust-bearing.scad
+<span class="linenos"> 3</span>// (c) 2021 - Roie R. Black
+<span class="linenos"> 4</span>//=====================================
+<span class="linenos"> 5</span>include &lt;thrust_bearing_data.scad&gt;
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>use &lt;MMlib/prop_bearing_2D.scad&gt;
+<span class="linenos"> 8</span>$fn=100;
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>module thrust_bearing() {
+<span class="linenos">11</span>  color(thrust_bearing_color)
+<span class="linenos">12</span>    difference() {
+<span class="linenos">13</span>      union() {
+<span class="linenos">14</span>        translate([0,width/2,0])
+<span class="linenos">15</span>          rotate([90,0,0])
+<span class="linenos">16</span>            linear_extrude(width)
+<span class="linenos">17</span>              prop_bearing_2D(
+<span class="linenos">18</span>                length,
+<span class="linenos">19</span>                height,
+<span class="linenos">20</span>                front_height,
+<span class="linenos">21</span>                top_length,
+<span class="linenos">22</span>                thickness
+<span class="linenos">23</span>              );
+<span class="linenos">24</span>        // front lower cap
+<span class="linenos">25</span>        rotate([0,90,0])cylinder(r=width/2,h=thickness);
+<span class="linenos">26</span>        // rear cap
+<span class="linenos">27</span>        translate([length-thickness,0,0])
+<span class="linenos">28</span>          rotate([0,90,0])
+<span class="linenos">29</span>            cylinder(r=width/2, h=thickness);
+<span class="linenos">30</span>      }
+<span class="linenos">31</span>      translate([-0.1,0,0])
+<span class="linenos">32</span>        rotate([0,90,0])
+<span class="linenos">33</span>          cylinder(r=wire_size/2,length + 0.2);
+<span class="linenos">34</span>    }
+<span class="linenos">35</span>}
+<span class="linenos">36</span>
+<span class="linenos">37</span>thrust_bearing();
+</pre></div>
+</div>
+<p>Finally, here is the part.</p>
+<img alt="../../../_images/thrust_bearing.png" class="align-center" src="../../../_images/thrust_bearing.png" />
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>The thrust bearing  image has some rendering issues.</p>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../rear_hook/index.html" title="MMlpp Rear Hook"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../fin_post/index.html" title="MMlpp Fin Post"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">Home</a>&#160;|</li>
+        <li><a href="../../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Math-Magick-lpp Code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >MMlpp Fuselage</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MMlpp Thrust Bearing</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Roie R. Black.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.3.
+    </div>
+  </body>
+</html>

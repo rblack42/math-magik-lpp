@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Getting Started &#8212; Math Magik LPP 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Wing Design" href="02-wing-design.html" />
+    <link rel="prev" title="Designing a Limited Pennyplane" href="../lpp-design.html" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/logo.png" alt="PyLiT" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="02-wing-design.html" title="Wing Design"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../lpp-design.html" title="Designing a Limited Pennyplane"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../lpp-design.html" accesskey="U">Designing a Limited Pennyplane</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Getting Started</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../contents.html">
+              <img class="logo" src="../_static/badge.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Getting Started</a></li>
+<li><a class="reference internal" href="#lpp-rules"><em>Limited Pennyplane</em> Rules</a></li>
+<li><a class="reference internal" href="#parts-and-assemblies">Parts and Assemblies</a></li>
+<li><a class="reference internal" href="#design-process">Design Process</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../lpp-design.html"
+                        title="previous chapter">Designing a Limited Pennyplane</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="02-wing-design.html"
+                        title="next chapter">Wing Design</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/lpp-design/01-getting-started.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>Read time: 4.4 minutes (443 words)</p>
+<section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>To get started on this project, you need to make sure you have <em>OpenSCAD</em> installed.
+The project website has installers for all major platforms (Windows, Mac, and
+Linux). For an overview of using this program, see the <em>Math-Magik</em> project
+documentation. I highly recommend that you print out a copy of the <em>OpenSCAD</em> “cheat
+sheet” available at <a class="reference external" href="https://openscad.org/cheatsheet">https://openscad.org/cheatsheet</a></p>
+</section>
+<section id="lpp-rules">
+<h1><em>Limited Pennyplane</em> Rules<a class="headerlink" href="#lpp-rules" title="Permalink to this headline">¶</a></h1>
+<p>We cannot get much design work done without a clear understanding of the class
+rules. These are published in the <a class="reference external" href="https://www.modelaircraft.org/sites/default/files/Indoor_Free_Flight_2019-2021.pdf">AMA Rulebook</a> under “Event 208”.</p>
+<p>Basically, we need to respect a few model dimensions and weights in order to
+compete in this class. All of these are specified in a single <em>OpenSCAD</em> data file
+placed at the top of the model design directory:</p>
+<p>Note that in this design, all dimensions are in inches. <em>OpenSCAD</em> supports doing
+simple math when defining constants, so I am using things like <strong>1/16</strong> to
+indicate a standard modeling dimension, rather than using the actual decimal
+value.</p>
+<p>Also note that I name data files with a <strong>.data</strong> extension. <em>OpenSCAD</em> will handle
+these files just fine. All files with an <strong>.scad</strong> extension will define actual
+model parts or assemblies.</p>
+</section>
+<section id="parts-and-assemblies">
+<h1>Parts and Assemblies<a class="headerlink" href="#parts-and-assemblies" title="Permalink to this headline">¶</a></h1>
+<p>In this design, a <em>part</em> is a single component constructed out of some building
+material. When we analyze the properties of a part, we will need to specify the
+density of the material. In order to simplify the design, and set up useful
+components that might be useful in other designs, some <em>part</em> code files will
+be placed in a library folder. The <em>library parts</em> generally use parameters
+that need to be set to construct an actual physical part. We will see this
+concept in action soon in our design work.</p>
+<p>An <em>assembly</em> is a collection of parts combined to form a higher level
+component of the model. Assemblies can join simple parts, or other assemblies
+as needed to complete the model.</p>
+<p><em>OpenSCAD</em> is generally used by folks building things using 3d printers. In those
+applications, it is common to “fuse” parts together so generating files needed
+by a 3D printer can be constructed. in our design work, we will not be doing
+that. Instead, we need to carefully align parts so they end up placed in
+exactly the right spot. Fortunately, you can do simple calculations in <em>OpenSCAD</em>
+code to simplify this process.</p>
+</section>
+<section id="design-process">
+<h1>Design Process<a class="headerlink" href="#design-process" title="Permalink to this headline">¶</a></h1>
+<p>In the pages that follow, we will work on model parts in no particular order.
+We will initially focus on building a few parts, then set up assemblies that
+use those parts. The last thing we will be doing is assembling the complete
+model. This process is much the same as the one you would use to build any
+model using real parts. There is not one “correct” way to do this, although
+some things get pretty obvious.</p>
+<p>In the next section, we will start off by building the wing.</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="02-wing-design.html" title="Wing Design"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../lpp-design.html" title="Designing a Limited Pennyplane"
+             >previous</a> |</li>
+        <li><a href="../index.html">Home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../lpp-design.html" >Designing a Limited Pennyplane</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Getting Started</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Roie R. Black.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.3.
+    </div>
+  </body>
+</html>

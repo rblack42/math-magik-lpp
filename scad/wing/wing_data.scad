@@ -20,5 +20,3 @@ tip_span = sqrt(a*a + b*b);
 tip_dihedral_angle = atan2(a,b);
 tip_le_span = tip_span - tip_radius;
 tip_rib_chord = max_wing_chord - tip_radius - spar_size;
-
-echo(tip_dihedral_angle);

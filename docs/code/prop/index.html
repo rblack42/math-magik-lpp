@@ -126,9 +126,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>Read time: 0.0 minutes (0 words)</p>
+  <p>Read time: 0.8 minutes (82 words)</p>
 <section id="mmlpp-propeller">
 <h1>MMlpp Propeller<a class="headerlink" href="#mmlpp-propeller" title="Permalink to this headline">¶</a></h1>
+<p>The propeller is a bit involved. The basic idea in this construction is to build a thin walled cylinder thrn slice out the blades from that cylinder. The prop spar is just two tapered cylinders. The wire shaft is a bit more complex, but models a bent chunk of wire.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="blade/index.html">MMlpp Prop Blade</a></li>
@@ -136,6 +137,95 @@
 <li class="toctree-l1"><a class="reference internal" href="wire_shaft/index.html">MMlpp Prop Wire Shaft</a></li>
 </ul>
 </div>
+<p>These parts are assembled in the usual way. Here is the prop data file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">#####################################</span>
+<span class="linenos"> 2</span><span class="o">//</span> <span class="n">prop</span><span class="o">-</span><span class="n">blade</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">scad</span>
+<span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">by</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
+<span class="linenos"> 4</span><span class="o">//*************************************</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">colors</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span><span class="n">include</span> <span class="o">&lt;../</span><span class="n">constraints</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="o">//</span> <span class="n">Propeller</span> <span class="n">dimensions</span>
+<span class="linenos"> 9</span><span class="n">prop_radius</span> <span class="o">=</span> <span class="n">max_prop_diameter</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos">10</span><span class="n">prop_pitch_angle</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
+<span class="linenos">11</span><span class="n">prop_blade_offset</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="o">//</span> <span class="n">prop</span> <span class="n">spar</span> <span class="n">dimensions</span>
+<span class="linenos">14</span><span class="n">prop_spar_inner_radius</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">32</span><span class="p">;</span>
+<span class="linenos">15</span><span class="n">prop_spar_outer_radius</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">64</span><span class="p">;</span>
+<span class="linenos">16</span><span class="n">prop_spar_length</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="n">prop_spar_color</span> <span class="o">=</span> <span class="n">WOOD_Balsa</span><span class="p">;</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="o">//</span> <span class="n">prop</span> <span class="n">blade</span> <span class="n">dimensions</span>
+<span class="linenos">21</span><span class="n">prop_blade_thickness</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">64</span><span class="p">;</span>
+<span class="linenos">22</span><span class="n">prop_max_chord</span> <span class="o">=</span> <span class="mf">1.85</span><span class="p">;</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="o">//</span> <span class="n">prop</span> <span class="n">form</span> <span class="n">dimensions</span>
+<span class="linenos">25</span><span class="n">prop_form_radius</span> <span class="o">=</span> <span class="mf">2.5</span><span class="p">;</span>
+<span class="linenos">26</span><span class="n">prop_form_height</span> <span class="o">=</span> <span class="n">prop_radius</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos">27</span><span class="n">prop_form_angle</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="o">//</span> <span class="n">elliptic</span> <span class="n">form</span> <span class="n">data</span>
+<span class="linenos">30</span><span class="n">s</span> <span class="o">=</span> <span class="n">prop_radius</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">31</span><span class="n">c</span> <span class="o">=</span> <span class="mf">2.5</span><span class="p">;</span>
+<span class="linenos">32</span><span class="n">f</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos">33</span><span class="n">s1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">34</span><span class="n">s2</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-</span> <span class="n">s1</span><span class="p">;</span>
+<span class="linenos">35</span><span class="n">s3</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">36</span><span class="n">s4</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="n">prop_blade_color</span> <span class="o">=</span> <span class="n">WOOD_Balsa</span><span class="p">;</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span><span class="o">//-------------------------------------</span>
+<span class="linenos">41</span><span class="o">//</span> <span class="n">calculated</span> <span class="n">by</span> <span class="n">analysis</span>
+<span class="linenos">42</span><span class="n">prop_forward_x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.3287</span><span class="p">;</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span>
+</pre></div>
+</div>
+<p>The parts are positioned as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">###########################################################</span>
+<span class="linenos"> 2</span><span class="o">//</span> <span class="n">prop_pos</span><span class="o">.</span><span class="n">scad</span> <span class="o">-</span> <span class="n">prop</span> <span class="n">positioning</span> <span class="n">data</span>
+<span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">by</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
+<span class="linenos"> 4</span><span class="o">//===========================================================</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">prop_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">pos_spar</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="n">pos_blade1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">prop_blade_offset</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">prop_pitch_angle</span><span class="p">];</span>
+<span class="linenos">10</span><span class="n">pos_blade2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">prop_blade_offset</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">prop_pitch_angle</span><span class="p">];</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">pos_wire_shaft</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">64</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>And, here is the assembly code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">######################################</span>
+<span class="linenos"> 2</span><span class="o">//</span> <span class="n">prop</span><span class="o">.</span><span class="n">scad</span>
+<span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="o">-</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
+<span class="linenos"> 4</span><span class="o">//**************************************</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">MMlib</span><span class="o">/</span><span class="n">position</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">prop_pos</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">blade</span><span class="o">/</span><span class="n">blade</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 9</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">wire_shaft</span><span class="o">/</span><span class="n">wire_shaft</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">10</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">spar</span><span class="o">/</span><span class="n">spar</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">module</span> <span class="n">prop</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">14</span>  <span class="n">align</span><span class="p">(</span><span class="n">pos_blade1</span><span class="p">)</span> <span class="n">blade</span><span class="p">();</span>
+<span class="linenos">15</span>  <span class="n">align</span><span class="p">(</span><span class="n">pos_blade2</span><span class="p">)</span>  <span class="n">blade</span><span class="p">();</span>
+<span class="linenos">16</span>  <span class="n">align</span><span class="p">(</span><span class="n">pos_spar</span><span class="p">)</span> <span class="n">spar</span><span class="p">();</span>
+<span class="linenos">17</span>  <span class="n">align</span><span class="p">(</span><span class="n">pos_wire_shaft</span><span class="p">)</span> <span class="n">wire_shaft</span><span class="p">();</span>
+<span class="linenos">18</span><span class="p">}</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="o">//---------------------------------------</span>
+<span class="linenos">21</span><span class="o">//</span> <span class="n">debug</span> <span class="n">display</span>
+<span class="linenos">22</span><span class="n">prop</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Running this code produces this shape:</p>
+<img alt="../../_images/prop.png" src="../../_images/prop.png" />
 </section>
 
 

@@ -138,7 +138,7 @@ using a template. We will generate that in a later section of these notes.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="leading_edge/index.html">MMlpp Wing Left Tip Leading Edge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="trailing_edge/index.html">MMlpp Fuselage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trailing_edge/index.html">MMlpp  WIng Left Tip Trailing Edge</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tip_rib/index.html">MMlpp Fuselage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tip_arc/index.html">MMlpp Wing Left Tip Arc</a></li>
 </ul>
@@ -167,29 +167,28 @@ using a template. We will generate that in a later section of these notes.</p>
 <span class="linenos"> 8</span><span class="n">use</span> <span class="o">&lt;</span><span class="n">MMlib</span><span class="o">/</span><span class="n">position</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>
-<span class="linenos">11</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">arc</span><span class="o">/</span><span class="n">arc</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-<span class="linenos">12</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">le</span><span class="o">/</span><span class="n">le</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-<span class="linenos">13</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">te</span><span class="o">/</span><span class="n">te</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-<span class="linenos">14</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">rib1</span><span class="o">/</span><span class="n">rib1</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-<span class="linenos">15</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">arc</span><span class="o">/</span><span class="n">arc</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-<span class="linenos">16</span><span class="o">//</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">covering</span><span class="o">/</span><span class="n">covering</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">11</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">tip_arc</span><span class="o">/</span><span class="n">tip_arc</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">12</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">leading_edge</span><span class="o">/</span><span class="n">leading_edge</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">13</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">trailing_edge</span><span class="o">/</span><span class="n">trailing_edge</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">14</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">tip_rib</span><span class="o">/</span><span class="n">tip_rib</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">15</span><span class="o">//</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">covering</span><span class="o">/</span><span class="n">covering</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">16</span>
 <span class="linenos">17</span>
-<span class="linenos">18</span>
-<span class="linenos">19</span><span class="n">module</span> <span class="n">left_tip</span><span class="p">()</span> <span class="p">{</span>
-<span class="linenos">20</span>  <span class="n">color</span><span class="p">(</span><span class="n">WOOD_Balsa</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos">21</span>    <span class="n">align</span><span class="p">(</span><span class="n">le_pos</span><span class="p">)</span> <span class="n">le</span><span class="p">();</span>
-<span class="linenos">22</span>    <span class="n">align</span><span class="p">(</span><span class="n">te_pos</span><span class="p">)</span> <span class="n">te</span><span class="p">();</span>
-<span class="linenos">23</span>    <span class="n">align</span><span class="p">(</span><span class="n">arc_pos</span><span class="p">)</span> <span class="n">arc</span><span class="p">();</span>
-<span class="linenos">24</span>    <span class="n">align</span><span class="p">(</span><span class="n">rib1_pos</span><span class="p">)</span> <span class="n">rib1</span><span class="p">();</span>
-<span class="linenos">25</span>  <span class="p">}</span>
-<span class="linenos">26</span>  <span class="o">//</span><span class="n">rotate</span><span class="p">([</span><span class="mi">180</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span> <span class="n">right_tip_covering</span><span class="p">();</span>
-<span class="linenos">27</span><span class="p">}</span>
-<span class="linenos">28</span>
-<span class="linenos">29</span><span class="o">//--------------------------------------</span>
-<span class="linenos">30</span><span class="o">//</span> <span class="n">debug</span> <span class="n">display</span>
-<span class="linenos">31</span>
-<span class="linenos">32</span><span class="n">left_tip</span><span class="p">();</span>
-<span class="linenos">33</span>
+<span class="linenos">18</span><span class="n">module</span> <span class="n">left_tip</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">19</span>  <span class="n">color</span><span class="p">(</span><span class="n">WOOD_Balsa</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">20</span>    <span class="n">align</span><span class="p">(</span><span class="n">le_pos</span><span class="p">)</span> <span class="n">leading_edge</span><span class="p">();</span>
+<span class="linenos">21</span>    <span class="n">align</span><span class="p">(</span><span class="n">te_pos</span><span class="p">)</span> <span class="n">trailing_edge</span><span class="p">();</span>
+<span class="linenos">22</span>    <span class="n">align</span><span class="p">(</span><span class="n">arc_pos</span><span class="p">)</span> <span class="n">tip_arc</span><span class="p">();</span>
+<span class="linenos">23</span>    <span class="n">align</span><span class="p">(</span><span class="n">rib1_pos</span><span class="p">)</span> <span class="n">tip_rib</span><span class="p">();</span>
+<span class="linenos">24</span>  <span class="p">}</span>
+<span class="linenos">25</span>  <span class="o">//</span><span class="n">rotate</span><span class="p">([</span><span class="mi">180</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span> <span class="n">right_tip_covering</span><span class="p">();</span>
+<span class="linenos">26</span><span class="p">}</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="o">//--------------------------------------</span>
+<span class="linenos">29</span><span class="o">//</span> <span class="n">debug</span> <span class="n">display</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="n">left_tip</span><span class="p">();</span>
+<span class="linenos">32</span>
 </pre></div>
 </div>
 <p>Here is the assembled left tip;</p>

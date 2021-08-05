@@ -5,16 +5,16 @@
 include <MMlib/position.scad>
 include <prop_pos.scad>
 
-use <./prop_blade/prop_blade.scad>
+use <./blade/blade.scad>
 use <./wire_shaft/wire_shaft.scad>
-use <./prop_spar/prop_spar.scad>
+use <./spar/spar.scad>
 
 
 module prop() {
-  align(pos_blade1) prop_blade();
-  align(pos_blade2)  prop_blade();
-  prop_spar();
-  position(pos_wire_shaft) wire_shaft();
+  align(pos_blade1) blade();
+  align(pos_blade2)  blade();
+  align(pos_spar) spar();
+  align(pos_wire_shaft) wire_shaft();
 }
 
 //---------------------------------------

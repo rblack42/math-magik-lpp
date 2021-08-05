@@ -10,6 +10,8 @@ use <MMlib/position.scad>
 use <./center/center.scad>
 use <./right_tip/right_tip.scad>
 use <./left_tip/left_tip.scad>
+use <./wing_mount/wing_mount.scad>h
+
 
 module wing() {
     align(right_tip_pos) right_tip();

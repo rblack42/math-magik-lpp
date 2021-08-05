@@ -10,6 +10,7 @@ prop_radius = max_prop_diameter/2;
 prop_pitch_angle = 40;
 prop_blade_offset = 0.5;
 
+// prop spar dimensions
 prop_spar_inner_radius = 1/32;
 prop_spar_outer_radius = 1/64;
 prop_spar_length = 4;

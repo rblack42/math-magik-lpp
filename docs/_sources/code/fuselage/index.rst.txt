@@ -1,6 +1,8 @@
 MMlpp Fuselage
 ##############
 
+The model fuselage has a lot of parts to assemble. These are detailed below.
+
 ..  toctree::
     :maxdepth: 2
 
@@ -12,4 +14,19 @@ MMlpp Fuselage
     fin_post/index
     thrust_bearing/index
     rear_hook/index
+
+The positioning data needed to assembly this component are shown next.
+
+..  literalinclude::    ../../../scad/fuselage/fuselage_data.scad
+    :linenos:
+
+Here is the assembly code:
+
+..  literalinclude::    ../../../scad/fuselage/fuselage.scad
+    :linenos:
+
+The assembly is shown below:
+
+..  image:: fuselage.png
+    :align: center
 

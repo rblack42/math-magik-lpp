@@ -1,7 +1,8 @@
 MMlpp Wing Left Tip Leading Edge
 ################################
 
-This short piece is a double-tapered spar. The tip side is one half the sixe of the inner side.
+This short piece is a double-tapered spar. The tip side is one half the sixe of
+the inner side.
 
 Here is the library code that generates the double-tapered spar:
 

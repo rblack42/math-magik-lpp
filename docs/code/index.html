@@ -94,6 +94,14 @@
             <p class="logo"><a href="../contents.html">
               <img class="logo" src="../_static/badge.svg" alt="Logo"/>
             </a></p>
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Math-Magick-lpp Code</a><ul>
+<li><a class="reference internal" href="#animation">Animation</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="../appendix/01-library-parts.html"
                         title="previous chapter">Library Parts</a></p>
@@ -125,10 +133,11 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>Read time: 0.6 minutes (57 words)</p>
+  <p>Read time: 1.6 minutes (156 words)</p>
 <section id="math-magick-lpp-code">
 <h1>Math-Magick-lpp Code<a class="headerlink" href="#math-magick-lpp-code" title="Permalink to this headline">¶</a></h1>
-<p>This model is designed to compete in the AMA Li|LPP| class. The rulebook defines come basic design constraints we must follow to be legal in this class:</p>
+<p>This model is designed to compete in the AMA Li|LPP| class. The rulebook
+defines come basic design constraints we must follow to be legal in this class:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">####################################</span>
 <span class="linenos"> 2</span><span class="o">//</span> <span class="n">Math</span><span class="o">-</span><span class="n">Magik</span> <span class="n">LPP</span> <span class="o">-</span> <span class="n">Design</span> <span class="n">Constraints</span>
 <span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">by</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
@@ -171,12 +180,13 @@
 <li class="toctree-l1"><a class="reference internal" href="stab/index.html">MMlpp Stab</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="stab/center/index.html">MMlpp Stab Center Section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stab/left_tip/index.html">MMlpp Stab Left Tip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stab/right_tip/index.html">MMlpp Stab Right Tip</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="prop/index.html">MMlpp Propeller</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="prop/blade/index.html">MMlpp Fuselage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prop/spar/index.html">MMlpp Fuselage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prop/wire_shaft/index.html">MMlpp Fuselage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prop/blade/index.html">MMlpp Prop Blade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prop/spar/index.html">MMlpp Prop Spar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prop/wire_shaft/index.html">MMlpp Prop Wire Shaft</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="rubber_motor/index.html">MMlpp Rubber Motor</a><ul>
@@ -188,6 +198,13 @@
 </div>
 <p>Placing these parts is done with another position data file:</p>
 <p>Here is the final assembly file that builds the entire model.</p>
+<p>The challenge in this final assembly is making sure everything lines up. This
+is the point in time when you really ned to think through how parts relate to
+each other when bringing the model together.</p>
+<section id="animation">
+<h2>Animation<a class="headerlink" href="#animation" title="Permalink to this headline">¶</a></h2>
+<p><em>OpenSCAD</em> supportsanimating shapes. I decided to generate an animated <strong>GIF</strong> file using this feature. It appears on the project website. To get this running, click on <span class="menuselection">design -&gt; Animate</span> and set in ta <strong>FPS value of 30, and a **Step</strong> value of 10. The anitation should start up. There are controls that let you generate animation images that can be combined to build the <strong>GIF</strong> file.</p>
+</section>
 </section>
 
 

@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Data Files &#8212; Math Magik LPP 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Change Log" href="../changes.html" />
+    <link rel="prev" title="Positioning Components" href="05-apositioning-components.html" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/logo.png" alt="PyLiT" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../changes.html" title="Change Log"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="05-apositioning-components.html" title="Positioning Components"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../lpp-design.html" accesskey="U">Designing a Limited Pennyplane</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Data Files</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../contents.html">
+              <img class="logo" src="../_static/badge.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Data Files</a><ul>
+<li><a class="reference internal" href="#part-data-files">Part Data Files</a></li>
+<li><a class="reference internal" href="#assembly-data-files">Assembly Data Files</a></li>
+<li><a class="reference internal" href="#position-data-files">Position Data Files</a></li>
+<li><a class="reference internal" href="#naming-data">Naming Data</a></li>
+<li><a class="reference internal" href="#data-catalog">Data Catalog</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="05-apositioning-components.html"
+                        title="previous chapter">Positioning Components</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../changes.html"
+                        title="next chapter">Change Log</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/lpp-design/06_data_files.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>Read time: 2.9 minutes (286 words)</p>
+<section id="data-files">
+<h1>Data Files<a class="headerlink" href="#data-files" title="Permalink to this headline">¶</a></h1>
+<p>We need to define dimensions for all the parts that make up the model. We also
+need to define placement values that place each part or assembly in the proper
+position in the model. Using <em>OpenSCAD</em>, we will define parts individually, then
+assemble parts into assemblies. These may be further combined to produce the
+final model. Al l of that means we need to set up these constants and do some
+calculations to get things right.</p>
+<p>Rather than place dimensions directly in the files where they are needed, I
+elected to factor them out into separate data files that get included as
+needed. The scheme I came up with to organize these data files is outlined
+here.</p>
+<section id="part-data-files">
+<h2>Part Data Files<a class="headerlink" href="#part-data-files" title="Permalink to this headline">¶</a></h2>
+<p>Within each part directory (no subdirectories in these), the part data file
+contains values needed to create the part. These data files may include other
+data files as needed to fully define the part. For that reason, all data items
+include the part name to avois conflicts in other places.</p>
+</section>
+<section id="assembly-data-files">
+<h2>Assembly Data Files<a class="headerlink" href="#assembly-data-files" title="Permalink to this headline">¶</a></h2>
+<p>When combining parts (or other assemblies) we need data that helps properly
+place all components to create the assembly. Data needed for assemblies is
+located in an assembly data file.</p>
+</section>
+<section id="position-data-files">
+<h2>Position Data Files<a class="headerlink" href="#position-data-files" title="Permalink to this headline">¶</a></h2>
+<p>In order to facilitate design analysis, all positioning data items are located
+in position data files. These are only located in assembly directories.</p>
+</section>
+<section id="naming-data">
+<h2>Naming Data<a class="headerlink" href="#naming-data" title="Permalink to this headline">¶</a></h2>
+<p>All data items have a distinct name. As much as possible, no “bare” numbers
+should be found in shape design files. Instead, we include the necessary data
+files to create each component.</p>
+<p>Hopefully, changes to the design can be made by adjusting data item values.
+Changes in the shape design files should not be needed, unless you are changing
+that shape in some fundamental way.</p>
+</section>
+<section id="data-catalog">
+<h2>Data Catalog<a class="headerlink" href="#data-catalog" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Add a catalog of all defined data. This will be generated using a Python
+script that scans all data files.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../changes.html" title="Change Log"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="05-apositioning-components.html" title="Positioning Components"
+             >previous</a> |</li>
+        <li><a href="../index.html">Home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../lpp-design.html" >Designing a Limited Pennyplane</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Data Files</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Roie R. Black.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.3.
+    </div>
+  </body>
+</html>

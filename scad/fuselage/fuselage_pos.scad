@@ -29,8 +29,7 @@ rwp_pos = [rp_offset+fuse_offset,-ms_thickness,0,0,0,0];
 
 // stab post positioning
 xfsp = xf-post_diameter/2;
-cchkfuvdjrlrtuneegfgdekigjdlhkkticjrvbuv
-
+xrsp = xf+max_stab_chord+post_diameter/2;
 ysp = -ms_thickness/2-tb_thickness-post_diameter/2;
 fsp_pos = [xfsp,ysp,0,0,0,0];
 rsp_pos = [xrsp,ysp,0,0,0,0];

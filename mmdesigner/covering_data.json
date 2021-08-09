@@ -1,0 +1,55 @@
+{
+  "wing" : {
+    "base": {
+	    "ny": 20,
+	    "nx": 20
+    },
+    "center": {
+	    "span": 12,
+	    "chord": 5,
+	    "camber": 4
+    },
+    "tip": {
+	    "dihedral": 1.75,
+      "span": 3,
+      "chord": 5,
+	    "height1": 0.0625,
+	    "height2": 0.03125,
+	    "radius": 2
+    }
+  },
+  "stab": {
+    "base": {
+	    "nx": 20,
+	    "ny": 20
+    },
+    "center": {
+	    "span": 6,
+	    "chord": 4,
+	    "camber": 2
+    },
+    "tip": {
+      "span": 3,
+      "dihedral": 0,
+      "chord": 4,
+	    "height1": 0.0625,
+	    "height2": 0.03125,
+	    "radius": 1.5
+    }
+  },
+  "fin" : {
+    "base": {
+      "nx": 20,
+      "ny": 20
+    },
+    "tip": {
+      "chord":4,
+      "dihedral": 0,
+      "span": 2,
+      "radius": 1.5,
+      "camber": 0,
+	    "height1": 0.0625,
+	    "height2": 0.03125
+    }
+  }
+}

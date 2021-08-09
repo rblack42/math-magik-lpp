@@ -23,26 +23,28 @@ Math Magik LPP (v0.1.0)
 
 .. end-badges
 
-..  note::
 
-    If you are visiting this link after reading my article *Designing an Indoor
-    Model Using OpenSCAD* in the 2021 edition of the NFFS Symposium, welcome!
-    This site is an updated reference on building the *math-magik-lpp *Limited
-    Pennyplane* model, with corrections to equations and figures from that
-    article.
+If you are visiting this link after reading my article *Designing an Indoor
+Model Using OpenSCAD* in the 2021 edition of the NFFS Symposium, welcome!
 
-This project presents the design of a *Limited Pennyplane* indoor model airplane
-using *OpenSCAD*. This is a companion to the primary project website at
-https://rblack42.github.io/math-magik where analysis software for the design is
-presented.
+This site is a work in progress. If you are interested in trying ano of this
+project, please contact me at the email address above and I will be glad tro
+provide assistance in getthing things running.
+
+Here you will find updated documentation on building the *math-magik-lpp
+*Limited Pennyplane* model, with corrections to equations and figures from the
+symposium article.
+
+More information on analyzing this model can be found on the companion website
+at https://rblack42.github.io/math-magik
 
 The project documentation is available at the link above. There you will find
 material detailing the *OpenSCAD* code developed to support this project.
 
-If you are interested in assisting with the development of this project, or
-need help with anything found here, please contact me by email. I welcome
-questions and ideas for extending this project.
+All code, both *OpenSCAD* and Python code, can be found on my github account:
 
+    * https://github.com/rblack42/math-magik
+    * https://github.com/rblack42/math-magik-lpp
 
 
 

@@ -5,3 +5,4 @@ sphinxcontrib-tikz
 jupyter
 sympy
 texext
+pytest

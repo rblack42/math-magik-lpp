@@ -1,5 +1,5 @@
 use <function_grapher.scad>;
-include <./left_tip_covering_points.scad>
+include <./cover_points.scad>
 include <colors.scad>
 
 thickness = 0.001;

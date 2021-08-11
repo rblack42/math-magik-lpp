@@ -113,7 +113,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -154,6 +154,7 @@ using a template. We will generate that in a later section of these notes.</p>
 <span class="linenos"> 8</span><span class="n">te_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">max_wing_chord</span> <span class="o">-</span> <span class="n">spar_size</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">90</span><span class="p">];</span>
 <span class="linenos"> 9</span><span class="n">arc_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">tip_radius</span><span class="p">,</span> <span class="o">-</span><span class="n">tip_span</span> <span class="o">+</span> <span class="n">tip_radius</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
 <span class="linenos">10</span><span class="n">rib1_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">tip_rib_chord</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">tip_radius</span><span class="p">,</span><span class="o">-</span><span class="n">tip_span</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">90</span><span class="p">];</span>
+<span class="linenos">11</span><span class="n">left_tip_cover_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">max_wing_chord</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
 </pre></div>
 </div>
 <p>Here is the code that assembles the tip section:</p>
@@ -171,7 +172,7 @@ using a template. We will generate that in a later section of these notes.</p>
 <span class="linenos">12</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">leading_edge</span><span class="o">/</span><span class="n">leading_edge</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
 <span class="linenos">13</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">trailing_edge</span><span class="o">/</span><span class="n">trailing_edge</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
 <span class="linenos">14</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">tip_rib</span><span class="o">/</span><span class="n">tip_rib</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-<span class="linenos">15</span><span class="o">//</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">covering</span><span class="o">/</span><span class="n">covering</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">15</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">covering</span><span class="o">/</span><span class="n">left_tip_covering</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
 <span class="linenos">16</span>
 <span class="linenos">17</span>
 <span class="linenos">18</span><span class="n">module</span> <span class="n">left_tip</span><span class="p">()</span> <span class="p">{</span>
@@ -181,7 +182,7 @@ using a template. We will generate that in a later section of these notes.</p>
 <span class="linenos">22</span>    <span class="n">align</span><span class="p">(</span><span class="n">arc_pos</span><span class="p">)</span> <span class="n">tip_arc</span><span class="p">();</span>
 <span class="linenos">23</span>    <span class="n">align</span><span class="p">(</span><span class="n">rib1_pos</span><span class="p">)</span> <span class="n">tip_rib</span><span class="p">();</span>
 <span class="linenos">24</span>  <span class="p">}</span>
-<span class="linenos">25</span>  <span class="o">//</span><span class="n">rotate</span><span class="p">([</span><span class="mi">180</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span> <span class="n">right_tip_covering</span><span class="p">();</span>
+<span class="linenos">25</span>  <span class="n">align</span><span class="p">(</span><span class="n">left_tip_cover_pos</span><span class="p">)</span> <span class="n">left_tip_covering</span><span class="p">();</span>
 <span class="linenos">26</span><span class="p">}</span>
 <span class="linenos">27</span>
 <span class="linenos">28</span><span class="o">//--------------------------------------</span>
@@ -224,7 +225,7 @@ using a template. We will generate that in a later section of these notes.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Roie R. Black.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

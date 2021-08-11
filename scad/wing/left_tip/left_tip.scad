@@ -22,7 +22,8 @@ module left_tip() {
     align(arc_pos) tip_arc();
     align(rib1_pos) tip_rib();
   }
-  align(left_tip_cover_pos) left_tip_covering();
+  //align(left_tip_cover_pos) 
+  left_tip_covering();
 }
 
 //--------------------------------------

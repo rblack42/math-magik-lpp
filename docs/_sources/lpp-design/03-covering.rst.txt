@@ -24,16 +24,20 @@ this means is that our entire model can be reduced to a giant list of triangles
 surrounding the structure. The closer the points on these triangles are to each
 other, the closer our approximation to the real shape gets.
 
-For the covering the shape is a very thin film. Suppose we generate a grid of
-points on that surface and use those points  and generate our own triangles,
-each suitably thin, to represent the covering over any shape we need. The grid
-will look like a rectangular mesh, but we an run a diagonal across each
-four-point grid element producing two triangles. This is exactly what an |STL|
-file looks like.
+Typically, indoor models are covered using a very thin film. Suppose we
+generate a grid of points that sit on the surface we want to represent our
+covering. The grid will represent a set of quadrilateral (four point) areas  on
+that surface. We can draw a diagonal across each quad surface to produce two
+triangles. Then we "extrude" these upward a tiny amount to represent a chunk of
+film.This is exactly what an |STL| file looks like.
 
-|OSC| can create an |STL| file, and it can load them for display. Perhaps the way
-to generate a covering for our model involves creating our own |STL| file for
-the covering, or something similar to that.
+The thickness of the film is not important here. We only need it to be thick
+enough to be visible in |OSC|. Traditionally, film weights are given in terms
+of surface area, not volume. As long as we know what thickness we have set up
+for our digital film, we can transform the volume we calculate for our covering
+into a surface area and get the weight we need to weight and balance
+calculations.
+
 
 Function Grapher
 ****************
@@ -43,21 +47,22 @@ you need:
 
 ..	math::
 
-	Surface = f(x,y)
+	Surface height = f(x,y)
 
 
-If we create a matrix of points covering the projected wing plan form, we can
-use this function to generate the two-dimensional matrix of data points needed
-for |OSC| work. Python can write these points out so that |OSC| can read the
-file produced. Sounds simple enough for a Python programmer.
+Our challenge is to create a two-dimensional matrix of points covering each
+segment of a flying surface. The surface function will tell us the height of
+the surface at each point. Each point will be recorded using the **X**, **Y**,
+and **Z** (height) values for the covering surface.  Python can write these
+points out so that |OSC| can read the file produced.  Sounds simple enough for
+a Python programmer.
 
-Once we have this matrix, we can use it to generate a 3D surface using |OSC|
-code. `Justin Lin`_ created a tool for displaying a 3D function, input as a
+`Justin Lin`_ created a tool for displaying a 3D function, input as a
 collection of 3D points, using the **polyhedron** tool in |OSC|. His function
-takes the rectangular array of 3D *X-Y* points and extrudes them to create an
-identical surface some defined thickness in the **Z** direction. Justin has a
+takes the rectangular array of 3D *X-Y-Z* points and extrudes them to create a
+surface with a user defined thickness in the **Z** direction. Justin has a
 library that uses this scheme on his website, and I started off by extracting
-just part of that code for use in this project. This scheme is suitable for
+just part of that his for use in this project. This scheme is suitable for
 indoor models, but will not work for more general model building, so I plan on
 replacing this code at a later time.
 
@@ -68,7 +73,27 @@ The challenge in using this approach is generating the matrix of points. I
 elected to do this work in Python, and created a function that generates the
 needed point array we can use for the covering.
 
-Let's start off by looking at the rib height function.
+The basic scheme used involved nested loops that create the grid. If we have **nx** points in the **X** direction, and **ny** points in the **Y** idirection, the loop setup looks like this:
+
+..  code-block::    python
+
+    dx = chord / nx
+    dy = span / ny
+    points = []
+    for i in range(ny+1):
+        y = i * dy
+        xpoints = []
+        for j in range(nx+1):
+            x = j * dx
+            z = surface_height(x,y)
+            xpoints.append([x,y,z])
+        points.append(xpoints)
+
+Here, we are creating our surface data matrix as a "list of lists", which is
+how you do this in Python.
+
+Let's look at the rib height function we will use for the wing and stab center
+sections.
 
 Rib Height
 ==========
@@ -103,9 +128,11 @@ From this figure, we can generate two equations:
 
 
 
-Here **C** is the rib chord and **t** is the rib thickness. We need to figure out the radius, **r** and the angle :math`\alpha`.
+Here **C** is the rib chord and **t** is the rib thickness. We need to figure
+out the radius, **r** and the angle :math`\alpha`.
 
-Rather than doing this manually, let's introduce Python SymPy_, a neat tool you wish you had back in your school days.
+Rather than doing this manually, let's introduce Python SymPy_, a neat tool you
+wish you had back in your school days.
 
 Here is a piece of code that will give up the results we are after:
 
@@ -245,8 +272,9 @@ Given a camber, chord, and radius, we can come up with the following equations:
 
     r^2 = (x - w)^2 + (z - h)^2
 
-That last equation is the general equation for a circle centered at :math:`(w,y)`.
-We need to solve these equations for the height, :math:`z`. SymPy_ to the rescue!
+That last equation is the general equation for a circle centered at
+:math:`(w,y)`.  We need to solve these equations for the height, :math:`z`.
+SymPy_ to the rescue!
 
 For some specified :math:`x, r, w, and h` we want to find the height,
 :math:`z`: SymPy_ to the rescue!
@@ -334,7 +362,8 @@ need to work on the wing outline.
 Wing Outline
 ============
 
-The wing is constructed using s rectangular center section and two rectangular tip sections with a rounded leading edge. Here is the geometry we are using:
+The wing is constructed using s rectangular center section and two rectangular
+tip sections with a rounded leading edge. Here is the geometry we are using:
 
 
 ..  tikz::
@@ -384,7 +413,8 @@ In this figure, we need to provide four parameters:
 
 The leading edge offset, beginning where the circular section starts is defined
 by another general circle equation. Let's consider a coordinate system
-positioned at the start of the leading edge arc. Here is the equation for the tip arc:
+positioned at the start of the leading edge arc. Here is the equation for the
+tip arc:
 
 ..  math::
 
@@ -428,9 +458,9 @@ We now have all the pieces needed to generate the covering for our model.
 Covering grid
 =============
 
-A simple way to generate the covering matrix is to divide up the chord into
-**nx** points, and the span into **ny** points. Actually, we will be generating
-covering shapes for each part of the model, not the assembled parts.
+As discussed earlier, we will generate the covering matrix by dividing up the
+chord into **nx** points, and the span into **ny** points. Remember, we will be
+generating covering shapes for each part of the model, not the assembled parts.
 
 Wing and Stab Center Sections
 -----------------------------
@@ -446,7 +476,7 @@ For the wing and stab, the grid is simple. We set up simple loops to generate
     covering as an arc, and position it so it connects to the leading and
     trailing edge outer points. Visually, this will be fine and the analysis
     will still be good. The covering will "float" above the actual framework a
-    tiny amunt.
+    tiny amount.
 
 Tip sections
 ------------

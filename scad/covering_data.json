@@ -1,6 +1,6 @@
 {
   "wing" : {
-    "base": {
+    "grid": {
 	    "ny": 20,
 	    "nx": 20
     },
@@ -13,13 +13,14 @@
 	    "dihedral": 1.75,
       "span": 3,
       "chord": 5,
+	    "camber": 4,
 	    "height1": 0.0625,
 	    "height2": 0.03125,
 	    "radius": 2
     }
   },
   "stab": {
-    "base": {
+    "grid": {
 	    "nx": 20,
 	    "ny": 20
     },
@@ -32,13 +33,14 @@
       "span": 3,
       "dihedral": 0,
       "chord": 4,
+	    "camber": 2,
 	    "height1": 0.0625,
 	    "height2": 0.03125,
 	    "radius": 1.5
     }
   },
   "fin" : {
-    "base": {
+    "grid": {
       "nx": 20,
       "ny": 20
     },

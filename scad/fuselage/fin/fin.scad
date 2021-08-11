@@ -6,13 +6,13 @@ include <colors.scad>
 use <MMlib/position.scad>
 include <./fin_pos.scad>
 
-use <./fin_arc/fin_arc.scad>
+use <./arc/fin_arc.scad>
 use <./leading_edge/leading_edge.scad>
 use <./trailing_edge/trailing_edge.scad>
-use <./fin_rib1/fin_rib1.scad>
-use <./fin_rib2/fin_rib2.scad>
-use <./fin_arc/fin_arc.scad>
-use <./fin_covering/fin_covering.scad>
+use <./rib1/fin_rib1.scad>
+use <./rib2/fin_rib2.scad>
+use <./arc/fin_arc.scad>
+use <./covering/fin_covering.scad>
 
 
 module fin() {

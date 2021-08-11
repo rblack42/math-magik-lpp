@@ -8,103 +8,122 @@
 # system library imports
 import math
 import json
+import os
+import sys
 
 # local application imports
-from ArcAirfoil import ArcAirfoil
+from .ArcAirfoil import ArcAirfoil
+from .Util import ytip
+
 
 class Covering(object):
 
-    def __init__(self):
+    def __init__(self, fname):
+        self.fname = fname
+
+        # load model data file
         jdata = None
-        with open("covering_data.json") as fin:
+        if not os.path.isfile(fname):
+            print("Data file not found:", fname)
+            sys.exit(1)
+
+        with open(fname) as fin:
             jdata = json.load(fin)
         #print(jdata)
         if jdata is None:
-            print("Error reading data file")
+            #print("Error reading data file")
             sys.exit(1)
         self.jdata = jdata
-        #self.airfoil = ArcAirfoil(self.chord,self.camber, 1/16)
-        #self.callback = self.airfoil.height
-        for part in self.jdata:
-            print("generating covering for ", part)
-            for segment in self.jdata[part]:
-                if segment == "base": continue
-                print("\t", segment)
+
+    def run1(self):
+        part = "wing"
+        seg = "center"
+        self.nx = 20
+        self.span = self.jdata[part][seg]["span"]
+        self.camber = self.jdata[part][seg]["camber"]
+        self.chord = self.jdata[part][seg]["chord"]
+        self.center_covering()
+        self.center_elevation = self.points
+        self.grid_writer(part, seg)
+
+        seg = "tip"
+        self.nx = 40
+        self.span = self.jdata[part][seg]["span"]
+        self.dihedral = self.jdata[part][seg]["dihedral"]
+        # calculate real tip span
+        self.span = math.sqrt(self.span**2 + self.dihedral**2)
+        self.dihedral_angle = math.asin(self.dihedral / self.span)
+        #print("Angle:", self.dihedral_angle * 180.0 / math.pi)
+        #print(self.tip_elevation)
+        self.height1 = self.jdata[part][seg]["height1"]
+        self.height2 = self.jdata[part][seg]["height2"]
+        self.chord = self.jdata[part][seg]["chord"]
+        self.radius = self.jdata[part][seg]["radius"]
+        self.tip_covering()
+        self.grid_writer(part, seg)
 
     def run(self):
-        print("generating covering data files:")
+        #print("generating covering data files:")
         for part in self.jdata:
-            print("\tpart;", part)
-            self.nx = self.jdata[part]["base"]["nx"]
-            self.ny = self.jdata[part]["base"]["ny"]
+            self.nx = self.jdata[part]["grid"]["nx"]
+            self.ny = self.jdata[part]["grid"]["ny"]
             for seg in self.jdata[part]:
-                if seg == "base": continue
-                print("\t\tsegment:", seg)
+                if seg == "grid": continue
                 if seg == "center":
                     self.span = self.jdata[part][seg]["span"]
                     self.camber = self.jdata[part][seg]["camber"]
                     self.chord = self.jdata[part][seg]["chord"]
                     self.center_covering()
-                    self.fname = "%s_%s_cover_points.scad" % (part,seg)
-                    self.grid_writer()
+                    self.tip_elevation = self.points[0]
+                    self.grid_writer(part, seg)
+
                 if seg == "tip":
                     self.span = self.jdata[part][seg]["span"]
-                    dihedral = self.jdata[part][seg]["dihedral"]
+                    self.dihedral = self.jdata[part][seg]["dihedral"]
                     # calculate real tip span
-                    self.span =math.sqrt(self.span**2 + dihedral**2)
-                    self.le_height1 = self.jdata[part][seg]["height1"]
-                    self.le_height2 = self.jdata[part][seg]["height2"]
+                    self.span = math.sqrt(self.span**2 + self.dihedral**2)
+                    self.dihedral_angle = math.asin(self.dihedral / self.span)
+                    #print("Angle:", self.dihedral_angle * 180.0 / math.pi)
+                    #print(self.tip_elevation)
+                    self.height1 = self.jdata[part][seg]["height1"]
+                    self.height2 = self.jdata[part][seg]["height2"]
                     self.chord = self.jdata[part][seg]["chord"]
                     self.radius = self.jdata[part][seg]["radius"]
                     self.tip_covering()
-                    self.fname = "%s_%s_cover_points.scad" % (part,seg)
-                    self.grid_writer()
-
-    def _xle(self, y):
-        """ calculate x location of tip le"""
-        yarc = self.span - self.radius
-        if y < yarc:
-            return 0;
-        else:
-            dy = y - yarc
-            rad = self.radius**2 - dy**2
-            if rad<0: return 0
-            x = self.radius - math.sqrt(rad)
-            return x
+                    self.grid_writer(part, seg)
 
     def center_covering(self):
         dx = 1.0 / self.nx  # percentage of chord
-        dy = 1.0 / self.ny  # percentage of span
         points = []
-        # loop over cord-wise points (x)
-        for i in range(self.nx + 1):
-            x = i * dx
-            px = x * self.chord
+        # loop over chord-wise points (x)
+        for j in  range(self.nx + 1):
             xpoints = []
-            # loop over span-wise points (y)
-            py = 0
-            for j in  range(self.ny + 1):
-                y = j * dy
-                py = y* self.span
-                ph = self.circular_arc_airfoil(x)
-                xpoints.append([px,py,ph])
+            x = j * dx
+            px = x * self.chord
+            y0 = 0
+            y1 = self.span
+            z0 = self.circular_arc_airfoil(x)
+            z1 = z0
+            xpoints.append([px,y0,z0])
+            xpoints.append([px,y1,z1])
             points.append(xpoints)
         self.points = points
 
     def tip_covering(self):
         dx = 1.0 / self.nx  # percentage of chord
-        dy = 1.0 / self.ny  # percentage of span
         points = []
-        # loop over span-wise points (y)
-        for i in range(self.ny + 1):
-            y = i * dy * self.span
-            xle = self._xle(y)
-            xte = self.chord
+        # loop over chordwise points (x)
+        for i in range(self.nx + 1):
             xpoints = []
-            # loop over chord-wise points (x)
-            for j in  range(self.nx + 1):
-                x = j * dy * (xte - xle)
-                xpoints.append([x,y,0.0])
+            x = i * dx
+            px = x * self.chord
+            h = self.circular_arc_airfoil(x)
+            y0 = h * math.sin(self.dihedral_angle)
+            y1 = -ytip(px, self.radius, self.span)
+            z0 = h * math.cos(self.dihedral_angle) + self.height1
+            z1 = self.height2
+            xpoints.append([px,y0,z0])
+            xpoints.append([px,y1,z1])
             points.append(xpoints)
         self.points = points
 
@@ -121,8 +140,37 @@ class Covering(object):
         height = r * math.cos(beta) - (r - t)
         return height;
 
-    def grid_writer(self):
-        with open(self.fname,"w") as fout:
+    def cover_path(self, part, seg):
+        """return file path for specified covering"""
+        if seg == "tip":
+            seg = "left_tip"
+        # get path to project root
+        cfile = os.path.abspath(__file__)
+        path_parts = cfile.split('/')
+        project_root = '/'.join(path_parts[:-2])
+        if part == "fin":
+            fname = os.path.join(
+                    project_root,
+                    "scad",
+                    "fuselage",
+                    part,
+                    "covering",
+                    "cover_points.scad")
+        else:
+            fname = os.path.join(
+                        project_root,
+                        "scad",
+                        part,
+                        seg,
+                        "covering",
+                        "cover_points.scad")
+
+        return fname
+
+    def grid_writer(self, part, seg):
+        fname = self.cover_path(part, seg)
+        #print("Writing point file:", fname)
+        with open(fname,"w") as fout:
             fout.write("g_pts = [\n")
             p = self.points
             ny = len(p)
@@ -150,9 +198,5 @@ class Covering(object):
 
 
 if __name__ == "__main__":
-    c = Covering()
+    c = Covering("../scad/covering_data.json")
     c.run()
-    #c.run("../scad/wing/center/covering/cover-points.scad")
-
-    #c = Covering(6,4,2,20,20)
-    #c.run("../scad/stab/center/covering/cover-points.scad")

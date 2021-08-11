@@ -54,13 +54,13 @@ Visualizing Components
 generate a display that shows the results. (Of course, you never make typos,
 but if you do, you can fix then quickly!).
 
-There is an interesting way to use |OCS| that I find handy.
+There is an interesting way to use |OSC| that I find handy.
 
 I write a lot on my computer. Some of my writings are just normal text, some is
 code. Long ago I settled on a nice editing tool called **vim** that I have used
 for ll kinds of textual work. I really do not like working on some editing tool
 that is not as smart as my favorite editor. Fortunately, |OSC| lets me write
-code in my favorite editor, then save that work on my system. |OCS| can monitor
+code in my favorite editor, then save that work on my system. |OSC| can monitor
 a file you are editing, and then it sees a saved change, it will automatically
 regenerate your design so you can see it easily. That save a lot of time!
 

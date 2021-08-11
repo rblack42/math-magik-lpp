@@ -18,7 +18,7 @@
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Change Log" href="../changes.html" />
+    <link rel="next" title="Data Files" href="06_data_files.html" />
     <link rel="prev" title="Building the Covering Module" href="04-covering-module.html" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
           rel='stylesheet' type='text/css' />
@@ -79,7 +79,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../changes.html" title="Change Log"
+          <a href="06_data_files.html" title="Data Files"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="04-covering-module.html" title="Building the Covering Module"
@@ -99,7 +99,10 @@
   <h3><a href="../contents.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Positioning Components</a><ul>
-<li><a class="reference internal" href="#coordinate-systems">Coordinate Systems</a></li>
+<li><a class="reference internal" href="#coordinate-systems">Coordinate Systems</a><ul>
+<li><a class="reference internal" href="#visualizing-components">Visualizing Components</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#align-function">Align Function</a></li>
 <li><a class="reference internal" href="#calculating-alignment-values">Calculating Alignment Values</a></li>
 </ul>
@@ -110,8 +113,8 @@
   <p class="topless"><a href="04-covering-module.html"
                         title="previous chapter">Building the Covering Module</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="../changes.html"
-                        title="next chapter">Change Log</a></p>
+  <p class="topless"><a href="06_data_files.html"
+                        title="next chapter">Data Files</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -123,7 +126,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -137,12 +140,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>Read time: 4.6 minutes (458 words)</p>
+  <p>Read time: 8.8 minutes (876 words)</p>
 <section id="positioning-components">
 <h1>Positioning Components<a class="headerlink" href="#positioning-components" title="Permalink to this headline">¶</a></h1>
-<p>One of the issues with designing wit <em>OpenSCAD</em> is getting things positioned
-correctly. In a traditional <em>CAD</em> program, you just drag things arond and
-things pop into place. Not so with OSC. You need to think through exactly where
+<p>One of the issues with designing with <em>OpenSCAD</em> is getting things positioned
+correctly. In a traditional <em>CAD</em> program, you just drag things around and
+things pop into place. Not so with <em>OpenSCAD</em>. You need to think through exactly where
 things need to go, and that involves knowing exactly where the parts are
 located in the coordinate system.</p>
 <section id="coordinate-systems">
@@ -150,18 +153,58 @@ located in the coordinate system.</p>
 <p>Every individual part and assembly is created in its own coordinate system.
 When moving parts around, the part or assembly is translated and/or rotated
 into the proper position within this coordinate system.</p>
-<p>For example, when designing an individual rib, the coordinate ssystem is
-located at the leading edge. The rib is centered in the <strong>X_Z</strong> plane, and the
-lower point on the rib sits flat on the <strong>X-Y</strong> plane.</p>
+<p>You are in charge of the system used to design any part or assembly! All of
+this is a mental exercise. The important part of this process is being able to
+mentally visualize the gadget you are about to design, then identify points
+within that coordinate system that will be important in your design work. As
+much as possible, I try to think about each component the way a builder thinks
+and works. Most models are built on some kind of flat surface, so I make that
+surface the <strong>X-Y</strong> plane, and place the part the origin of the coordinate
+system. When assembling the model, I switch to a “pilot’s” view of the world. I
+place the origin of this system at some point on the front of the model and run
+the <strong>X</strong> axis down the fuselage to the tail. The wings are aligned along the
+<strong>Y</strong> axis, and the <strong>Z</strong> axis ends up aligned vertically .</p>
+<p>For example, when designing an individual rib for an indoor model, I set up the
+coordinate system with the origin located at bottom front of the leading edge
+of the rib. The rib is constructed flat on the <strong>X-Y</strong> plane, and the lower
+point on the rib sits flat on the <strong>X-Z</strong> plane.</p>
 <p>When we use this rib in the wing assembly, the coordinate system is different.
 For the wing, the leading and trailing edge spars should end up sitting on the
-<strong>X-Y</strong> plane, ans the wing is centered relative t the <strong>X-Z</strong> plane.</p>
-<p>That means we need to position the rib within the wing’s coordinate system. The
-critical point we need to remember is the location of the origin of the rib’s
-coordinate system (bottom of the leading edge, right in the middle of the rib).
+<strong>X-Y</strong> plane, and the wing is centered relative to the <strong>X-Z</strong> plane.</p>
+<p>That means we need to position the rib within the wing’s coordinate system.
+That will involve rotating it so it is oriented correctly, then translating
+that rib into its proper position within the wing structure.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Of course, there is the issue of properly trimming the rib sit it fits
+nicely against a wing spar. There are a lot of details modelers never think
+about while building. I am working on ideas to streamline a lot of these
+details as I work on this project!</p>
+</div>
+<section id="visualizing-components">
+<h3>Visualizing Components<a class="headerlink" href="#visualizing-components" title="Permalink to this headline">¶</a></h3>
+<p><em>OpenSCAD</em> make it easy to see the results of your work. You tweak the code, then
+generate a display that shows the results. (Of course, you never make typos,
+but if you do, you can fix then quickly!).</p>
+<p>There is an interesting way to use <em>OpenSCAD</em> that I find handy.</p>
+<p>I write a lot on my computer. Some of my writings are just normal text, some is
+code. Long ago I settled on a nice editing tool called <strong>vim</strong> that I have used
+for ll kinds of textual work. I really do not like working on some editing tool
+that is not as smart as my favorite editor. Fortunately, <em>OpenSCAD</em> lets me write
+code in my favorite editor, then save that work on my system. <em>OpenSCAD</em> can monitor
+a file you are editing, and then it sees a saved change, it will automatically
+regenerate your design so you can see it easily. That save a lot of time!</p>
+<p>Using this scheme, I open up my favorite editor and <em>OpenSCAD</em> at the same time and
+position the screen windows as i like. I then set up <em>OpenSCAD</em> to use this feature,
+and turn off the <em>OpenSCAD</em> editor.</p>
+<p>To do this,
+The
+critical point we need to remember is the location of the origin of the rib’s</p>
+<p>coordinate system (bottom of the leading edge, right in the middle of the rib).
 That point must me moved into the proper position in the wing’s coordinate
 system. The translations need to slide the rib to the right spot, and any
 rotations needed to properly align the rib need ot happen before moving.</p>
+</section>
 </section>
 <section id="align-function">
 <h2>Align Function<a class="headerlink" href="#align-function" title="Permalink to this headline">¶</a></h2>
@@ -175,6 +218,31 @@ not need to be aligned (unless you need to do that to properly create the
 part, I set up a file named <em>partname_pos.scad</em> within each assembly directory. This file lists the alignment values need to build the assembly out of the required components.</p>
 <p>Using this concept, constructing an assembly is as simple as listing the
 components and aligning each one:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//###################################################</span>
+<span class="linenos"> 2</span><span class="c1">// wing.scad</span>
+<span class="linenos"> 3</span><span class="c1">// (c) 2021 - Roie R. Black</span>
+<span class="linenos"> 4</span><span class="c1">//***************************************************</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;</span><span class="p">.</span><span class="o">/</span><span class="n">wing_data</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span><span class="n">include</span> <span class="o">&lt;</span><span class="p">.</span><span class="o">/</span><span class="n">wing_pos</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="n">use</span> <span class="o">&lt;</span><span class="n">MMlib</span><span class="o">/</span><span class="n">position</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">use</span> <span class="o">&lt;</span><span class="p">.</span><span class="o">/</span><span class="n">center</span><span class="o">/</span><span class="n">center</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">11</span><span class="n">use</span> <span class="o">&lt;</span><span class="p">.</span><span class="o">/</span><span class="n">right_tip</span><span class="o">/</span><span class="n">right_tip</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">12</span><span class="n">use</span> <span class="o">&lt;</span><span class="p">.</span><span class="o">/</span><span class="n">left_tip</span><span class="o">/</span><span class="n">left_tip</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">13</span><span class="n">use</span> <span class="o">&lt;</span><span class="p">.</span><span class="o">/</span><span class="n">wing_mount</span><span class="o">/</span><span class="n">wing_mount</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="n">module</span> <span class="n">wing</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">17</span>    <span class="n">align</span><span class="p">(</span><span class="n">right_tip_pos</span><span class="p">)</span> <span class="n">right_tip</span><span class="p">();</span>
+<span class="linenos">18</span>    <span class="n">align</span><span class="p">(</span><span class="n">center_pos</span><span class="p">)</span> <span class="n">center</span><span class="p">();</span>
+<span class="linenos">19</span>    <span class="n">align</span><span class="p">(</span><span class="n">left_tip_pos</span><span class="p">)</span> <span class="n">left_tip</span><span class="p">();</span>
+<span class="linenos">20</span><span class="p">}</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="n">wing</span><span class="p">();</span>
+<span class="linenos">23</span>
+</pre></div>
+</div>
 </section>
 <section id="calculating-alignment-values">
 <h2>Calculating Alignment Values<a class="headerlink" href="#calculating-alignment-values" title="Permalink to this headline">¶</a></h2>
@@ -209,7 +277,7 @@ calculated as needed to define the component in the associated directory.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../changes.html" title="Change Log"
+          <a href="06_data_files.html" title="Data Files"
              >next</a> |</li>
         <li class="right" >
           <a href="04-covering-module.html" title="Building the Covering Module"
@@ -223,7 +291,7 @@ calculated as needed to define the component in the associated directory.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Roie R. Black.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

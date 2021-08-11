@@ -112,7 +112,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -205,7 +205,7 @@
 <span class="linenos"> 9</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">rear_hook</span><span class="o">/</span><span class="n">rear_hook</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
 <span class="linenos">10</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">thrust_bearing</span><span class="o">/</span><span class="n">thrust_bearing</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
 <span class="linenos">11</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">wing_post</span><span class="o">/</span><span class="n">wing_post</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-<span class="linenos">12</span><span class="o">//</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">stab_post</span><span class="o">/</span><span class="n">stab_post</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">12</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">stab_post</span><span class="o">/</span><span class="n">stab_post</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
 <span class="linenos">13</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">fin</span><span class="o">/</span><span class="n">fin</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
 <span class="linenos">14</span>
 <span class="linenos">15</span><span class="n">use</span> <span class="o">&lt;</span><span class="n">MMlib</span><span class="o">/</span><span class="n">position</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
@@ -218,8 +218,8 @@
 <span class="linenos">22</span>  <span class="n">align</span><span class="p">(</span><span class="n">fin_pos</span><span class="p">)</span> <span class="n">fin</span><span class="p">();</span>
 <span class="linenos">23</span>  <span class="n">align</span><span class="p">(</span><span class="n">fwp_pos</span><span class="p">)</span> <span class="n">wing_post</span><span class="p">();</span>
 <span class="linenos">24</span>  <span class="n">align</span><span class="p">(</span><span class="n">rwp_pos</span><span class="p">)</span> <span class="n">wing_post</span><span class="p">();</span>
-<span class="linenos">25</span>  <span class="o">//</span><span class="n">align</span><span class="p">(</span><span class="n">fsp_pos</span><span class="p">)</span> <span class="n">stab_post</span><span class="p">();</span>
-<span class="linenos">26</span>  <span class="o">//</span><span class="n">align</span><span class="p">(</span><span class="n">rsp_pos</span><span class="p">)</span> <span class="n">stab_post</span><span class="p">();</span>
+<span class="linenos">25</span>  <span class="n">align</span><span class="p">(</span><span class="n">fsp_pos</span><span class="p">)</span> <span class="n">stab_post</span><span class="p">();</span>
+<span class="linenos">26</span>  <span class="n">align</span><span class="p">(</span><span class="n">rsp_pos</span><span class="p">)</span> <span class="n">stab_post</span><span class="p">();</span>
 <span class="linenos">27</span><span class="p">}</span>
 <span class="linenos">28</span>
 <span class="linenos">29</span><span class="o">//----------------------------------------------</span>
@@ -259,7 +259,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Roie R. Black.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

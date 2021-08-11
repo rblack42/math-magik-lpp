@@ -1,5 +1,5 @@
 use <MMlib/covering_generator.scad>;
-include <cover-points.scad>
+include <cover_points.scad>
 include <MMlib/colors.scad>
 
 

@@ -1,5 +1,5 @@
 use <function_grapher.scad>;
-include <fin-covering-points.data>
+include <cover_points.scad>
 include <colors.scad>
 
 thickness = 0.001;

@@ -29,15 +29,27 @@ The position is given using a vector:
 
 	P_0 = \left[\begin{matrix}P_x&P_y&P_z&1\end{matrix}\right]
 
-Let's try this multiplication using SymPy_:
+Rotations
+*********
 
-..  mathcode::
+First, we rotate arount the **x** axis by an angle $\theta$:
 
-    import sympy
+..  math::
 
-    px, py, pz, dx, dy, dz = sympy.symbols('px py pz dx dy dz')
-    T1 = sympy.Matrix([[1,0,0,0],[0,1,0,0],[0,0,1,0],[dx,dy,dz,1]])
-    p0 = sympy.Matrix([px,py,pz,1])
-    p1 = p0 * T1
-    p1
+	R_x = \left[\begin{matrix}1&0&0&0\\
+		0&\cos{\theta}&\sin{\theta}&0 \\
+		0&-\sin{\theta}&\cos{\theta}&0 \\
+		0&0&0&1\end{matrix}\right]
+
+	R_y = \left[\begin{matrix} \cos{\beta}&0&-\sin{\beta}&0\\
+		0&1&0&0 \\
+		\sin{\beta}&0&\cos{\beta}&0 \\
+		0&0&0&1\end{matrix}\right]
+
+	R_z = \left[\begin{matrix}\cos{\zeta}&-\sin{\zeta}&0&0\\
+		\sin{\zeta}&\cos{\zeta}&0&0 \\
+		0&0&1&0 \\
+		0&0&0&1\end{matrix}\right]
+
+
 

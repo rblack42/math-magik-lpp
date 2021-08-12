@@ -6,9 +6,14 @@ In calculating the center of gravity for our model, we need to track how the cen
 Translation Transformations
 ***************************
 
-Mathematically, we can describe any transformaion by setting up a *transformation matcix* and using that matric to calculate the effect of a translation transformation.
+Mathematically, we can describe any transformation by setting up a
+*transformation matcix* and using that matrix to calculate the effect of a
+translation transformation.
 
-Suppose we want to translate a shape using these distances in each coordinate direction: $D_x$, $D_y$, and $D_z$. If we define a point, $P$ using three positions: $x$, $y$, and $p_z$, then th e translated point can be defined using this matric multiplication:
+Suppose we want to translate a shape using these distances in each coordinate
+direction: $D_x$, $D_y$, and $D_z$. If we define a point, $P_0$ using three
+positions: $P_x$, $O_y$, and $P_z$, then the translated point can be defined using
+matrix multiplication:
 
 
 ..	math::
@@ -20,8 +25,29 @@ Suppose we want to translate a shape using these distances in each coordinate di
 
 The position is given using a vector:
 
-..	math;;
+..	math::
 
 	P_0 = \left[\begin{matrix}P_x&P_y&P_z&1\end{matrix}\right]
+
+Rotations
+*********
+
+..  math::
+
+	R_x = \left[\begin{matrix}1&0&0&0\\
+		0&\cos{\theta}&\sin{\theta}&0 \\
+		0&-\sin{\theta}&\cos{\theta}&0 \\
+		0&0&0&1\end{matrix}\right]
+
+	R_y = \left[\begin{matrix} \cos{\beta}&0&-\sin{\beta}&0\\
+		0&1&0&0 \\
+		\sin{\beta}&0&\cos{\beta}&0 \\
+		0&0&0&1\end{matrix}\right]
+
+	R_z = \left[\begin{matrix}\cos{\zeta}&=\sin{\zeta}&0&0\\
+		\sin{\zeta}&\cos{\zeta}&0&0 \\
+		0&0&1&0 \\
+		0&0&0&1\end{matrix}\right]
+
 
 

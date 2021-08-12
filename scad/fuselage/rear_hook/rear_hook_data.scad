@@ -17,7 +17,7 @@ ka = sin(45);
 r = wire_diameter/2;
 bend_radius = 1.5*wire_diameter;
 ms_height = motor_stick_rear_height;
-hook_offset = height;
+hook_offset = thb_height;
 hook_side = (hook_offset - 2*bend_radius*ka)/ka;
 
 a = stub_length;

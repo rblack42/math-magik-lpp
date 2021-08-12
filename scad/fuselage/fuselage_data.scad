@@ -28,8 +28,8 @@ tail_boom_rear_x = max_overall_length + prop_x_offset;
 
 
 //adjust motor stick to fit bearing
-fuse_offset = length - top_length - 3 * tube_thickness;
-prop_z_offset = height;
+fuse_offset = thb_length - thb_top_length - 3 * tube_thickness;
+prop_z_offset = thb_height;
 
 // front post position
 fp_offset = wing_offset - post_diameter/2 - tube_thickness;

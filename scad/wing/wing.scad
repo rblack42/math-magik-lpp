@@ -15,8 +15,10 @@ use <./wing_mount/wing_mount.scad>
 
 module wing() {
     align(right_tip_pos) right_tip();
-    align(center_pos) center();
+    align(center_pos) center()
     align(left_tip_pos) left_tip();
+    align(wing_le_mount_pos) wing_mount();
+    align(wing_te_mount_pos) wing_mount();
 }
 
 wing();

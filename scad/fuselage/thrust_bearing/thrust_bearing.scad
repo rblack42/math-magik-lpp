@@ -11,26 +11,26 @@ module thrust_bearing() {
   color(thrust_bearing_color)
     difference() {
       union() {
-        translate([0,width/2,0])
+        translate([0,thb_width/2,0])
           rotate([90,0,0])
-            linear_extrude(width)
+            linear_extrude(thb_width)
               prop_bearing_2D(
-                length,
-                height,
-                front_height,
-                top_length,
-                thickness
+                thb_length,
+                thb_height,
+                thb_front_height,
+                thb_top_length,
+                thb_thickness
               );
         // front lower cap
-        rotate([0,90,0])cylinder(r=width/2,h=thickness);
+        rotate([0,90,0])cylinder(r=thb_width/2,h=thb_thickness);
         // rear cap
-        translate([length-thickness,0,0])
+        translate([thb_length-thb_thickness,0,0])
           rotate([0,90,0])
-            cylinder(r=width/2, h=thickness);
+            cylinder(r=thb_width/2, h=thb_thickness);
       }
       translate([-0.1,0,0])
         rotate([0,90,0])
-          cylinder(r=wire_size/2,length + 0.2);
+          cylinder(r=thb_wire_size/2,thb_length + 0.2);
     }
 }
 

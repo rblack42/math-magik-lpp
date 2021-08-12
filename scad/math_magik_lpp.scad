@@ -5,9 +5,6 @@
 include <math_magik_lpp_pos.scad>
 use <MMlib/position.scad>
 
-//include <fuselage/fuselage_data.scad>
-//include <prop/prop_data.scad>
-//include <stab/stab_data.scad>
 
 use <prop/prop.scad>
 use <fuselage/fuselage.scad>

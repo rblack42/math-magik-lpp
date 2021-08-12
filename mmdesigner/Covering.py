@@ -118,7 +118,7 @@ class Covering(object):
             x = i * dx
             px = x * self.chord
             h = self.circular_arc_airfoil(x)
-            y0 = h * math.sin(self.dihedral_angle)
+            y0 = -h * math.sin(self.dihedral_angle)
             y1 = -ytip(px, self.radius, self.span)
             z0 = h * math.cos(self.dihedral_angle) + self.height1
             z1 = self.height2

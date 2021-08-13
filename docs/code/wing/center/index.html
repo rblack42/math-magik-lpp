@@ -17,7 +17,7 @@
     <script src="../../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="MMlpp Fuselage" href="spar/index.html" />
+    <link rel="next" title="MMlpp Center Wing Spars" href="spar/index.html" />
     <link rel="prev" title="MMlpp Wing" href="../index.html" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
           rel='stylesheet' type='text/css' />
@@ -78,7 +78,7 @@
           <a href="../../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="spar/index.html" title="MMlpp Fuselage"
+          <a href="spar/index.html" title="MMlpp Center Wing Spars"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="../index.html" title="MMlpp Wing"
@@ -101,7 +101,7 @@
                         title="previous chapter">MMlpp  Wing</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="spar/index.html"
-                        title="next chapter">MMlpp Fuselage</a></p>
+                        title="next chapter">MMlpp Center Wing Spars</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -134,11 +134,13 @@
 the leading ans trialing edges. There will be five ribs with a four percent
 camber.</p>
 <p>The dimensions needed for this structure are all defined in the
-w**wing_data.scad** file.</p>
+<strong>wing_data.scad</strong> file.</p>
 <p>Note that we only have one rib defined here. That rib is used five times, and
 each will be positioned along the center section span. This complicates the
 analysis a bit, but we will deal with that in the code.</p>
 <p>Here is the assembly file that constructs this section:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">wing/center/center.scad</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">#####################################</span>
 <span class="linenos"> 2</span><span class="o">//</span> <span class="n">center</span><span class="o">.</span><span class="n">scad</span>
 <span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">by</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
@@ -170,14 +172,17 @@ analysis a bit, but we will deal with that in the code.</p>
 <span class="linenos">29</span><span class="n">center</span><span class="p">();</span>
 </pre></div>
 </div>
+</div>
 <p>And, here are the details on the components used in this code:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="spar/index.html">MMlpp Fuselage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spar/index.html">MMlpp Center Wing Spars</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rib/index.html">MMlpp Wing Center Ribs</a></li>
 </ul>
 </div>
 <p>Finally, here is the positioning code needed to assemble this section:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">wing/center/center_pos.scad</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">########################################</span>
 <span class="linenos"> 2</span><span class="o">//</span> <span class="n">center_pos</span><span class="o">.</span><span class="n">scad</span>
 <span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="o">-</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
@@ -193,6 +198,7 @@ analysis a bit, but we will deal with that in the code.</p>
 <span class="linenos">13</span><span class="n">rib5_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">spar_size</span><span class="p">,</span><span class="n">center_span</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">spar_size</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
 <span class="linenos">14</span><span class="n">covering_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">center_span</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">spar_size</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
 </pre></div>
+</div>
 </div>
 </section>
 
@@ -210,7 +216,7 @@ analysis a bit, but we will deal with that in the code.</p>
           <a href="../../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="spar/index.html" title="MMlpp Fuselage"
+          <a href="spar/index.html" title="MMlpp Center Wing Spars"
              >next</a> |</li>
         <li class="right" >
           <a href="../index.html" title="MMlpp Wing"

@@ -16,6 +16,7 @@ Here is the code that generates a single rib:
 
 ..  literalinclude:: ../../../../../scad/wing/center/rib/rib.scad
     :linenos:
+    :caption: wing/center/rib/rib.scad
 
 And here is a sample rib:
 

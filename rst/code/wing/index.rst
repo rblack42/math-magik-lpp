@@ -15,6 +15,7 @@ Here is the data generated for the wing:
 
 ..  literalinclude::    ../../../scad/wing/wing_data.scad
     :linenos:
+    :caption: wing/wing_data.scad
 
 Here are the assemblies used to construct the wing:
 
@@ -24,4 +25,12 @@ Here are the assemblies used to construct the wing:
     center/index
     left_tip/index
     right_tip/index
+
+Finally, here is the code that creates the wing assembly:
+
+..  literalinclude::    ../../../scad/wing/wing.scad
+    :linenos:
+    :caption: wing/wing.scad
+
+
 

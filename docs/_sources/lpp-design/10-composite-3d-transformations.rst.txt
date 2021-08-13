@@ -32,6 +32,8 @@ The position is given using a vector:
 Rotations
 *********
 
+First, we rotate arount the **x** axis by an angle $\theta$:
+
 ..  math::
 
 	R_x = \left[\begin{matrix}1&0&0&0\\
@@ -44,7 +46,7 @@ Rotations
 		\sin{\beta}&0&\cos{\beta}&0 \\
 		0&0&0&1\end{matrix}\right]
 
-	R_z = \left[\begin{matrix}\cos{\zeta}&=\sin{\zeta}&0&0\\
+	R_z = \left[\begin{matrix}\cos{\zeta}&-\sin{\zeta}&0&0\\
 		\sin{\zeta}&\cos{\zeta}&0&0 \\
 		0&0&1&0 \\
 		0&0&0&1\end{matrix}\right]

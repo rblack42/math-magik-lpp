@@ -11,7 +11,6 @@ The model fuselage has a lot of parts to assemble. These are detailed below.
     fin/index
     wing_posts/index
     stab_posts/index
-    fin_post/index
     thrust_bearing/index
     rear_hook/index
 

@@ -11,5 +11,6 @@ Here is the code that generates this spar:
 
 ..  literalinclude::    ../../../../scad/prop/spar/spar.scad
     :linenos:
+    :caption: prop/spar/spar.scad
 
 

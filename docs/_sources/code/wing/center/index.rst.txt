@@ -6,7 +6,7 @@ the leading ans trialing edges. There will be five ribs with a four percent
 camber.
 
 The dimensions needed for this structure are all defined in the
-w**wing_data.scad** file.
+**wing_data.scad** file.
 
 Note that we only have one rib defined here. That rib is used five times, and
 each will be positioned along the center section span. This complicates the
@@ -16,6 +16,7 @@ Here is the assembly file that constructs this section:
 
 ..  literalinclude::    ../../../../scad/wing/center/center.scad
     :linenos:
+    :caption: wing/center/center.scad
 
 And, here are the details on the components used in this code:
 
@@ -29,4 +30,5 @@ Finally, here is the positioning code needed to assemble this section:
 
 ..  literalinclude::    ../../../../scad/wing/center/center_pos.scad
     :linenos:
+    :caption: wing/center/center_pos.scad
 

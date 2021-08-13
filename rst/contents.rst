@@ -21,14 +21,30 @@ Appendix
 
     appendix/*
 
-Code
-****
+Design Code
+***********
 
 ..  toctree::
     :maxdepth: 2
     :glob:
 
     code/*
+
+Data Dictionary
+***************
+
+..  toctree::
+    :maxdepth: 1
+
+    data_catalog
+
+Position Data
+*************
+
+..  toctree::
+    :maxdepth: 1
+
+    position_catalog
 
 Glossary
 ********

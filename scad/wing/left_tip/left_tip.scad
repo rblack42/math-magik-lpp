@@ -12,7 +12,7 @@ use <./tip_arc/tip_arc.scad>
 use <./leading_edge/leading_edge.scad>
 use <./trailing_edge/trailing_edge.scad>
 use <./tip_rib/tip_rib.scad>
-use <./covering/left_tip_covering.scad>
+use <./covering/covering.scad>
 
 
 module left_tip() {
@@ -22,8 +22,7 @@ module left_tip() {
     align(arc_pos) tip_arc();
     align(rib1_pos) tip_rib();
   }
-  //align(left_tip_cover_pos) 
-  left_tip_covering();
+  align(left_tip_cover_pos) covering();
 }
 
 //--------------------------------------

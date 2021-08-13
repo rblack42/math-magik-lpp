@@ -18,7 +18,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="MMlpp Rear Hook" href="../rear_hook/index.html" />
-    <link rel="prev" title="MMlpp Fin Post" href="../fin_post/index.html" />
+    <link rel="prev" title="MMlpp Fuselage" href="../stab_posts/index.html" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
           rel='stylesheet' type='text/css' />
  
@@ -81,7 +81,7 @@
           <a href="../rear_hook/index.html" title="MMlpp Rear Hook"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../fin_post/index.html" title="MMlpp Fin Post"
+          <a href="../stab_posts/index.html" title="MMlpp Fuselage"
              accesskey="P">previous</a> |</li>
         <li><a href="../../../index.html">Home</a>&#160;|</li>
         <li><a href="../../../contents.html">Documentation</a> &#187;</li>
@@ -97,8 +97,8 @@
               <img class="logo" src="../../../_static/badge.svg" alt="Logo"/>
             </a></p>
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../fin_post/index.html"
-                        title="previous chapter">MMlpp Fin Post</a></p>
+  <p class="topless"><a href="../stab_posts/index.html"
+                        title="previous chapter">MMlpp Fuselage</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="../rear_hook/index.html"
                         title="next chapter">MMlpp Rear Hook</a></p>
@@ -142,13 +142,13 @@ the bearing ends.</p>
 <span class="linenos"> 4</span><span class="o">//=====================================</span>
 <span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">colors</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="n">thickness</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">32</span><span class="p">;</span>
-<span class="linenos"> 8</span><span class="n">length</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-<span class="linenos"> 9</span><span class="n">height</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
-<span class="linenos">10</span><span class="n">width</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
-<span class="linenos">11</span><span class="n">front_height</span> <span class="o">=</span> <span class="n">height</span><span class="o">/</span><span class="mi">3</span><span class="p">;</span>
-<span class="linenos">12</span><span class="n">top_length</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
-<span class="linenos">13</span><span class="n">wire_size</span> <span class="o">=</span> <span class="mf">0.025</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="n">thb_thickness</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">32</span><span class="p">;</span>
+<span class="linenos"> 8</span><span class="n">thb_length</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="n">thb_height</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+<span class="linenos">10</span><span class="n">thb_width</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+<span class="linenos">11</span><span class="n">thb_front_height</span> <span class="o">=</span> <span class="n">thb_height</span><span class="o">/</span><span class="mi">3</span><span class="p">;</span>
+<span class="linenos">12</span><span class="n">thb_top_length</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+<span class="linenos">13</span><span class="n">thb_wire_size</span> <span class="o">=</span> <span class="mf">0.025</span><span class="p">;</span>
 <span class="linenos">14</span>
 <span class="linenos">15</span>
 <span class="linenos">16</span><span class="n">thrust_bearing_color</span> <span class="o">=</span> <span class="n">METAL_Aluminium</span><span class="p">;</span>
@@ -231,26 +231,26 @@ the bearing ends.</p>
 <span class="linenos">11</span>  color(thrust_bearing_color)
 <span class="linenos">12</span>    difference() {
 <span class="linenos">13</span>      union() {
-<span class="linenos">14</span>        translate([0,width/2,0])
+<span class="linenos">14</span>        translate([0,thb_width/2,0])
 <span class="linenos">15</span>          rotate([90,0,0])
-<span class="linenos">16</span>            linear_extrude(width)
+<span class="linenos">16</span>            linear_extrude(thb_width)
 <span class="linenos">17</span>              prop_bearing_2D(
-<span class="linenos">18</span>                length,
-<span class="linenos">19</span>                height,
-<span class="linenos">20</span>                front_height,
-<span class="linenos">21</span>                top_length,
-<span class="linenos">22</span>                thickness
+<span class="linenos">18</span>                thb_length,
+<span class="linenos">19</span>                thb_height,
+<span class="linenos">20</span>                thb_front_height,
+<span class="linenos">21</span>                thb_top_length,
+<span class="linenos">22</span>                thb_thickness
 <span class="linenos">23</span>              );
 <span class="linenos">24</span>        // front lower cap
-<span class="linenos">25</span>        rotate([0,90,0])cylinder(r=width/2,h=thickness);
+<span class="linenos">25</span>        rotate([0,90,0])cylinder(r=thb_width/2,h=thb_thickness);
 <span class="linenos">26</span>        // rear cap
-<span class="linenos">27</span>        translate([length-thickness,0,0])
+<span class="linenos">27</span>        translate([thb_length-thb_thickness,0,0])
 <span class="linenos">28</span>          rotate([0,90,0])
-<span class="linenos">29</span>            cylinder(r=width/2, h=thickness);
+<span class="linenos">29</span>            cylinder(r=thb_width/2, h=thb_thickness);
 <span class="linenos">30</span>      }
 <span class="linenos">31</span>      translate([-0.1,0,0])
 <span class="linenos">32</span>        rotate([0,90,0])
-<span class="linenos">33</span>          cylinder(r=wire_size/2,length + 0.2);
+<span class="linenos">33</span>          cylinder(r=thb_wire_size/2,thb_length + 0.2);
 <span class="linenos">34</span>    }
 <span class="linenos">35</span>}
 <span class="linenos">36</span>
@@ -282,7 +282,7 @@ the bearing ends.</p>
           <a href="../rear_hook/index.html" title="MMlpp Rear Hook"
              >next</a> |</li>
         <li class="right" >
-          <a href="../fin_post/index.html" title="MMlpp Fin Post"
+          <a href="../stab_posts/index.html" title="MMlpp Fuselage"
              >previous</a> |</li>
         <li><a href="../../../index.html">Home</a>&#160;|</li>
         <li><a href="../../../contents.html">Documentation</a> &#187;</li>

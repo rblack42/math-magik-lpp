@@ -1,0 +1,17 @@
+Math-Magik-LPP Data Dictionary
+##############################
+
+All defined data values are listed here with links to the files where they are
+defined and used. I created this dictionary to help me validate all the values
+defined for this design.
+
+..	csv-table::
+	:header:	name defined in, referenced in, value
+
+	max_overall_length, :ref:`constraints.scad <constraints-scad>',`math_magik_lpp_data`_ ,20
+	max_projected_wing_span, constraints-scad_,,18
+	max_bearing_to_rear_hook, constraints-scad_,,10
+	max_wing_chord, constraints.scad_,,5
+	max_stab_span, constraints-scad_,,12
+	max_stab_chord, constraints-scad_,,4
+	max_prop_diameter, constriants-scad_,,12

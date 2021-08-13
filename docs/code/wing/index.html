@@ -126,7 +126,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>Read time: 0.9 minutes (93 words)</p>
+  <p>Read time: 1.0 minutes (103 words)</p>
 <section id="mmlpp-wing">
 <h1>MMlpp  Wing<a class="headerlink" href="#mmlpp-wing" title="Permalink to this headline">¶</a></h1>
 <p>The wing is constrained by a maximum chord, and maximum projected wing span. We
@@ -137,6 +137,8 @@ a circular arc.</p>
 <p>The tip span will be defined as an elevation at the tip. The actual span can be
 calculated using the <em>OpenSCAD</em> <em>atan2</em> function.</p>
 <p>Here is the data generated for the wing:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">wing/wing_data.scad</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">#####################################</span>
 <span class="linenos"> 2</span><span class="o">//</span> <span class="n">wing</span><span class="o">.</span><span class="n">data</span>
 <span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">by</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
@@ -161,11 +163,12 @@ calculated using the <em>OpenSCAD</em> <em>atan2</em> function.</p>
 <span class="linenos">22</span><span class="n">tip_rib_chord</span> <span class="o">=</span> <span class="n">max_wing_chord</span> <span class="o">-</span> <span class="n">tip_radius</span> <span class="o">-</span> <span class="n">spar_size</span><span class="p">;</span>
 </pre></div>
 </div>
+</div>
 <p>Here are the assemblies used to construct the wing:</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="center/index.html">MMlpp Wing Center Section</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="center/spar/index.html">MMlpp Fuselage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="center/spar/index.html">MMlpp Center Wing Spars</a></li>
 <li class="toctree-l2"><a class="reference internal" href="center/rib/index.html">MMlpp Wing Center Ribs</a></li>
 </ul>
 </li>
@@ -178,6 +181,37 @@ calculated using the <em>OpenSCAD</em> <em>atan2</em> function.</p>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="right_tip/index.html">MMlpp Wing Right Tip</a></li>
 </ul>
+</div>
+<p>Finally, here is the code that creates the wing assembly:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">wing/wing.scad</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">###################################################</span>
+<span class="linenos"> 2</span><span class="o">//</span> <span class="n">wing</span><span class="o">.</span><span class="n">scad</span>
+<span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="o">-</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
+<span class="linenos"> 4</span><span class="o">//***************************************************</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;./</span><span class="n">wing_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span><span class="n">include</span> <span class="o">&lt;./</span><span class="n">wing_pos</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="n">use</span> <span class="o">&lt;</span><span class="n">MMlib</span><span class="o">/</span><span class="n">position</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">center</span><span class="o">/</span><span class="n">center</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">11</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">right_tip</span><span class="o">/</span><span class="n">right_tip</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">12</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">left_tip</span><span class="o">/</span><span class="n">left_tip</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">13</span><span class="n">use</span> <span class="o">&lt;./</span><span class="n">wing_mount</span><span class="o">/</span><span class="n">wing_mount</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="n">module</span> <span class="n">wing</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">17</span>    <span class="n">align</span><span class="p">(</span><span class="n">right_tip_pos</span><span class="p">)</span> <span class="n">right_tip</span><span class="p">();</span>
+<span class="linenos">18</span>    <span class="n">align</span><span class="p">(</span><span class="n">center_pos</span><span class="p">)</span> <span class="n">center</span><span class="p">()</span>
+<span class="linenos">19</span>    <span class="n">align</span><span class="p">(</span><span class="n">left_tip_pos</span><span class="p">)</span> <span class="n">left_tip</span><span class="p">();</span>
+<span class="linenos">20</span>    <span class="n">align</span><span class="p">(</span><span class="n">wing_le_mount_pos</span><span class="p">)</span> <span class="n">wing_mount</span><span class="p">();</span>
+<span class="linenos">21</span>    <span class="n">align</span><span class="p">(</span><span class="n">wing_te_mount_pos</span><span class="p">)</span> <span class="n">wing_mount</span><span class="p">();</span>
+<span class="linenos">22</span><span class="p">}</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">wing</span><span class="p">();</span>
+<span class="linenos">25</span>
+</pre></div>
+</div>
 </div>
 </section>
 

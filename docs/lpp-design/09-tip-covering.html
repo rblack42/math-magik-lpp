@@ -100,6 +100,8 @@
   <ul>
 <li><a class="reference internal" href="#">Tip Covering Logic</a><ul>
 <li><a class="reference internal" href="#tip-airfoil">Tip Airfoil</a></li>
+<li><a class="reference internal" href="#virtual-tip-rib">Virtual Tip Rib</a></li>
+<li><a class="reference internal" href="#python-covering-code">Python Covering Code</a></li>
 </ul>
 </li>
 </ul>
@@ -135,13 +137,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>Read time: 4.2 minutes (421 words)</p>
+  <p>Read time: 6.9 minutes (693 words)</p>
 <section id="tip-covering-logic">
 <h1>Tip Covering Logic<a class="headerlink" href="#tip-covering-logic" title="Permalink to this headline">¶</a></h1>
 <p>Covering the center section of the wing and stab is a snap. That covering is
 actually a simple slice out of a very thin cylinder since we are using
 circular arc airfoils. I chose the generate the points on a grid that covers
-the center section and use the <em>FUnction Grapher</em> logic created by <a class="reference external" href="https://openhome.cc/eGossip/OpenSCAD/FunctionGrapher.html">Justin
+the center section and use the <em>Function Grapher</em> logic created by <a class="reference external" href="https://openhome.cc/eGossip/OpenSCAD/FunctionGrapher.html">Justin
 lin</a> to generate the actual covering shape.</p>
 <p>The tips are another matter. If we keep the outer ribs of the center section
 vertical and raise the wing tip up to form the dihedral, the inner edge of the
@@ -151,7 +153,6 @@ coordinates of the outer edge of the center section covering and use those point
 as our starting point for the tip covering. However, we need to account for the
 dihedral angle we will be using and adjust those points to find the correct
 starting points for the tip covering. (Remember, there is no actual rib here.</p>
-<p>This is not going to be too hard if we make one simple assumption.</p>
 <section id="tip-airfoil">
 <h2>Tip Airfoil<a class="headerlink" href="#tip-airfoil" title="Permalink to this headline">¶</a></h2>
 <p>The tip has no ribs, only the tip outline as a structure. If we cover an actual
@@ -170,18 +171,51 @@ intersection (<span class="math notranslate nohighlight">\(\delta\)</span> in th
 the inner point and this outer tip structure. We will distribute points along
 this line using the number of points selected in the <strong>Y</strong> direction for our
 grid.</p>
-<p>We are generating the grid for our covering using evenly distributed points
+<p>Since there are no supporting ribs along the tip span, I am going to assume
+that the covering can be modeled as a set of straight lines from a point on the
+center section outer rib to the tip outline. The selected points on the outline
+will be chosen so that these tip covering lines are all parallel to the wing
+axis (<strong>Y</strong>). This is not “real” in any sense, but should look fine visually,
+and give us something close to right in weight and balance calculations.
+Furthermore, the tip covering grid will need involves far fewer data points
+than we might need with other ideas.</p>
+<p>It is important to note that there will be visual problems as the covering
+approaches the circular arc. The generated covering uses straight lines between
+data points, and that means the tip outline will not be covered correctly. The
+fewer the points we set up in the chord wise direction, the worse things will
+look.</p>
+<p>iWe are generating the grid for our covering using evenly distributed points
 along the span and chord. In that code <strong>x</strong>, and <strong>y</strong> range from zero to one
 and must be scaled to determine physical values.</p>
 <p>The equations needed for calculating the coordinates of our tip grid point
 (point <strong>p</strong> in the figure) are given here:</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}x_p = x * C\\y_p = span - \delta\\z_p = z_t + (1 - y) * (z_r - z_t)\end{aligned}\end{align} \]</div>
+\[ \begin{align}\begin{aligned}x_p = x * C\\y_p = span - \delta\\z_p =  tip_spar_size\end{aligned}\end{align} \]</div>
 <p>We can determine <span class="math notranslate nohighlight">\(\delta\)</span> using the equation of the circular arc centered as
 shown in the figure:</p>
 <div class="math notranslate nohighlight">
 \[r - \sqrt{x \left(2 r - x\right)}\]</div>
 <p>And here is an image showing the grid on the wing tip:</p>
+</section>
+<section id="virtual-tip-rib">
+<h2>Virtual Tip Rib<a class="headerlink" href="#virtual-tip-rib" title="Permalink to this headline">¶</a></h2>
+<p>There is no physical rib at the tip inner line. Instead the covering attaches
+to the outer center section rib. When the tip is placed in its final position,
+raised up to form the dihedral, the inner most edge of the tip covering must be
+trimmed off to join nicely. Actually, we can use those center section rib
+elevation values to form the correct starting points for the tip covering. The
+calculations are pretty simple:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}x_0 = x_c\\y_y = - z_c \sin{\theta}\\z_o = z_c \cos{\theta}\end{aligned}\end{align} \]</div>
+<p>Here, the <strong>0</strong> subscript refers to the tip coordinate values at the “virtual
+starting rib point, and <strong>c</strong> refers to the point values on the outer center
+section rib. <span class="math notranslate nohighlight">\(\theta\)</span> is the dihedral angle.</p>
+</section>
+<section id="python-covering-code">
+<h2>Python Covering Code<a class="headerlink" href="#python-covering-code" title="Permalink to this headline">¶</a></h2>
+<p>All of the calculations needed to generate covering grids are included in the
+<strong>Covering.py</strong> code file. This code creates a <strong>covering.scad</strong> file that cna
+be <em>included</em> in other <em>OpenSCAD</em> files to generate the actual covering surface.</p>
 </section>
 </section>
 

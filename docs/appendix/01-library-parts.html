@@ -94,6 +94,26 @@
             <p class="logo"><a href="../contents.html">
               <img class="logo" src="../_static/badge.svg" alt="Logo"/>
             </a></p>
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Library Parts</a><ul>
+<li><a class="reference internal" href="#colors">Colors</a></li>
+<li><a class="reference internal" href="#positioning">Positioning</a></li>
+<li><a class="reference internal" href="#simple-spars">Simple Spars</a><ul>
+<li><a class="reference internal" href="#square-spar">Square Spar</a></li>
+<li><a class="reference internal" href="#single-tapered-spar">Single Tapered Spar</a></li>
+<li><a class="reference internal" href="#double-taper-spar">Double taper Spar</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mounting-posts">Mounting Posts</a><ul>
+<li><a class="reference internal" href="#rounded-posts">Rounded Posts</a></li>
+<li><a class="reference internal" href="#paper-tubes">Paper Tubes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="../changes.html"
                         title="previous chapter">Change Log</a></p>
@@ -125,10 +145,305 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>Read time: 0.4 minutes (44 words)</p>
+  <p>Read time: 2.8 minutes (278 words)</p>
 <section id="library-parts">
-<h1>Library Parts<a class="headerlink" href="#library-parts" title="Permalink to this headline">¶</a></h1>
-<p>Several of the <em>OpenSCAD</em> code files we will develop are useful in other projects, so they are collected into a library folder rather than just placinf then in the general model design folders. <em>OpenSCAD</em> supports loading files from user libraries with a little setup.</p>
+<span id="id1"></span><h1>Library Parts<a class="headerlink" href="#library-parts" title="Permalink to this headline">¶</a></h1>
+<p>Several of the <em>OpenSCAD</em> code files developed are useful in other projects, so they
+are collected into a library folder rather than just placing then in the
+general model design folders. <em>OpenSCAD</em> supports loading files from user libraries
+with a little setup. To do this, you must configure your system to add the
+<strong>OPENSCAD</strong> environment variable so that the application can see this when you
+start up <em>OpenSCAD</em>. Details can be found in the <em>OpenSCAD</em> documentation.</p>
+<section id="colors">
+<h2>Colors<a class="headerlink" href="#colors" title="Permalink to this headline">¶</a></h2>
+<p>Here is a file listing available colors that can be used in generating the
+visual representation of parts and assemblies. I added one color to represent
+balsa wood. The original color file was created by <em>David Powell</em> and was found
+in a post on the <em>OpenSCAD</em> forum at
+<a class="reference external" href="https://forum.openscad.org/CSG-Difference-bogus-color-logic-td5265.html">https://forum.openscad.org/CSG-Difference-bogus-color-logic-td5265.html</a>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c1">// colors.scad</span>
+<span class="linenos">  2</span><span class="c1">// Credit: David Powell, OpenSCAN Forum</span>
+<span class="linenos">  3</span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span>
+<span class="linenos">  6</span><span class="c1">//group ABS_&lt;colorname&gt;</span>
+<span class="linenos">  7</span><span class="c1">//	discription  common 3d printer ABS filament colors</span>
+<span class="linenos">  8</span><span class="c1">// actual colours may need some tweaking</span>
+<span class="linenos">  9</span>
+<span class="linenos"> 10</span><span class="n">ABS_Nature</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">];</span>
+<span class="linenos"> 11</span><span class="n">ABS_White</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 12</span><span class="n">ABS_Black</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 13</span><span class="n">ABS_Red</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 14</span><span class="n">ABS_Green</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 15</span><span class="n">ABS_Blue</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 16</span><span class="n">ABS_Orange</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 17</span><span class="n">ABS_Purple</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 18</span><span class="n">ABS_Brown</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 19</span><span class="n">ABS_Glow_Blue</span> <span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">.99</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 20</span><span class="n">ABS_Flurescence_Green</span> <span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 21</span><span class="n">ABS_Flurescence_Yellow</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 22</span>
+<span class="linenos"> 23</span><span class="c1">//group PLA_&lt;colorname&gt;</span>
+<span class="linenos"> 24</span><span class="c1">//	discription  common 3d printer PLA filament colors</span>
+<span class="linenos"> 25</span><span class="c1">// actual colours may need some tweaking</span>
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="n">PLA_Nature</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">];</span>
+<span class="linenos"> 28</span><span class="n">PLA_White</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 29</span><span class="n">PLA_Black</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 30</span><span class="n">PLA_Red</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 31</span><span class="n">PLA_Green</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 32</span><span class="n">PLA_Blue</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 33</span><span class="n">PLA_Orange</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 34</span><span class="n">PLA_Purple</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 35</span><span class="n">PLA_Brown</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 36</span><span class="n">PLA_Glow_Blue</span> <span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">.99</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 37</span><span class="n">PLA_Flurescence_Green</span> <span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 38</span><span class="n">PLA_Flurescence_Yellow</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 39</span>
+<span class="linenos"> 40</span><span class="c1">//group ANODIZED_&lt;colorname&gt;</span>
+<span class="linenos"> 41</span><span class="c1">//	discription  common aluminium anodized colors</span>
+<span class="linenos"> 42</span><span class="c1">// these don&#39;t seem to follow normal color tables as the process</span>
+<span class="linenos"> 43</span><span class="c1">// produces a color change difference to the named color</span>
+<span class="linenos"> 44</span><span class="c1">// dew to base metal</span>
+<span class="linenos"> 45</span><span class="c1">// actual colours may need some tweaking</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span><span class="n">ANODIZED_Red</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 48</span><span class="n">ANODIZED_Gold</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 49</span><span class="n">ANODIZED_Black</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 50</span><span class="n">ANODIZED_Blue</span> <span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 51</span><span class="n">ANODIZED_Green</span> <span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 52</span><span class="n">ANODIZED_Gray</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 53</span><span class="n">ANODIZED_Dark_Blue</span> <span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 54</span><span class="n">ANODIZED_Lime_Green</span> <span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 55</span><span class="n">ANODIZED_Purple</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>		<span class="c1">//more blue than purple</span>
+<span class="linenos"> 56</span><span class="n">ANODIZED_Light_Blue</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 57</span><span class="n">ANODIZED_Pink</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>		<span class="c1">//more purlpe than pink</span>
+<span class="linenos"> 58</span><span class="n">ANODIZED_Orange</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 59</span><span class="n">ANODIZED_Scandia_Gold</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 60</span><span class="n">ANODIZED_Copper</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>		<span class="c1">//more brown than copper</span>
+<span class="linenos"> 61</span><span class="n">ANODIZED_Clear</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>	<span class="c1">//natural aluminium color</span>
+<span class="linenos"> 62</span><span class="n">ANODIZED_Light_Bronze</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span> <span class="c1">//more silver than bronze</span>
+<span class="linenos"> 63</span><span class="n">ANODIZED_Gold_Nickel</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 64</span><span class="n">ANODIZED_Brush_Nickel</span> <span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 65</span>
+<span class="linenos"> 66</span><span class="c1">//group METAL_&lt;typename&gt;</span>
+<span class="linenos"> 67</span><span class="c1">//	discription common metal colors</span>
+<span class="linenos"> 68</span><span class="c1">// colors need tweaking</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span><span class="n">METAL_Aluminium</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 71</span><span class="n">METAL_Brass</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.88</span><span class="p">,</span><span class="mf">0.78</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 72</span><span class="n">METAL_Copper</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 73</span><span class="n">METAL_Steel</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 74</span><span class="n">METAL_Stainless</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 75</span><span class="n">METAL_Titanium</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 76</span><span class="n">METAL_Bronze</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 77</span><span class="n">METAL_Gold</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 78</span><span class="n">METAL_Silver</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 79</span><span class="n">METAL_Iron</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 80</span>
+<span class="linenos"> 81</span><span class="c1">// group WOOD_&lt;typename&gt;</span>
+<span class="linenos"> 82</span><span class="c1">//	discription common wood colors</span>
+<span class="linenos"> 83</span><span class="c1">// probabaly wrong</span>
+<span class="linenos"> 84</span>
+<span class="linenos"> 85</span><span class="n">WOOD_Oak</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 86</span><span class="n">WOOD_Birch</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 87</span><span class="n">WOOD_Red</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 88</span><span class="n">WOOD_pine</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 89</span><span class="n">WOOD_Beach</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 90</span><span class="n">WOOD_Spruce</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="linenos"> 91</span><span class="n">WOOD_Balsa</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.95</span><span class="p">,</span><span class="mf">0.86</span><span class="p">,</span><span class="mf">0.73</span><span class="p">];</span>
+<span class="linenos"> 92</span>
+<span class="linenos"> 93</span><span class="c1">// group GLASS_&lt;color&gt;</span>
+<span class="linenos"> 94</span><span class="c1">//	discription common glass colors</span>
+<span class="linenos"> 95</span><span class="c1">// needs tweaking</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span><span class="n">GLASS_Clear</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.2</span><span class="p">];</span>
+<span class="linenos"> 98</span><span class="n">GLASS_Red</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.4</span><span class="p">];</span>
+<span class="linenos"> 99</span><span class="n">GLASS_Green</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">.4</span><span class="p">];</span>
+<span class="linenos">100</span><span class="n">GLASS_Blue</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">.4</span><span class="p">];</span>
+<span class="linenos">101</span><span class="n">GLASS_Brown</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">.4</span><span class="p">];</span>
+<span class="linenos">102</span>
+<span class="linenos">103</span><span class="n">CONCRETE</span> <span class="o">=</span> <span class="p">[</span><span class="mi">210</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">209</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span> <span class="mi">205</span><span class="o">/</span><span class="mi">255</span><span class="p">];</span>
+</pre></div>
+</div>
+</section>
+<section id="positioning">
+<h2>Positioning<a class="headerlink" href="#positioning" title="Permalink to this headline">¶</a></h2>
+<p>Since we need to position components many times during the building of the
+final design, I created a simple routine that will translate and rotate
+components for final placement in an assembly. This code uses a neat feature of
+the <em>OpenSCAD</em> language that lets you apply a function to the code that follow this
+one. The <strong>align</strong> function defined here significantly reduces the clutter of
+the design code. The included <strong>position</strong> function applies translations only:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//#####################################</span>
+<span class="linenos"> 2</span><span class="c1">// position.scad</span>
+<span class="linenos"> 3</span><span class="c1">// (c) 2021 by Roie R. Black</span>
+<span class="linenos"> 4</span><span class="c1">//=====================================</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="c1">// apply rotation, then translation</span>
+<span class="linenos"> 7</span><span class="n">module</span> <span class="nf">align</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 8</span>  <span class="n">translate</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+<span class="linenos"> 9</span>    <span class="n">rotate</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="mi">5</span><span class="p">]])</span> <span class="n">children</span><span class="p">();</span>
+<span class="linenos">10</span><span class="p">}</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="c1">// apply translation only</span>
+<span class="linenos">13</span><span class="n">module</span> <span class="nf">position</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">14</span>  <span class="n">translate</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span> <span class="n">children</span><span class="p">();</span>
+<span class="linenos">15</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="simple-spars">
+<h2>Simple Spars<a class="headerlink" href="#simple-spars" title="Permalink to this headline">¶</a></h2>
+<p>We use three basic spars in models: a straight square spar, a single tapered
+spar, and a double tapered spar. Eventually, I will modify these routines to
+allow for rectangular cross sections.</p>
+<section id="square-spar">
+<h3>Square Spar<a class="headerlink" href="#square-spar" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//####################################</span>
+<span class="linenos"> 2</span><span class="c1">// square_spar.scad</span>
+<span class="linenos"> 3</span><span class="c1">// (c) 2021 by Roie R. Black</span>
+<span class="linenos"> 4</span><span class="c1">//====================================</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">module</span> <span class="nf">square_spar</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 8</span>  <span class="n">translate</span><span class="p">([</span><span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
+<span class="linenos"> 9</span>    <span class="n">cube</span><span class="p">([</span><span class="n">size</span><span class="p">,</span><span class="n">length</span><span class="p">,</span><span class="n">size</span><span class="p">],</span> <span class="n">center</span><span class="o">=</span><span class="nb">true</span><span class="p">);</span>
+<span class="linenos">10</span><span class="p">}</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">square_spar</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../_images/square_spar.png" class="align-center" src="../_images/square_spar.png" />
+</section>
+<section id="single-tapered-spar">
+<h3>Single Tapered Spar<a class="headerlink" href="#single-tapered-spar" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//#######################################################################</span>
+<span class="linenos"> 2</span><span class="c1">// single_taper_spar.scad - spat tapered on one side</span>
+<span class="linenos"> 3</span><span class="c1">// (c) 2021 - Roie R. Black</span>
+<span class="linenos"> 4</span><span class="c1">// docs: https://rblack.github.io/math-magik/magik/single_taper_spar.html</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="n">module</span> <span class="nf">single_taper_spar</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">z1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">z2</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>  <span class="c1">// calculate taper angle</span>
+<span class="linenos"> 8</span>  <span class="n">ang</span> <span class="o">=</span> <span class="n">atan2</span><span class="p">(</span><span class="n">z1</span><span class="o">-</span><span class="n">z2</span><span class="p">,</span><span class="n">l</span><span class="p">);</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>  <span class="n">difference</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">11</span>    <span class="c1">// basic spar</span>
+<span class="linenos">12</span>    <span class="n">cube</span><span class="p">([</span><span class="n">l</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">z1</span><span class="p">]);</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="c1">// trimming block</span>
+<span class="linenos">15</span>    <span class="n">translate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">t</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">z1</span><span class="p">])</span>
+<span class="linenos">16</span>    <span class="n">rotate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">ang</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos">17</span>    <span class="k">if</span> <span class="p">(</span><span class="n">debug</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">18</span>      <span class="cp">#cube([l+1, 2*t, z1]);</span>
+<span class="linenos">19</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">20</span>      <span class="n">cube</span><span class="p">([</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">,</span> <span class="n">z1</span><span class="p">]);</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span>  <span class="p">}</span>
+<span class="linenos">23</span><span class="p">}</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="n">single_taper_spar</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../_images/single_taper_spar.png" class="align-center" src="../_images/single_taper_spar.png" />
+</section>
+<section id="double-taper-spar">
+<h3>Double taper Spar<a class="headerlink" href="#double-taper-spar" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//######################################################################</span>
+<span class="linenos"> 2</span><span class="c1">// double_taper_spar.scad - creates a spar tapered on two sides</span>
+<span class="linenos"> 3</span><span class="c1">// (c) 2021 - Roie R. Black</span>
+<span class="linenos"> 4</span><span class="c1">// docs: https://rblack.github.io/math-magik/magik/double_taper_spar.html</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="n">module</span> <span class="nf">double_taper_spar</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y2</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">z2</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 7</span>  <span class="c1">// calc taper angles</span>
+<span class="linenos"> 8</span>  <span class="n">yang</span> <span class="o">=</span> <span class="n">atan2</span><span class="p">(</span><span class="n">z1</span><span class="o">-</span><span class="n">z2</span><span class="p">,</span><span class="n">l</span><span class="p">);</span>
+<span class="linenos"> 9</span>  <span class="n">zang</span> <span class="o">=</span> <span class="n">atan2</span><span class="p">(</span><span class="n">y1</span><span class="o">-</span><span class="n">y2</span><span class="p">,</span><span class="n">l</span><span class="p">);</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>  <span class="n">difference</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">13</span>    <span class="c1">// z taper</span>
+<span class="linenos">14</span>    <span class="n">difference</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">15</span>      <span class="n">cube</span><span class="p">([</span><span class="n">l</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">z1</span><span class="p">]);</span>
+<span class="linenos">16</span>      <span class="n">translate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">y1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">z1</span><span class="p">])</span>
+<span class="linenos">17</span>        <span class="n">rotate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">yang</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos">18</span>          <span class="k">if</span> <span class="p">(</span><span class="n">debug</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">19</span>            <span class="cp">#cube([l+1, 2*y1, z1]);</span>
+<span class="linenos">20</span>          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">21</span>            <span class="n">cube</span><span class="p">([</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">y1</span><span class="p">,</span> <span class="n">z1</span><span class="p">]);</span>
+<span class="linenos">22</span>          <span class="p">}</span>
+<span class="linenos">23</span>    <span class="c1">// y taper</span>
+<span class="linenos">24</span>    <span class="n">translate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span> <span class="o">-</span><span class="n">z1</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
+<span class="linenos">25</span>      <span class="n">rotate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">zang</span><span class="p">])</span>
+<span class="linenos">26</span>        <span class="k">if</span> <span class="p">(</span><span class="n">debug</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">27</span>          <span class="cp">#cube([l+1, y1, 2*z1]);</span>
+<span class="linenos">28</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="linenos">29</span>          <span class="n">cube</span><span class="p">([</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">z1</span><span class="p">]);</span>
+<span class="linenos">30</span>        <span class="p">}</span>
+<span class="linenos">31</span>    <span class="p">}</span>
+<span class="linenos">32</span>  <span class="p">}</span>
+<span class="linenos">33</span><span class="p">}</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="n">double_taper_spar</span><span class="p">();</span>
+</pre></div>
+</div>
+<img alt="../_images/double_taper_spar.png" class="align-center" src="../_images/double_taper_spar.png" />
+</section>
+</section>
+<section id="mounting-posts">
+<h2>Mounting Posts<a class="headerlink" href="#mounting-posts" title="Permalink to this headline">¶</a></h2>
+<p>Indoor models are usually not glued together permanently. Instead, we use posts
+and paper tubes to allow parts to be separated for transport.</p>
+<section id="rounded-posts">
+<h3>Rounded Posts<a class="headerlink" href="#rounded-posts" title="Permalink to this headline">¶</a></h3>
+<p>These are simple square pieces with a rounded top for the paper tube to slide
+over.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//########################################################</span>
+<span class="linenos"> 2</span><span class="c1">// rounded post.scad - square post with rounded top</span>
+<span class="linenos"> 3</span><span class="c1">// (c) 2021 - Roie R. Black</span>
+<span class="linenos"> 4</span><span class="c1">//========================================================</span>
+<span class="linenos"> 5</span><span class="n">$fn</span><span class="o">=</span><span class="mi">100</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">module</span> <span class="nf">rounded_post</span><span class="p">(</span><span class="n">z1</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">z2</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 8</span>  <span class="k">union</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos"> 9</span>      <span class="n">translate</span><span class="p">([</span><span class="o">-</span><span class="n">t</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="n">t</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos">10</span>      <span class="n">cube</span><span class="p">([</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">z2</span><span class="p">]);</span>
+<span class="linenos">11</span>      <span class="n">translate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">z2</span><span class="p">])</span>
+<span class="linenos">12</span>      <span class="n">cylinder</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">t</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="n">z1</span><span class="o">-</span><span class="n">z2</span><span class="p">);</span>
+<span class="linenos">13</span>  <span class="p">}</span>
+<span class="linenos">14</span><span class="p">}</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="n">rounded_post</span><span class="p">();</span>
+<span class="linenos">17</span>
+</pre></div>
+</div>
+<img alt="../_images/rounded_post.png" class="align-center" src="../_images/rounded_post.png" />
+</section>
+<section id="paper-tubes">
+<h3>Paper Tubes<a class="headerlink" href="#paper-tubes" title="Permalink to this headline">¶</a></h3>
+<p>Paper tubes, formed by glueing tissue strips wound over a mandrel of some
+sort are attached to structural parts and placed to slide over mounting posts.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//################################################################</span>
+<span class="linenos"> 2</span><span class="c1">// paper tube.scad - creates simple hollow cylinder</span>
+<span class="linenos"> 3</span><span class="c1">// (c) 2021 - Roie R. Black</span>
+<span class="linenos"> 4</span><span class="c1">// docs: https://rblack.github.io/math-magik/magik/paper_tube.html</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="n">$fn</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="n">module</span> <span class="nf">paper_tube</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 9</span>  <span class="n">th</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">h</span><span class="p">;</span>
+<span class="linenos">10</span>  <span class="n">difference</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">11</span>    <span class="n">cylinder</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="o">+</span><span class="n">t</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="n">h</span><span class="p">);</span>
+<span class="linenos">12</span>    <span class="n">translate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">h</span><span class="p">])</span>
+<span class="linenos">13</span>      <span class="n">cylinder</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="n">th</span><span class="p">);</span>
+<span class="linenos">14</span>  <span class="p">}</span>
+<span class="linenos">15</span><span class="p">}</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="n">paper_tube</span><span class="p">();</span>
+</pre></div>
+</div>
+<img alt="../_images/paper_tube.png" class="align-center" src="../_images/paper_tube.png" />
+</section>
+</section>
 </section>
 
 

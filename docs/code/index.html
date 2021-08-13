@@ -97,6 +97,7 @@
   <h3><a href="../contents.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Math-Magick-lpp Code</a><ul>
+<li><a class="reference internal" href="#final-model-assembly">Final Model Assembly</a></li>
 <li><a class="reference internal" href="#animation">Animation</a></li>
 </ul>
 </li>
@@ -133,77 +134,173 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>Read time: 1.6 minutes (156 words)</p>
+  <p>Read time: 5.2 minutes (515 words)</p>
 <section id="math-magick-lpp-code">
 <h1>Math-Magick-lpp Code<a class="headerlink" href="#math-magick-lpp-code" title="Permalink to this headline">¶</a></h1>
-<p>This model is designed to compete in the AMA Li|LPP| class. The rulebook
-defines come basic design constraints we must follow to be legal in this class:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">####################################</span>
-<span class="linenos"> 2</span><span class="o">//</span> <span class="n">Math</span><span class="o">-</span><span class="n">Magik</span> <span class="n">LPP</span> <span class="o">-</span> <span class="n">Design</span> <span class="n">Constraints</span>
-<span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">by</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
-<span class="linenos"> 4</span><span class="o">//====================================</span>
-<span class="linenos"> 5</span>
-<span class="linenos"> 6</span><span class="o">//</span> <span class="n">AMA</span> <span class="n">Rules</span> <span class="k">for</span> <span class="n">event</span> <span class="mi">208</span>
-<span class="linenos"> 7</span><span class="o">//------------------------------------</span>
+<p>This model is designed to compete in the AMA <em>Limited Pennyplane</em> class. The rulebook
+defines some basic design constraints we must follow to be legal in this class:</p>
+<span class="target" id="constraints-scad"></span><p>This file defines a few named values that can be used in other <strong>.SCAD</strong> files by <em>including</em> this file. This pattern is used extensively in defining various dimensions that are needed to set material sizes and part locations in the model.</p>
+<p>As <em>OpenSCAD</em> code files are presented, the actual code will be displayed, followed by links to any data files needed to build the part or assembly.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>My current documentation system does not provide a way for me to display
+code with links directly in that code, but I am working on that. The
+provided links will at least give the reader quick access to any data they
+wish to explore further.</p>
+</div>
+<section id="final-model-assembly">
+<h2>Final Model Assembly<a class="headerlink" href="#final-model-assembly" title="Permalink to this headline">¶</a></h2>
+<p>The top-level model directory contains the <em>OpenSCAD</em> file used to generate the
+complete model. This file relies on a positioning data file to properly locate
+each major assembly that makes up that model. In addition, a basic data file is
+located here defining a number of dimensions used in this final assembly.  i
+Let’s start off by looking at the top-level model code file:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">math_magik_lpp.scad</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//####################################</span>
+<span class="linenos"> 2</span><span class="c1">// math-magik-lpp.scad</span>
+<span class="linenos"> 3</span><span class="c1">// (c) 2021 - Roie R. Black</span>
+<span class="linenos"> 4</span><span class="c1">//************************************</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">math_magik_lpp_pos</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span><span class="n">use</span> <span class="o">&lt;</span><span class="n">MMlib</span><span class="o">/</span><span class="n">position</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 7</span>
 <span class="linenos"> 8</span>
-<span class="linenos"> 9</span><span class="n">max_overall_length</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
-<span class="linenos">10</span><span class="n">max_projected_wing_span</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
-<span class="linenos">11</span><span class="n">max_bearing_to_rear_hook</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-<span class="linenos">12</span><span class="n">max_wing_chord</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-<span class="linenos">13</span><span class="n">max_stab_span</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
-<span class="linenos">14</span><span class="n">max_stab_chord</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-<span class="linenos">15</span><span class="n">max_prop_diameter</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
-<span class="linenos">16</span>
-<span class="linenos">17</span>
+<span class="linenos"> 9</span><span class="n">use</span> <span class="o">&lt;</span><span class="n">prop</span><span class="o">/</span><span class="n">prop</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">10</span><span class="n">use</span> <span class="o">&lt;</span><span class="n">fuselage</span><span class="o">/</span><span class="n">fuselage</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">11</span><span class="n">use</span> <span class="o">&lt;</span><span class="n">wing</span><span class="o">/</span><span class="n">wing</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">12</span><span class="n">use</span> <span class="o">&lt;</span><span class="n">stab</span><span class="o">/</span><span class="n">stab</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="n">module</span> <span class="n">spinning_prop</span><span class="p">(</span><span class="n">ang</span><span class="o">=</span><span class="n">$t</span><span class="o">*</span><span class="mi">360</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">16</span>  <span class="n">align</span><span class="p">(</span><span class="n">prop_pos</span><span class="p">)</span>
+<span class="linenos">17</span>    <span class="n">rotate</span><span class="p">([</span><span class="o">-</span><span class="n">ang</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos">18</span>      <span class="n">prop</span><span class="p">();</span>
+<span class="linenos">19</span><span class="p">}</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="n">module</span> <span class="n">math_magik_lpp</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">22</span>  <span class="n">align</span><span class="p">(</span><span class="n">fuse_pos</span><span class="p">)</span> <span class="n">fuselage</span><span class="p">();</span>
+<span class="linenos">23</span>  <span class="n">align</span><span class="p">(</span><span class="n">wing_pos</span><span class="p">)</span> <span class="n">wing</span><span class="p">();</span>
+<span class="linenos">24</span>  <span class="n">align</span><span class="p">(</span><span class="n">stab_pos</span><span class="p">)</span> <span class="n">stab</span><span class="p">();</span>
+<span class="linenos">25</span>  <span class="n">spinning_prop</span><span class="p">();</span>
+<span class="linenos">26</span><span class="p">}</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="c1">//-------------------------------------</span>
+<span class="linenos">29</span><span class="c1">// debug display</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="n">math_magik_lpp</span><span class="p">();</span>
+<span class="linenos">32</span>
 </pre></div>
 </div>
-<p>The model will be constructed using the following assemblies/parts”</p>
+</div>
+<p>This file is laid out in a pattern that will be used throughout the design. The
+top-level file defines an <em>assembly</em> of other components. We position those
+components using the <strong>math_magik_lpp_pos.scad</strong> data file shown below. The
+data in that file is used by the <strong>align</strong> method defined in the
+<strong>position.scad</strong> library file.</p>
+<p>When we <strong>use</strong> a file, we make any methods defined in that file available in
+the current file. This mechanism only provides access to method names, not any
+other data defined in those files.</p>
+<p>When we <strong>include</strong> another file, the effect is to produce code that could be
+written by copying the <em>included</em> file in place here. Since <strong>include</strong> files
+often <em>include</em> other files, we can control what variables are available to
+code in the current file easily. One of the challenges in setting up code this
+way is making sure all needed names are available, even if those names are
+defined inn other places.</p>
+<p>My coding convention is to place as much data as possible in data files
+containing no modules. I am trying to name all variables so you should see no
+“bare” numbers in module files</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I am constantly working to clean up this code, so be warned that
+thingsmight change in the future. If you work on this code by “cloning” a
+copy of this project using <a class="reference external" href="https://git-scm.com/">Git</a>, you can run a <strong>git pull</strong> command to
+update your code to the most current version.</p>
+</div>
+<p>Here is the positioning data file used to build the full model:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">math_magik_lpp_pos.scad</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//####################################</span>
+<span class="linenos"> 2</span><span class="c1">// math-magik-lpp_pos.scad</span>
+<span class="linenos"> 3</span><span class="c1">// (c) 2021 - Roie R. Black</span>
+<span class="linenos"> 4</span><span class="c1">//************************************</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">math_magik_lpp_data</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">materials</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 7</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">fuselage</span><span class="o">/</span><span class="n">thrust_bearing</span><span class="o">/</span><span class="n">thrust_bearing_data</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 8</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">fuselage</span><span class="o">/</span><span class="n">motor_stick</span><span class="o">/</span><span class="n">motor_stick_data</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 9</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">fuselage</span><span class="o">/</span><span class="n">tail_boom</span><span class="o">/</span><span class="n">tail_boom_data</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">fuse_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos">13</span><span class="n">wing_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">wing_x_offset</span><span class="p">,</span><span class="o">-</span><span class="n">ms_thickness</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">post_diameter</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">wing_elevation</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="n">stab_y_offset</span> <span class="o">=</span> <span class="n">ms_thickness</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">tb_thickness</span> <span class="o">+</span> <span class="n">post_diameter</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos">16</span><span class="n">stab_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">stab_x_offset</span><span class="p">,</span><span class="o">-</span><span class="n">stab_y_offset</span><span class="p">,</span><span class="n">stab_elevation</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos">17</span><span class="n">prop_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">prop_x_offset</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">prop_z_offset</span><span class="p">,</span> <span class="mi">-40</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+</pre></div>
+</div>
+</div>
+<p>Finally, here is the data file needed fr the full model assembly:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">math_magik_lpp_data.scad</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//####################################</span>
+<span class="linenos"> 2</span><span class="c1">// math-magik-lpp_data.scad</span>
+<span class="linenos"> 3</span><span class="c1">// (c) 2021 - Roie R. Black</span>
+<span class="linenos"> 4</span><span class="c1">//************************************</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">constraints</span><span class="p">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="c1">// calculated prop width</span>
+<span class="linenos"> 8</span><span class="n">prop_x_width</span> <span class="o">=</span> <span class="mf">1.3287</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="n">prop_x_offset</span> <span class="o">=</span> <span class="mi">-1</span><span class="o">/</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">32</span><span class="p">;</span>
+<span class="linenos">10</span><span class="n">prop_z_offset</span> <span class="o">=</span> <span class="mi">-3</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="c1">// fuselage data</span>
+<span class="linenos">13</span><span class="n">thrust_bearing_x_offset</span> <span class="o">=</span> <span class="mi">-1</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="c1">// wing design constants</span>
+<span class="linenos">16</span><span class="n">wing_x_offset</span> <span class="o">=</span> <span class="mf">1.625</span><span class="p">;</span>
+<span class="linenos">17</span><span class="n">wing_elevation</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="linenos">18</span><span class="n">wing_rib_camber</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="linenos">19</span><span class="n">wing_center_span</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<span class="linenos">20</span><span class="n">wing_tip_radius</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos">21</span><span class="n">wing_spar_size</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="c1">// stab dimensions</span>
+<span class="linenos">25</span><span class="n">stab_x_offset</span> <span class="o">=</span> <span class="n">max_overall_length</span> <span class="o">-</span> <span class="n">prop_x_width</span> <span class="o">-</span> <span class="n">max_stab_chord</span><span class="p">;</span>
+<span class="linenos">26</span><span class="n">stab_center_span</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="linenos">27</span><span class="n">stab_rib_camber</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos">28</span><span class="n">stab_tip_radius</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+<span class="linenos">29</span><span class="n">stab_elevation</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="c1">// motor stick dimensions</span>
+<span class="linenos">32</span><span class="n">motor_stick_thickness</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">;</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span><span class="c1">// post size</span>
+<span class="linenos">35</span><span class="n">post_size</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span>
+</pre></div>
+</div>
+</div>
+<p>The model is constructed using the following assemblies/parts:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="fuselage/index.html">MMlpp Fuselage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="fuselage/motor_stick/index.html">MMlpp Motor Stick</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fuselage/tail_boom/index.html">MMlpp Fuselage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fuselage/fin/index.html">MMlpp Vertical Fin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fuselage/wing_posts/index.html">MMlpp Fuselage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fuselage/stab_posts/index.html">MMlpp Fuselage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fuselage/fin_post/index.html">MMlpp Fin Post</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fuselage/thrust_bearing/index.html">MMlpp Thrust Bearing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fuselage/rear_hook/index.html">MMlpp Rear Hook</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="wing/index.html">MMlpp  Wing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wing/center/index.html">MMlpp Wing Center Section</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wing/left_tip/index.html">MMlpp Wing Left Tip</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wing/right_tip/index.html">MMlpp Wing Right Tip</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="stab/index.html">MMlpp Stab</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="stab/center/index.html">MMlpp Stab Center Section</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stab/left_tip/index.html">MMlpp Stab Left Tip</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stab/right_tip/index.html">MMlpp Stab Right Tip</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="prop/index.html">MMlpp Propeller</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="prop/blade/index.html">MMlpp Prop Blade</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prop/spar/index.html">MMlpp Prop Spar</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prop/wire_shaft/index.html">MMlpp Prop Wire Shaft</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="rubber_motor/index.html">MMlpp Rubber Motor</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rubber_motor/index.html#design-scad-file">Design SCAD File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rubber_motor/index.html#design-data">Design data</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="fuselage/index.html">MMlpp Fuselage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wing/index.html">MMlpp  Wing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stab/index.html">MMlpp Stab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prop/index.html">MMlpp Propeller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rubber_motor/index.html">MMlpp Rubber Motor</a></li>
 </ul>
 </div>
-<p>Placing these parts is done with another position data file:</p>
-<p>Here is the final assembly file that builds the entire model.</p>
-<p>The challenge in this final assembly is making sure everything lines up. This
-is the point in time when you really ned to think through how parts relate to
-each other when bringing the model together.</p>
+</section>
 <section id="animation">
 <h2>Animation<a class="headerlink" href="#animation" title="Permalink to this headline">¶</a></h2>
-<p><em>OpenSCAD</em> supportsanimating shapes. I decided to generate an animated <strong>GIF</strong> file using this feature. It appears on the project website. To get this running, click on <span class="menuselection">design -&gt; Animate</span> and set in ta <strong>FPS value of 30, and a **Step</strong> value of 10. The anitation should start up. There are controls that let you generate animation images that can be combined to build the <strong>GIF</strong> file.</p>
+<p><em>OpenSCAD</em> supports animating shapes. I decided to generate an animated <strong>GIF</strong> file
+using this feature. It appears on the project website. To get this running,
+click on <span class="menuselection">design -&gt; Animate</span> and set in ta <strong>FPS value of 30,
+and a **Step</strong> value of 10. The animation should start up. There are controls
+that let you generate animation images that can be combined to build the
+<strong>GIF</strong> file.</p>
 </section>
 </section>
 

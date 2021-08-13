@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>MMlpp Fuselage &#8212; Math Magik LPP 0.1.0 documentation</title>
+    <title>MMlpp Center Wing Spars &#8212; Math Magik LPP 0.1.0 documentation</title>
     <link rel="stylesheet" href="../../../../_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
@@ -89,7 +89,7 @@
           <li class="nav-item nav-item-1"><a href="../../../index.html" >Math-Magick-lpp Code</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../../index.html" >MMlpp  Wing</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">MMlpp Wing Center Section</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">MMlpp Fuselage</a></li> 
+        <li class="nav-item nav-item-this"><a href="">MMlpp Center Wing Spars</a></li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -128,9 +128,31 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>Read time: 0.0 minutes (0 words)</p>
-<section id="mmlpp-fuselage">
-<h1>MMlpp Fuselage<a class="headerlink" href="#mmlpp-fuselage" title="Permalink to this headline">¶</a></h1>
+  <p>Read time: 0.1 minutes (11 words)</p>
+<section id="mmlpp-center-wing-spars">
+<h1>MMlpp Center Wing Spars<a class="headerlink" href="#mmlpp-center-wing-spars" title="Permalink to this headline">¶</a></h1>
+<p>The leading and trailing edge spars are simple straight square spars.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">wing/center/spar/spar.scad</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">##########################################</span>
+<span class="linenos"> 2</span><span class="o">//</span> <span class="n">spar</span><span class="o">.</span><span class="n">scad</span> <span class="o">=</span> <span class="n">wing</span> <span class="n">center</span> <span class="n">section</span>
+<span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">by</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
+<span class="linenos"> 4</span><span class="o">//==========================================</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;../../</span><span class="n">wing_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span><span class="n">use</span> <span class="o">&lt;</span><span class="n">MMlib</span><span class="o">/</span><span class="n">square_spar</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="n">module</span> <span class="n">spar</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos"> 9</span>		<span class="n">square_spar</span><span class="p">(</span><span class="n">center_span</span><span class="p">,</span> <span class="n">spar_size</span><span class="p">);</span>
+<span class="linenos">10</span><span class="p">}</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="o">//==========================================</span>
+<span class="linenos">13</span><span class="o">//</span> <span class="n">display</span> <span class="n">this</span> <span class="n">shape</span>
+<span class="linenos">14</span><span class="n">spar</span><span class="p">();</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>
+</pre></div>
+</div>
+</div>
 </section>
 
 
@@ -158,7 +180,7 @@
           <li class="nav-item nav-item-1"><a href="../../../index.html" >Math-Magick-lpp Code</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../../index.html" >MMlpp  Wing</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="../index.html" >MMlpp Wing Center Section</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">MMlpp Fuselage</a></li> 
+        <li class="nav-item nav-item-this"><a href="">MMlpp Center Wing Spars</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

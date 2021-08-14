@@ -192,49 +192,47 @@
 <span class="linenos"> 2</span><span class="o">//</span> <span class="n">fuselage</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">scad</span>
 <span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="o">-</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
 <span class="linenos"> 4</span><span class="o">//*******************************************</span>
-<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;../</span><span class="n">constraints</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-<span class="linenos"> 6</span><span class="n">include</span> <span class="o">&lt;../</span><span class="n">materials</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-<span class="linenos"> 7</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">thrust_bearing</span><span class="o">/</span><span class="n">thrust_bearing_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-<span class="linenos"> 8</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">motor_stick</span><span class="o">/</span><span class="n">motor_stick_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-<span class="linenos"> 9</span><span class="n">include</span> <span class="o">&lt;../</span><span class="n">prop</span><span class="o">/</span><span class="n">prop_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-<span class="linenos">10</span>
-<span class="linenos">11</span><span class="o">//</span> <span class="n">prop</span> <span class="n">adjustment</span>
-<span class="linenos">12</span><span class="n">prop_x_offset</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
-<span class="linenos">13</span>
-<span class="linenos">14</span><span class="o">//</span> <span class="n">wing</span> <span class="n">position</span> <span class="n">dimensions</span>
-<span class="linenos">15</span><span class="n">wing_offset</span> <span class="o">=</span> <span class="mf">1.625</span><span class="p">;</span>
-<span class="linenos">16</span><span class="n">wing_elevation</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-<span class="linenos">17</span>
-<span class="linenos">18</span><span class="o">//</span> <span class="n">tail</span> <span class="n">boom</span> <span class="n">data</span>
-<span class="linenos">19</span><span class="n">tb_color</span> <span class="o">=</span> <span class="n">WOOD_Balsa</span><span class="p">;</span>
-<span class="linenos">20</span>
-<span class="linenos">21</span><span class="n">tb_front_height</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
-<span class="linenos">22</span><span class="n">tb_rear_height</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
-<span class="linenos">23</span><span class="n">tb_thickness</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="mi">32</span><span class="p">;</span>
-<span class="linenos">24</span>
-<span class="linenos">25</span><span class="n">tail_boom_overlap</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">;</span>
-<span class="linenos">26</span><span class="n">tail_boom_length</span> <span class="o">=</span> <span class="n">max_overall_length</span> <span class="o">-</span><span class="n">ms_length</span> <span class="o">+</span> <span class="n">prop_forward_x</span> <span class="o">+</span> <span class="n">tail_boom_overlap</span><span class="p">;</span>
-<span class="linenos">27</span><span class="n">tail_boom_rear_x</span> <span class="o">=</span> <span class="n">max_overall_length</span> <span class="o">+</span> <span class="n">prop_x_offset</span><span class="p">;</span>
-<span class="linenos">28</span>
-<span class="linenos">29</span>
-<span class="linenos">30</span><span class="o">//</span><span class="n">adjust</span> <span class="n">motor</span> <span class="n">stick</span> <span class="n">to</span> <span class="n">fit</span> <span class="n">bearing</span>
-<span class="linenos">31</span><span class="n">fuse_offset</span> <span class="o">=</span> <span class="n">thb_length</span> <span class="o">-</span> <span class="n">thb_top_length</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">tube_thickness</span><span class="p">;</span>
-<span class="linenos">32</span>
-<span class="linenos">33</span><span class="o">//</span> <span class="n">front</span> <span class="n">post</span> <span class="n">position</span>
-<span class="linenos">34</span><span class="n">fp_offset</span> <span class="o">=</span> <span class="n">wing_offset</span> <span class="o">-</span> <span class="n">post_diameter</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">tube_thickness</span><span class="p">;</span>
-<span class="linenos">35</span>
-<span class="linenos">36</span><span class="o">//</span> <span class="n">rear</span> <span class="n">post</span> <span class="n">position</span>
-<span class="linenos">37</span><span class="n">rp_offset</span> <span class="o">=</span> <span class="n">wing_offset</span> <span class="o">+</span> <span class="n">max_wing_chord</span> <span class="o">+</span> <span class="n">post_diameter</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">tube_thickness</span><span class="p">;</span>
-<span class="linenos">38</span>
-<span class="linenos">39</span>
-<span class="linenos">40</span><span class="o">//-------------------------------------</span>
-<span class="linenos">41</span><span class="o">//</span> <span class="n">calculated</span> <span class="n">values</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;../</span><span class="n">math_magik_lpp_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span><span class="n">include</span> <span class="o">&lt;../</span><span class="n">constraints</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 7</span><span class="n">include</span> <span class="o">&lt;../</span><span class="n">materials</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 8</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">thrust_bearing</span><span class="o">/</span><span class="n">thrust_bearing_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 9</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">motor_stick</span><span class="o">/</span><span class="n">motor_stick_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">10</span><span class="n">include</span> <span class="o">&lt;../</span><span class="n">prop</span><span class="o">/</span><span class="n">prop_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="o">//</span> <span class="n">wing</span> <span class="n">position</span> <span class="n">dimensions</span>
+<span class="linenos">13</span><span class="n">wing_offset</span> <span class="o">=</span> <span class="mf">1.625</span><span class="p">;</span>
+<span class="linenos">14</span><span class="n">wing_elevation</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="o">//</span> <span class="n">tail</span> <span class="n">boom</span> <span class="n">data</span>
+<span class="linenos">17</span><span class="n">tb_color</span> <span class="o">=</span> <span class="n">WOOD_Balsa</span><span class="p">;</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="n">tb_front_height</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+<span class="linenos">20</span><span class="n">tb_rear_height</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+<span class="linenos">21</span><span class="n">tb_thickness</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="mi">32</span><span class="p">;</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="n">tail_boom_overlap</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">;</span>
+<span class="linenos">24</span><span class="n">tail_boom_length</span> <span class="o">=</span> <span class="n">max_overall_length</span> <span class="o">-</span><span class="n">ms_length</span> <span class="o">+</span> <span class="n">prop_forward_x</span> <span class="o">+</span> <span class="n">tail_boom_overlap</span><span class="p">;</span>
+<span class="linenos">25</span><span class="n">tail_boom_rear_x</span> <span class="o">=</span> <span class="n">max_overall_length</span> <span class="o">+</span> <span class="n">prop_x_offset</span><span class="p">;</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="o">//</span><span class="n">adjust</span> <span class="n">motor</span> <span class="n">stick</span> <span class="n">to</span> <span class="n">fit</span> <span class="n">bearing</span>
+<span class="linenos">29</span><span class="n">fuse_offset</span> <span class="o">=</span> <span class="n">thb_length</span> <span class="o">-</span> <span class="n">thb_top_length</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">tube_thickness</span><span class="p">;</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="o">//</span> <span class="n">front</span> <span class="n">post</span> <span class="n">position</span>
+<span class="linenos">32</span><span class="n">fp_offset</span> <span class="o">=</span> <span class="n">wing_offset</span> <span class="o">-</span> <span class="n">post_diameter</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">tube_thickness</span><span class="p">;</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span><span class="o">//</span> <span class="n">rear</span> <span class="n">post</span> <span class="n">position</span>
+<span class="linenos">35</span><span class="n">rp_offset</span> <span class="o">=</span> <span class="n">wing_offset</span> <span class="o">+</span> <span class="n">max_wing_chord</span> <span class="o">+</span> <span class="n">post_diameter</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">tube_thickness</span><span class="p">;</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="o">//-------------------------------------</span>
+<span class="linenos">39</span><span class="o">//</span> <span class="n">calculated</span> <span class="n">values</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="n">tail_boom_angle</span> <span class="o">=</span> <span class="n">atan2</span><span class="p">(</span><span class="n">tb_front_height</span> <span class="o">-</span> <span class="n">tb_rear_height</span><span class="p">,</span><span class="n">tail_boom_length</span><span class="p">);</span>
 <span class="linenos">42</span>
-<span class="linenos">43</span><span class="n">tail_boom_angle</span> <span class="o">=</span> <span class="n">atan2</span><span class="p">(</span><span class="n">tb_front_height</span> <span class="o">-</span> <span class="n">tb_rear_height</span><span class="p">,</span><span class="n">tail_boom_length</span><span class="p">);</span>
-<span class="linenos">44</span>
-<span class="linenos">45</span><span class="o">//</span> <span class="n">stab</span> <span class="n">positioning</span> <span class="n">data</span>
-<span class="linenos">46</span><span class="n">srp_offset</span> <span class="o">=</span> <span class="n">tail_boom_rear_x</span> <span class="o">-</span> <span class="n">post_diameter</span> <span class="o">-</span> <span class="n">tube_thickness</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
-<span class="linenos">47</span><span class="n">sfp_offset</span> <span class="o">=</span> <span class="n">srp_offset</span> <span class="o">-</span> <span class="n">max_stab_chord</span> <span class="o">-</span> <span class="n">post_diameter</span> <span class="o">-</span> <span class="n">tube_thickness</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">64</span><span class="p">;</span>
+<span class="linenos">43</span><span class="o">//</span> <span class="n">stab</span> <span class="n">positioning</span> <span class="n">data</span>
+<span class="linenos">44</span><span class="n">srp_offset</span> <span class="o">=</span> <span class="n">tail_boom_rear_x</span> <span class="o">-</span> <span class="n">post_diameter</span> <span class="o">-</span> <span class="n">tube_thickness</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+<span class="linenos">45</span><span class="n">sfp_offset</span> <span class="o">=</span> <span class="n">srp_offset</span> <span class="o">-</span> <span class="n">max_stab_chord</span> <span class="o">-</span> <span class="n">post_diameter</span> <span class="o">-</span> <span class="n">tube_thickness</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">64</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>

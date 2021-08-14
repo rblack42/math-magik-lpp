@@ -2,14 +2,12 @@
 // fuselage-data.scad
 // (c) 2021 - Roie R. Black
 //*******************************************
+include <../math_magik_lpp_data.scad>
 include <../constraints.scad>
 include <../materials.scad>
 include <thrust_bearing/thrust_bearing_data.scad>
 include <motor_stick/motor_stick_data.scad>
 include <../prop/prop_data.scad>
-
-// prop adjustment
-prop_x_offset = 1/16;
 
 // wing position dimensions
 wing_offset = 1.625;

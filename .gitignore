@@ -9,3 +9,4 @@
 .direnv
 *.py[cod]
 __pycache__
+_build

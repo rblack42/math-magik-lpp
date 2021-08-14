@@ -10,14 +10,14 @@ for this model.
 
 ..	note::
 
-    You *could* copy and paste these code blocks directly from these wen pages,
+    You *could* copy and paste these code blocks directly from these web pages,
     but that would be silly. Instead, go to the project site on |GH|_ and you
     can see everything I have generated for this project, uncluding the |OSC|
     code and supporting |PY| code.
 
 
-The design code documentation is organized in the same way as the |OSC| file
-themselves. Each part ot assembly has its own directory and there is one
+The design code documentation is organized in the same way as the |OSC| files
+themselves. Each part or assembly has its own directory and there is one
 documentation page describing all of the files within that directory. The
 pattern of the documentation is described below.
 
@@ -51,7 +51,7 @@ presented here.
 Design File
 ===========
 
-The code for the part or assembly is shown here. The caption at the tip of each
+The code for the part or assembly is shown here. The caption at the top of each
 listing indicates where in the actual code directory tree this file can be
 located.
 

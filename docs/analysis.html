@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Change Log &#8212; Math Magik LPP 0.1.0 documentation</title>
+    <title>Analysis of Design &#8212; Math Magik LPP 0.1.0 documentation</title>
     <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -17,8 +17,8 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Library Parts" href="appendix/01-library-parts.html" />
-    <link rel="prev" title="Analysis of Design" href="analysis.html" />
+    <link rel="next" title="Change Log" href="changes.html" />
+    <link rel="prev" title="Composite 3D Transformations" href="lpp-design/10-composite-3d-transformations.html" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
           rel='stylesheet' type='text/css' />
  
@@ -78,15 +78,15 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="appendix/01-library-parts.html" title="Library Parts"
+          <a href="changes.html" title="Change Log"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="analysis.html" title="Analysis of Design"
+          <a href="lpp-design/10-composite-3d-transformations.html" title="Composite 3D Transformations"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Home</a>&#160;|</li>
         <li><a href="contents.html">Documentation</a> &#187;</li>
 
-        <li class="nav-item nav-item-this"><a href="">Change Log</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Analysis of Design</a></li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -94,16 +94,26 @@
             <p class="logo"><a href="contents.html">
               <img class="logo" src="_static/badge.svg" alt="Logo"/>
             </a></p>
+  <h3><a href="contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Analysis of Design</a><ul>
+<li><a class="reference internal" href="#material-densities">Material Densities</a></li>
+<li><a class="reference internal" href="#model-weight">Model Weight</a></li>
+<li><a class="reference internal" href="#center-of-gravity">Center of Gravity</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="analysis.html"
-                        title="previous chapter">Analysis of Design</a></p>
+  <p class="topless"><a href="lpp-design/10-composite-3d-transformations.html"
+                        title="previous chapter">Composite 3D Transformations</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="appendix/01-library-parts.html"
-                        title="next chapter">Library Parts</a></p>
+  <p class="topless"><a href="changes.html"
+                        title="next chapter">Change Log</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/changes.rst.txt"
+      <li><a href="_sources/analysis.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -125,23 +135,36 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>Read time: 0.6 minutes (58 words)</p>
-<section id="change-log">
-<h1>Change Log<a class="headerlink" href="#change-log" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p>2021-08-14: autodoc cleanup</p></li>
-<li><p>2021-08-13: autodoc working</p></li>
-<li><p>2021-08-13: code file autodoc setup</p></li>
-<li><p>2021-08-11: aligned wing and stab on mounting posts</p></li>
-<li><p>2021-08-10: refactored covering logic</p></li>
-<li><p>2021-08-08: updates to README</p></li>
-<li><p>2021-08-08: adding covering</p></li>
-<li><p>2021-08-04: updates to design files</p></li>
-<li><p>2021-07-15: tweaked notes to generate docs on GitHub</p></li>
-<li><p>2021-07-15: forgot the nojekyll file</p></li>
-<li><p>2021-07-15: Adding code files describing eash component</p></li>
-<li><p>2021-07-07: initial commit</p></li>
-</ul>
+  <p>Read time: 2.3 minutes (232 words)</p>
+<section id="analysis-of-design">
+<h1>Analysis of Design<a class="headerlink" href="#analysis-of-design" title="Permalink to this headline">¶</a></h1>
+<p>In this section, we will use the analysis toold presented in the main <em>Math-Magik</em> project at <a class="reference external" href="https://rblack42/github.io/math-magik">https://rblack42/github.io/math-magik</a> to get an estimate of the model weight and center of gravity location.</p>
+<section id="material-densities">
+<h2>Material Densities<a class="headerlink" href="#material-densities" title="Permalink to this headline">¶</a></h2>
+<p><em>OpenSCAD</em> will generate a <em>STL</em> file for each part we need to construct to build an
+actual model. Typically, builders select wood with properties appropriate fpr
+that part. We need to record the material density for each part so we can
+calculate the weight and balance data.</p>
+</section>
+<section id="model-weight">
+<h2>Model Weight<a class="headerlink" href="#model-weight" title="Permalink to this headline">¶</a></h2>
+<p>THis calculation is simple. A <em>Python</em> program will run <em>OpenSCAD</em> and automatically
+generate the part <strong>STL</strong> file. It will then run a <em>mass properties</em> assessment
+to determine the volume and center of mass for each part. The total weight of
+the model can be determined by multiplying the part volume by the material
+density, then summing up the weights of all parts.</p>
+</section>
+<section id="center-of-gravity">
+<h2>Center of Gravity<a class="headerlink" href="#center-of-gravity" title="Permalink to this headline">¶</a></h2>
+<p>Locating the center of gravity is more difficult. The <em>mass properties</em>
+analysis will give us the center of mass for each part. We need to follow the
+alignment transformations made on that part as it is located in the final model
+to determine the center of gravity. These alignments are sequential. A rib it
+aligned within a wing, and the wing is aligned within the model. By placing all
+positioning data in a separate <strong>name_pos.scad</strong> file, we can use Python to
+calculate the final position of the center of mass for a part in the model. The
+center of gravity calculation can be made using this information.</p>
+</section>
 </section>
 
 
@@ -158,15 +181,15 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="appendix/01-library-parts.html" title="Library Parts"
+          <a href="changes.html" title="Change Log"
              >next</a> |</li>
         <li class="right" >
-          <a href="analysis.html" title="Analysis of Design"
+          <a href="lpp-design/10-composite-3d-transformations.html" title="Composite 3D Transformations"
              >previous</a> |</li>
         <li><a href="index.html">Home</a>&#160;|</li>
         <li><a href="contents.html">Documentation</a> &#187;</li>
 
-        <li class="nav-item nav-item-this"><a href="">Change Log</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Analysis of Design</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

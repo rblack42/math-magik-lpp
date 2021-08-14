@@ -10,6 +10,8 @@ Math-Magik Model Airplanes
 
     lpp-design
 
+    analysis
+
     changes
 
 Appendix

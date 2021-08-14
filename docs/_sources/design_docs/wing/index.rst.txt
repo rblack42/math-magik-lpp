@@ -1,7 +1,10 @@
 assembly: wing
 ##############
 
-This assembly is created with the following file:
+..  include::  design_notes.rst
+
+assembly Design File
+********************
 
 ..  literalinclude::  ../../../scad/wing/wing.scad
     :linenos:
@@ -11,6 +14,8 @@ Component Data File(s)
 **********************
 
 ..  literalinclude::  ../../../scad/wing/wing_data.scad
+    :linenos:
+    :caption: wing/wing_data.scad
 
 
 Components
@@ -23,3 +28,11 @@ Components
     left_tip/index
     right_tip/index
     Wing_mount/index
+
+Component Position File
+***********************
+
+..  literalinclude::  ../../../scad/wing/wing_pos.scad
+    :linenos:
+    :caption: wing/wing_pos.scad
+

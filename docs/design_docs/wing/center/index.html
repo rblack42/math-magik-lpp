@@ -99,7 +99,10 @@
   <h3><a href="../../../contents.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">assembly: center</a><ul>
+<li><a class="reference internal" href="#design-notes">Design Notes</a></li>
+<li><a class="reference internal" href="#assembly-design-file">assembly Design File</a></li>
 <li><a class="reference internal" href="#components">Components</a></li>
+<li><a class="reference internal" href="#component-position-file">Component Position File</a></li>
 </ul>
 </li>
 </ul>
@@ -135,10 +138,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>Read time: 0.1 minutes (8 words)</p>
+  <p>Read time: 0.0 minutes (1 words)</p>
 <section id="assembly-center">
 <h1>assembly: center<a class="headerlink" href="#assembly-center" title="Permalink to this headline">¶</a></h1>
-<p>This assembly is created with the following file:</p>
+<section id="design-notes">
+<h2>Design Notes<a class="headerlink" href="#design-notes" title="Permalink to this headline">¶</a></h2>
+<p>(None)</p>
+</section>
+<section id="assembly-design-file">
+<h2>assembly Design File<a class="headerlink" href="#assembly-design-file" title="Permalink to this headline">¶</a></h2>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">wing/center/center.scad</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">#####################################</span>
@@ -173,6 +181,7 @@
 </pre></div>
 </div>
 </div>
+</section>
 <section id="components">
 <h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -181,6 +190,28 @@
 <li class="toctree-l1"><a class="reference internal" href="spar/index.html">part: spar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="covering/index.html">part: covering</a></li>
 </ul>
+</div>
+</section>
+<section id="component-position-file">
+<h2>Component Position File<a class="headerlink" href="#component-position-file" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">wing/center/center_pos.scad</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">########################################</span>
+<span class="linenos"> 2</span><span class="o">//</span> <span class="n">center_pos</span><span class="o">.</span><span class="n">scad</span>
+<span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="o">-</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
+<span class="linenos"> 4</span><span class="o">//****************************************</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;../</span><span class="n">wing_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">le_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos"> 8</span><span class="n">te_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">max_wing_chord</span> <span class="o">-</span> <span class="n">spar_size</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos"> 9</span><span class="n">rib1_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">spar_size</span><span class="p">,</span><span class="o">-</span><span class="n">center_span</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">spar_size</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos">10</span><span class="n">rib2_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">spar_size</span><span class="p">,</span><span class="o">-</span><span class="n">center_span</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos">11</span><span class="n">rib3_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">spar_size</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos">12</span><span class="n">rib4_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">spar_size</span><span class="p">,</span><span class="n">center_span</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos">13</span><span class="n">rib5_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">spar_size</span><span class="p">,</span><span class="n">center_span</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">spar_size</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos">14</span><span class="n">covering_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">center_span</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">spar_size</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+</pre></div>
+</div>
 </div>
 </section>
 </section>

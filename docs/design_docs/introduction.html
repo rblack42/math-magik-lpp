@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Introduction &#8212; Math Magik LPP 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="assembly: math_magik_lpp" href="index.html" />
+    <link rel="prev" title="Library Parts" href="../appendix/01-library-parts.html" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/logo.png" alt="PyLiT" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="assembly: math_magik_lpp"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../appendix/01-library-parts.html" title="Library Parts"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Introduction</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../contents.html">
+              <img class="logo" src="../_static/badge.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Introduction</a><ul>
+<li><a class="reference internal" href="#file-naming-convention">File Naming Convention</a></li>
+<li><a class="reference internal" href="#design-notes">Design Notes</a></li>
+<li><a class="reference internal" href="#design-file">Design File</a></li>
+<li><a class="reference internal" href="#data-files">Data Files</a></li>
+<li><a class="reference internal" href="#components">Components</a></li>
+<li><a class="reference internal" href="#component-position-data">Component Position Data</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../appendix/01-library-parts.html"
+                        title="previous chapter">Library Parts</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="next chapter">assembly: math_magik_lpp</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/design_docs/introduction.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>Read time: 4.8 minutes (477 words)</p>
+<section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>In this section you fill find listings of all <em>OpenSCAD</em> code used to generate the
+<em>Math-Magik</em> <em>Limited Pennyplane</em> model. All documentation pages were generated automatically from the
+current code in this project.</p>
+<p>This documentation includes code blocks showing the actual <em>OpenSCAD</em> code created
+for this model.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You <em>could</em> copy and paste these code blocks directly from these wen pages,
+but that would be silly. Instead, go to the project site on <a class="reference external" href="https://github.com/"><em>GitHub</em></a> and you
+can see everything I have generated for this project, uncluding the <em>OpenSCAD</em>
+code and supporting <em>Python</em> code.</p>
+</div>
+<p>The design code documentation is organized in the same way as the <em>OpenSCAD</em> file
+themselves. Each part ot assembly has its own directory and there is one
+documentation page describing all of the files within that directory. The
+pattern of the documentation is described below.</p>
+<section id="file-naming-convention">
+<h2>File Naming Convention<a class="headerlink" href="#file-naming-convention" title="Permalink to this headline">¶</a></h2>
+<p>I am using a simple naming convention for this project. All files used by <em>OpenSCAD</em>
+to generate the complete model end with a <strong>.scad</strong> extension. Each part of
+assembly is defined within a directory with that part or assembly name. Inside
+that directory you will find a file with the same name as the directory, and
+the <strong>.scad</strong> extension. This design file can be loaded into <em>OpenSCAD</em> and it will
+generate that part or assembly for you to examine.</p>
+<p>If and dimensions are needed to create a component, thse data values will be
+located in files with names that look like this: <strong>name_data.scad</strong>. There are
+two data files that do not follow this convention, both in the tip level code
+directory: <strong>constraints.scad</strong> defines dimensions from the AMA rules for this
+class, and <strong>materials.scad</strong> contains basic material dimensions.used in the
+design.</p>
+<p>Finally, positioning data needed t properly place each part or assembly in a
+larger assembly are named with a pattern that looks like this:
+<strong>name_pos.scad</strong>.</p>
+</section>
+<section id="design-notes">
+<h2>Design Notes<a class="headerlink" href="#design-notes" title="Permalink to this headline">¶</a></h2>
+<p>Information needed to describe how this component was designed will be
+presented here.</p>
+</section>
+<section id="design-file">
+<h2>Design File<a class="headerlink" href="#design-file" title="Permalink to this headline">¶</a></h2>
+<p>The code for the part or assembly is shown here. The caption at the tip of each
+listing indicates where in the actual code directory tree this file can be
+located.</p>
+</section>
+<section id="data-files">
+<h2>Data Files<a class="headerlink" href="#data-files" title="Permalink to this headline">¶</a></h2>
+<p>If data is needed to create this component, the data files used are shown next.
+These files <em>include</em> other <em>OpenSCAD</em> files as needed to fully define all values
+defined.</p>
+</section>
+<section id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<p>Assemblies gather other components together to create a larger component. In
+the design file, we <em>use</em> these component files so we can refer to the needed
+part or assembly. These will be placed properly using position data shown in
+the next section. (This section will not be present for part documentation).</p>
+<p>The list of components needed for the current assembly is shown as links that
+will take you to the documentation for that component.</p>
+</section>
+<section id="component-position-data">
+<h2>Component Position Data<a class="headerlink" href="#component-position-data" title="Permalink to this headline">¶</a></h2>
+<p>All components needed to create the current assembly need to be oriented
+properly in the new assembly’s coordinate system. I created a simple <strong>align</strong>
+function that will place each component using translations and rotations as
+needed. The position data for each component is a vector with six values, three
+for translations, and three for rotations. (This section will not be present
+for part documentation)</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="assembly: math_magik_lpp"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../appendix/01-library-parts.html" title="Library Parts"
+             >previous</a> |</li>
+        <li><a href="../index.html">Home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Introduction</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Roie R. Black.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+    </div>
+  </body>
+</html>

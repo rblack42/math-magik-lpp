@@ -1,7 +1,10 @@
 part: rear_hook
 ###############
 
-This part is created with the following file:
+..  include::  design_notes.rst
+
+part Design File
+****************
 
 ..  literalinclude::  ../../../../scad/fuselage/rear_hook/rear_hook.scad
     :linenos:
@@ -11,4 +14,6 @@ Component Data File(s)
 **********************
 
 ..  literalinclude::  ../../../../scad/fuselage/rear_hook/rear_hook_data.scad
+    :linenos:
+    :caption: fuselage/rear_hook/rear_hook_data.scad
 

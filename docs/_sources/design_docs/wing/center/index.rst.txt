@@ -1,7 +1,10 @@
 assembly: center
 ################
 
-This assembly is created with the following file:
+..  include::  design_notes.rst
+
+assembly Design File
+********************
 
 ..  literalinclude::  ../../../../scad/wing/center/center.scad
     :linenos:
@@ -17,3 +20,11 @@ Components
     rib/index
     spar/index
     covering/index
+
+Component Position File
+***********************
+
+..  literalinclude::  ../../../../scad/wing/center/center_pos.scad
+    :linenos:
+    :caption: wing/center/center_pos.scad
+

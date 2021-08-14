@@ -1,7 +1,10 @@
 assembly: prop
 ##############
 
-This assembly is created with the following file:
+..  include::  design_notes.rst
+
+assembly Design File
+********************
 
 ..  literalinclude::  ../../../scad/prop/prop.scad
     :linenos:
@@ -11,6 +14,8 @@ Component Data File(s)
 **********************
 
 ..  literalinclude::  ../../../scad/prop/prop_data.scad
+    :linenos:
+    :caption: prop/prop_data.scad
 
 
 Components
@@ -22,3 +27,11 @@ Components
     blade/index
     spar/index
     wire_shaft/index
+
+Component Position File
+***********************
+
+..  literalinclude::  ../../../scad/prop/prop_pos.scad
+    :linenos:
+    :caption: prop/prop_pos.scad
+

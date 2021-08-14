@@ -1,7 +1,10 @@
 part: motor_stick
 #################
 
-This part is created with the following file:
+..  include::  design_notes.rst
+
+part Design File
+****************
 
 ..  literalinclude::  ../../../../scad/fuselage/motor_stick/motor_stick.scad
     :linenos:
@@ -11,4 +14,6 @@ Component Data File(s)
 **********************
 
 ..  literalinclude::  ../../../../scad/fuselage/motor_stick/motor_stick_data.scad
+    :linenos:
+    :caption: fuselage/motor_stick/motor_stick_data.scad
 

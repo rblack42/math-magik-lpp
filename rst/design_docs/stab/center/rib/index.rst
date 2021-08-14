@@ -1,7 +1,10 @@
 part: rib
 #########
 
-This part is created with the following file:
+..  include::  design_notes.rst
+
+part Design File
+****************
 
 ..  literalinclude::  ../../../../../scad/stab/center/rib/rib.scad
     :linenos:

@@ -1,7 +1,10 @@
 part: tail_boom
 ###############
 
-This part is created with the following file:
+..  include::  design_notes.rst
+
+part Design File
+****************
 
 ..  literalinclude::  ../../../../scad/fuselage/tail_boom/tail_boom.scad
     :linenos:
@@ -11,4 +14,6 @@ Component Data File(s)
 **********************
 
 ..  literalinclude::  ../../../../scad/fuselage/tail_boom/tail_boom_data.scad
+    :linenos:
+    :caption: fuselage/tail_boom/tail_boom_data.scad
 

@@ -25,8 +25,9 @@ Design Code
 ***********
 
 ..  toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
+    design_docs/introduction
     design_docs/index
 
 Data Dictionary

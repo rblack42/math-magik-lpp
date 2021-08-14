@@ -99,6 +99,8 @@
   <h3><a href="../../../contents.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">part: rear_hook</a><ul>
+<li><a class="reference internal" href="#design-notes">Design Notes</a></li>
+<li><a class="reference internal" href="#part-design-file">part Design File</a></li>
 <li><a class="reference internal" href="#component-data-file-s">Component Data File(s)</a></li>
 </ul>
 </li>
@@ -135,10 +137,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>Read time: 0.1 minutes (8 words)</p>
+  <p>Read time: 0.0 minutes (1 words)</p>
 <section id="part-rear-hook">
 <h1>part: rear_hook<a class="headerlink" href="#part-rear-hook" title="Permalink to this headline">¶</a></h1>
-<p>This part is created with the following file:</p>
+<section id="design-notes">
+<h2>Design Notes<a class="headerlink" href="#design-notes" title="Permalink to this headline">¶</a></h2>
+<p>(None)</p>
+</section>
+<section id="part-design-file">
+<h2>part Design File<a class="headerlink" href="#part-design-file" title="Permalink to this headline">¶</a></h2>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">fuselage/rear_hook/rear_hook.scad</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>//#######################################
@@ -196,43 +203,47 @@
 </pre></div>
 </div>
 </div>
+</section>
 <section id="component-data-file-s">
 <h2>Component Data File(s)<a class="headerlink" href="#component-data-file-s" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="c1">#####################################</span>
-<span class="o">//</span> <span class="n">rear</span><span class="o">-</span><span class="n">hook</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">scad</span>
-<span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="o">-</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
-<span class="o">//*************************************</span>
-<span class="n">include</span> <span class="o">&lt;</span><span class="n">colors</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-<span class="n">include</span> <span class="o">&lt;../</span><span class="n">motor_stick</span><span class="o">/</span><span class="n">motor_stick_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-<span class="n">include</span> <span class="o">&lt;../</span><span class="n">thrust_bearing</span><span class="o">/</span><span class="n">thrust_bearing_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-
-<span class="n">rear_hook_color</span> <span class="o">=</span> <span class="n">METAL_Steel</span><span class="p">;</span>
-
-<span class="n">wire_diameter</span> <span class="o">=</span> <span class="mf">0.025</span><span class="p">;</span>
-<span class="n">stub_length</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">;</span>
-
-<span class="o">//</span> <span class="n">calculated</span> <span class="n">values</span> <span class="k">for</span> <span class="n">hook</span>
-
-<span class="n">ka</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mi">45</span><span class="p">);</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">wire_diameter</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-<span class="n">bend_radius</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">wire_diameter</span><span class="p">;</span>
-<span class="n">ms_height</span> <span class="o">=</span> <span class="n">motor_stick_rear_height</span><span class="p">;</span>
-<span class="n">hook_offset</span> <span class="o">=</span> <span class="n">thb_height</span><span class="p">;</span>
-<span class="n">hook_side</span> <span class="o">=</span> <span class="p">(</span><span class="n">hook_offset</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">bend_radius</span><span class="o">*</span><span class="n">ka</span><span class="p">)</span><span class="o">/</span><span class="n">ka</span><span class="p">;</span>
-
-<span class="n">a</span> <span class="o">=</span> <span class="n">stub_length</span><span class="p">;</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">ms_height</span> <span class="o">-</span> <span class="n">wire_diameter</span><span class="p">;</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">hook_side</span><span class="p">;</span>
-
-<span class="n">p1</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">bend_radius</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">b</span><span class="p">];</span>
-<span class="n">p2</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">bend_radius</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
-<span class="n">p3</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">+</span> <span class="p">[</span><span class="n">bend_radius</span><span class="o">*</span><span class="n">ka</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">bend_radius</span><span class="o">*</span><span class="n">ka</span><span class="p">];</span>
-<span class="n">p4</span> <span class="o">=</span> <span class="n">p3</span> <span class="o">+</span> <span class="p">[</span><span class="o">-</span><span class="n">hook_side</span><span class="o">*</span><span class="n">ka</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">hook_side</span><span class="o">*</span><span class="n">ka</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">bend_radius</span><span class="o">*</span><span class="n">ka</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">bend_radius</span><span class="o">*</span><span class="n">ka</span><span class="p">];</span>
-<span class="n">p5</span> <span class="o">=</span> <span class="n">p4</span> <span class="o">+</span> <span class="p">[</span><span class="o">-</span><span class="n">bend_radius</span><span class="o">*</span><span class="n">ka</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">bend_radius</span><span class="o">*</span><span class="n">ka</span><span class="p">];</span>
-
-<span class="n">density</span> <span class="o">=</span> <span class="mf">501.12</span><span class="p">;</span>
-
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">fuselage/rear_hook/rear_hook_data.scad</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">#####################################</span>
+<span class="linenos"> 2</span><span class="o">//</span> <span class="n">rear</span><span class="o">-</span><span class="n">hook</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">scad</span>
+<span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="o">-</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
+<span class="linenos"> 4</span><span class="o">//*************************************</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">colors</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span><span class="n">include</span> <span class="o">&lt;../</span><span class="n">motor_stick</span><span class="o">/</span><span class="n">motor_stick_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 7</span><span class="n">include</span> <span class="o">&lt;../</span><span class="n">thrust_bearing</span><span class="o">/</span><span class="n">thrust_bearing_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="n">rear_hook_color</span> <span class="o">=</span> <span class="n">METAL_Steel</span><span class="p">;</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">wire_diameter</span> <span class="o">=</span> <span class="mf">0.025</span><span class="p">;</span>
+<span class="linenos">12</span><span class="n">stub_length</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">;</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="o">//</span> <span class="n">calculated</span> <span class="n">values</span> <span class="k">for</span> <span class="n">hook</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="n">ka</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mi">45</span><span class="p">);</span>
+<span class="linenos">17</span><span class="n">r</span> <span class="o">=</span> <span class="n">wire_diameter</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos">18</span><span class="n">bend_radius</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">wire_diameter</span><span class="p">;</span>
+<span class="linenos">19</span><span class="n">ms_height</span> <span class="o">=</span> <span class="n">motor_stick_rear_height</span><span class="p">;</span>
+<span class="linenos">20</span><span class="n">hook_offset</span> <span class="o">=</span> <span class="n">thb_height</span><span class="p">;</span>
+<span class="linenos">21</span><span class="n">hook_side</span> <span class="o">=</span> <span class="p">(</span><span class="n">hook_offset</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">bend_radius</span><span class="o">*</span><span class="n">ka</span><span class="p">)</span><span class="o">/</span><span class="n">ka</span><span class="p">;</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="n">a</span> <span class="o">=</span> <span class="n">stub_length</span><span class="p">;</span>
+<span class="linenos">24</span><span class="n">b</span> <span class="o">=</span> <span class="n">ms_height</span> <span class="o">-</span> <span class="n">wire_diameter</span><span class="p">;</span>
+<span class="linenos">25</span><span class="n">c</span> <span class="o">=</span> <span class="n">hook_side</span><span class="p">;</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="n">p1</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">bend_radius</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">b</span><span class="p">];</span>
+<span class="linenos">28</span><span class="n">p2</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">bend_radius</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos">29</span><span class="n">p3</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">+</span> <span class="p">[</span><span class="n">bend_radius</span><span class="o">*</span><span class="n">ka</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">bend_radius</span><span class="o">*</span><span class="n">ka</span><span class="p">];</span>
+<span class="linenos">30</span><span class="n">p4</span> <span class="o">=</span> <span class="n">p3</span> <span class="o">+</span> <span class="p">[</span><span class="o">-</span><span class="n">hook_side</span><span class="o">*</span><span class="n">ka</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">hook_side</span><span class="o">*</span><span class="n">ka</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">bend_radius</span><span class="o">*</span><span class="n">ka</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">bend_radius</span><span class="o">*</span><span class="n">ka</span><span class="p">];</span>
+<span class="linenos">31</span><span class="n">p5</span> <span class="o">=</span> <span class="n">p4</span> <span class="o">+</span> <span class="p">[</span><span class="o">-</span><span class="n">bend_radius</span><span class="o">*</span><span class="n">ka</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">bend_radius</span><span class="o">*</span><span class="n">ka</span><span class="p">];</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="n">density</span> <span class="o">=</span> <span class="mf">501.12</span><span class="p">;</span>
+<span class="linenos">34</span>
 </pre></div>
+</div>
 </div>
 </section>
 </section>

@@ -98,8 +98,11 @@
   <h3><a href="../../contents.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">assembly: prop</a><ul>
+<li><a class="reference internal" href="#design-notes">Design Notes</a></li>
+<li><a class="reference internal" href="#assembly-design-file">assembly Design File</a></li>
 <li><a class="reference internal" href="#component-data-file-s">Component Data File(s)</a></li>
 <li><a class="reference internal" href="#components">Components</a></li>
+<li><a class="reference internal" href="#component-position-file">Component Position File</a></li>
 </ul>
 </li>
 </ul>
@@ -135,10 +138,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>Read time: 0.1 minutes (8 words)</p>
+  <p>Read time: 0.0 minutes (1 words)</p>
 <section id="assembly-prop">
 <h1>assembly: prop<a class="headerlink" href="#assembly-prop" title="Permalink to this headline">¶</a></h1>
-<p>This assembly is created with the following file:</p>
+<section id="design-notes">
+<h2>Design Notes<a class="headerlink" href="#design-notes" title="Permalink to this headline">¶</a></h2>
+<p>(None)</p>
+</section>
+<section id="assembly-design-file">
+<h2>assembly Design File<a class="headerlink" href="#assembly-design-file" title="Permalink to this headline">¶</a></h2>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">prop/prop.scad</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">######################################</span>
@@ -166,53 +174,57 @@
 </pre></div>
 </div>
 </div>
+</section>
 <section id="component-data-file-s">
 <h2>Component Data File(s)<a class="headerlink" href="#component-data-file-s" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="c1">#####################################</span>
-<span class="o">//</span> <span class="n">prop</span><span class="o">-</span><span class="n">blade</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">scad</span>
-<span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">by</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
-<span class="o">//*************************************</span>
-<span class="n">include</span> <span class="o">&lt;</span><span class="n">colors</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-<span class="n">include</span> <span class="o">&lt;../</span><span class="n">constraints</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-
-<span class="o">//</span> <span class="n">Propeller</span> <span class="n">dimensions</span>
-<span class="n">prop_radius</span> <span class="o">=</span> <span class="n">max_prop_diameter</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-<span class="n">prop_pitch_angle</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
-<span class="n">prop_blade_offset</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
-
-<span class="o">//</span> <span class="n">prop</span> <span class="n">spar</span> <span class="n">dimensions</span>
-<span class="n">prop_spar_inner_radius</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">32</span><span class="p">;</span>
-<span class="n">prop_spar_outer_radius</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">64</span><span class="p">;</span>
-<span class="n">prop_spar_length</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-
-<span class="n">prop_spar_color</span> <span class="o">=</span> <span class="n">WOOD_Balsa</span><span class="p">;</span>
-
-<span class="o">//</span> <span class="n">prop</span> <span class="n">blade</span> <span class="n">dimensions</span>
-<span class="n">prop_blade_thickness</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">64</span><span class="p">;</span>
-<span class="n">prop_max_chord</span> <span class="o">=</span> <span class="mf">1.85</span><span class="p">;</span>
-
-<span class="o">//</span> <span class="n">prop</span> <span class="n">form</span> <span class="n">dimensions</span>
-<span class="n">prop_form_radius</span> <span class="o">=</span> <span class="mf">2.5</span><span class="p">;</span>
-<span class="n">prop_form_height</span> <span class="o">=</span> <span class="n">prop_radius</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
-<span class="n">prop_form_angle</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
-
-<span class="o">//</span> <span class="n">elliptic</span> <span class="n">form</span> <span class="n">data</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">prop_radius</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-<span class="n">c</span> <span class="o">=</span> <span class="mf">2.5</span><span class="p">;</span>
-<span class="n">f</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-<span class="n">s1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="n">s2</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-</span> <span class="n">s1</span><span class="p">;</span>
-<span class="n">s3</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="n">s4</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-
-<span class="n">prop_blade_color</span> <span class="o">=</span> <span class="n">WOOD_Balsa</span><span class="p">;</span>
-
-<span class="o">//-------------------------------------</span>
-<span class="o">//</span> <span class="n">calculated</span> <span class="n">by</span> <span class="n">analysis</span>
-<span class="n">prop_forward_x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.3287</span><span class="p">;</span>
-
-
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">prop/prop_data.scad</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">#####################################</span>
+<span class="linenos"> 2</span><span class="o">//</span> <span class="n">prop</span><span class="o">-</span><span class="n">blade</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">scad</span>
+<span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">by</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
+<span class="linenos"> 4</span><span class="o">//*************************************</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">colors</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span><span class="n">include</span> <span class="o">&lt;../</span><span class="n">constraints</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="o">//</span> <span class="n">Propeller</span> <span class="n">dimensions</span>
+<span class="linenos"> 9</span><span class="n">prop_radius</span> <span class="o">=</span> <span class="n">max_prop_diameter</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos">10</span><span class="n">prop_pitch_angle</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
+<span class="linenos">11</span><span class="n">prop_blade_offset</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="o">//</span> <span class="n">prop</span> <span class="n">spar</span> <span class="n">dimensions</span>
+<span class="linenos">14</span><span class="n">prop_spar_inner_radius</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">32</span><span class="p">;</span>
+<span class="linenos">15</span><span class="n">prop_spar_outer_radius</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">64</span><span class="p">;</span>
+<span class="linenos">16</span><span class="n">prop_spar_length</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="n">prop_spar_color</span> <span class="o">=</span> <span class="n">WOOD_Balsa</span><span class="p">;</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="o">//</span> <span class="n">prop</span> <span class="n">blade</span> <span class="n">dimensions</span>
+<span class="linenos">21</span><span class="n">prop_blade_thickness</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">64</span><span class="p">;</span>
+<span class="linenos">22</span><span class="n">prop_max_chord</span> <span class="o">=</span> <span class="mf">1.85</span><span class="p">;</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="o">//</span> <span class="n">prop</span> <span class="n">form</span> <span class="n">dimensions</span>
+<span class="linenos">25</span><span class="n">prop_form_radius</span> <span class="o">=</span> <span class="mf">2.5</span><span class="p">;</span>
+<span class="linenos">26</span><span class="n">prop_form_height</span> <span class="o">=</span> <span class="n">prop_radius</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos">27</span><span class="n">prop_form_angle</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="o">//</span> <span class="n">elliptic</span> <span class="n">form</span> <span class="n">data</span>
+<span class="linenos">30</span><span class="n">s</span> <span class="o">=</span> <span class="n">prop_radius</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">31</span><span class="n">c</span> <span class="o">=</span> <span class="mf">2.5</span><span class="p">;</span>
+<span class="linenos">32</span><span class="n">f</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos">33</span><span class="n">s1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">34</span><span class="n">s2</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-</span> <span class="n">s1</span><span class="p">;</span>
+<span class="linenos">35</span><span class="n">s3</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">36</span><span class="n">s4</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="n">prop_blade_color</span> <span class="o">=</span> <span class="n">WOOD_Balsa</span><span class="p">;</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span><span class="o">//-------------------------------------</span>
+<span class="linenos">41</span><span class="o">//</span> <span class="n">calculated</span> <span class="n">by</span> <span class="n">analysis</span>
+<span class="linenos">42</span><span class="n">prop_forward_x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.3287</span><span class="p">;</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span>
 </pre></div>
+</div>
 </div>
 </section>
 <section id="components">
@@ -223,6 +235,26 @@
 <li class="toctree-l1"><a class="reference internal" href="spar/index.html">part: spar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wire_shaft/index.html">part: wire_shaft</a></li>
 </ul>
+</div>
+</section>
+<section id="component-position-file">
+<h2>Component Position File<a class="headerlink" href="#component-position-file" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">prop/prop_pos.scad</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">###########################################################</span>
+<span class="linenos"> 2</span><span class="o">//</span> <span class="n">prop_pos</span><span class="o">.</span><span class="n">scad</span> <span class="o">-</span> <span class="n">prop</span> <span class="n">positioning</span> <span class="n">data</span>
+<span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">by</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
+<span class="linenos"> 4</span><span class="o">//===========================================================</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">prop_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">pos_spar</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="n">pos_blade1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">prop_blade_offset</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">prop_pitch_angle</span><span class="p">];</span>
+<span class="linenos">10</span><span class="n">pos_blade2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">prop_blade_offset</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">prop_pitch_angle</span><span class="p">];</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">pos_wire_shaft</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">64</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+</pre></div>
+</div>
 </div>
 </section>
 </section>

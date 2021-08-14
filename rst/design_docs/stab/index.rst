@@ -1,7 +1,10 @@
 assembly: stab
 ##############
 
-This assembly is created with the following file:
+..  include::  design_notes.rst
+
+assembly Design File
+********************
 
 ..  literalinclude::  ../../../scad/stab/stab.scad
     :linenos:
@@ -11,6 +14,8 @@ Component Data File(s)
 **********************
 
 ..  literalinclude::  ../../../scad/stab/stab_data.scad
+    :linenos:
+    :caption: stab/stab_data.scad
 
 
 Components
@@ -23,3 +28,11 @@ Components
     left_tip/index
     stab_mount/index
     right_tip/index
+
+Component Position File
+***********************
+
+..  literalinclude::  ../../../scad/stab/stab_pos.scad
+    :linenos:
+    :caption: stab/stab_pos.scad
+

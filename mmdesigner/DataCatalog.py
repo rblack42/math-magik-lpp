@@ -199,8 +199,20 @@ class DataCataloger(object):
                 fout.write("%s\n" % title)
                 fout.write("%s\n\n" % underbar)
 
-                # set up the include for this component file
-                fout.write("This %s is created with the following file:\n\n" % ctype)
+                # include design notes file
+                fout.write("..  include::  design_notes.rst\n\n")
+
+                # create notes file if needed
+                dn_path = os.path.join(doc_path, "design_notes.rst")
+                if not os.path.isfile(dn_path):
+                    with open(dn_path,"w") as dnotes:
+                        dnotes.write("Design Notes\n************\n\n(None)\n\n")
+
+                # set up the include for this component code file
+                title = ctype + " Design File"
+                underbar = "*" * len(title)
+                fout.write("%s\n" % title)
+                fout.write("%s\n\n" % underbar)
                 scadpath = os.path.join(code_path, cname+'.scad')
                 fout.write("..  literalinclude::  %s\n" % scadpath)
                 captext = os.path.join(cpath, cname + '.scad')
@@ -213,7 +225,9 @@ class DataCataloger(object):
                         fout.write("**********************\n\n")
                         for df in data_files:
                             scadpath = os.path.join(code_path, df)
-                            fout.write("..  literalinclude::  %s\n\n" % scadpath)
+                            fout.write("..  literalinclude::  %s\n" % scadpath)
+                            captext = os.path.join(cpath,df)
+                            fout.write("    :linenos:\n    :caption: %s\n\n" % captext)
 
                 # show components, if any
                 if len(components) > 0:
@@ -221,6 +235,20 @@ class DataCataloger(object):
                     fout.write("..  toctree::\n    :maxdepth: 1\n\n")
                     for c in components:
                         fout.write("    %s/index\n" % c)
+
+                # show positioning files
+                pos_files = self.design_dirs[d]['pos']
+                if len(pos_files) > 0:
+                        fout.write("\nComponent Position File\n")
+                        fout.write("***********************\n\n")
+                        if ctype == "part":
+                            fout.write("\n(None)\n")
+                        else:
+                            for pf in pos_files:
+                                scadpath = os.path.join(code_path, pf)
+                                fout.write("..  literalinclude::  %s\n" % scadpath)
+                                captext = os.path.join(cpath, cname + '_pos.scad')
+                                fout.write("    :linenos:\n    :caption: %s\n\n" % captext)
 
             print(cpath, cname)
 

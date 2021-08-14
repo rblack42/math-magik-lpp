@@ -1,7 +1,10 @@
 part: wing_mount
 ################
 
-This part is created with the following file:
+..  include::  design_notes.rst
+
+part Design File
+****************
 
 ..  literalinclude::  ../../../../scad/wing/Wing_mount/wing_mount.scad
     :linenos:

@@ -1,7 +1,10 @@
 part: wire_shaft
 ################
 
-This part is created with the following file:
+..  include::  design_notes.rst
+
+part Design File
+****************
 
 ..  literalinclude::  ../../../../scad/prop/wire_shaft/wire_shaft.scad
     :linenos:

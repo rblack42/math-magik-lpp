@@ -1,7 +1,10 @@
 part: rubber_motor
 ##################
 
-This part is created with the following file:
+..  include::  design_notes.rst
+
+part Design File
+****************
 
 ..  literalinclude::  ../../../scad/rubber_motor/rubber_motor.scad
     :linenos:
@@ -11,4 +14,6 @@ Component Data File(s)
 **********************
 
 ..  literalinclude::  ../../../scad/rubber_motor/rubber_motor_data.scad
+    :linenos:
+    :caption: rubber_motor/rubber_motor_data.scad
 

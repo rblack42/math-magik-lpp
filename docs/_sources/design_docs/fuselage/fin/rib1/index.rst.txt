@@ -1,7 +1,10 @@
 part: fin_rib1
 ##############
 
-This part is created with the following file:
+..  include::  design_notes.rst
+
+part Design File
+****************
 
 ..  literalinclude::  ../../../../../scad/fuselage/fin/rib1/fin_rib1.scad
     :linenos:

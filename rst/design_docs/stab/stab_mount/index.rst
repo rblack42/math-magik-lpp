@@ -1,7 +1,10 @@
 part: stab_mount
 ################
 
-This part is created with the following file:
+..  include::  design_notes.rst
+
+part Design File
+****************
 
 ..  literalinclude::  ../../../../scad/stab/stab_mount/stab_mount.scad
     :linenos:

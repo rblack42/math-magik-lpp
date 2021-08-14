@@ -1,7 +1,10 @@
 part: trailing_edge
 ###################
 
-This part is created with the following file:
+..  include::  design_notes.rst
+
+part Design File
+****************
 
 ..  literalinclude::  ../../../../../scad/stab/left_tip/trailing_edge/trailing_edge.scad
     :linenos:

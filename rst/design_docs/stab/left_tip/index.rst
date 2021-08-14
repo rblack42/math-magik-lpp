@@ -1,7 +1,10 @@
 assembly: left_tip
 ##################
 
-This assembly is created with the following file:
+..  include::  design_notes.rst
+
+assembly Design File
+********************
 
 ..  literalinclude::  ../../../../scad/stab/left_tip/left_tip.scad
     :linenos:
@@ -19,3 +22,11 @@ Components
     leading_edge/index
     trailing_edge/index
     covering/index
+
+Component Position File
+***********************
+
+..  literalinclude::  ../../../../scad/stab/left_tip/left_tip_pos.scad
+    :linenos:
+    :caption: stab/left_tip/left_tip_pos.scad
+

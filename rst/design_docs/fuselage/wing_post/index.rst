@@ -1,7 +1,10 @@
 part: wing_post
 ###############
 
-This part is created with the following file:
+..  include::  design_notes.rst
+
+part Design File
+****************
 
 ..  literalinclude::  ../../../../scad/fuselage/wing_post/wing_post.scad
     :linenos:
@@ -11,4 +14,6 @@ Component Data File(s)
 **********************
 
 ..  literalinclude::  ../../../../scad/fuselage/wing_post/wing_post_data.scad
+    :linenos:
+    :caption: fuselage/wing_post/wing_post_data.scad
 

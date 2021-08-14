@@ -98,8 +98,11 @@
   <h3><a href="../../contents.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">assembly: wing</a><ul>
+<li><a class="reference internal" href="#design-notes">Design Notes</a></li>
+<li><a class="reference internal" href="#assembly-design-file">assembly Design File</a></li>
 <li><a class="reference internal" href="#component-data-file-s">Component Data File(s)</a></li>
 <li><a class="reference internal" href="#components">Components</a></li>
+<li><a class="reference internal" href="#component-position-file">Component Position File</a></li>
 </ul>
 </li>
 </ul>
@@ -135,10 +138,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>Read time: 0.1 minutes (8 words)</p>
+  <p>Read time: 0.0 minutes (1 words)</p>
 <section id="assembly-wing">
 <h1>assembly: wing<a class="headerlink" href="#assembly-wing" title="Permalink to this headline">¶</a></h1>
-<p>This assembly is created with the following file:</p>
+<section id="design-notes">
+<h2>Design Notes<a class="headerlink" href="#design-notes" title="Permalink to this headline">¶</a></h2>
+<p>(None)</p>
+</section>
+<section id="assembly-design-file">
+<h2>assembly Design File<a class="headerlink" href="#assembly-design-file" title="Permalink to this headline">¶</a></h2>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">wing/wing.scad</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">###################################################</span>
@@ -169,31 +177,35 @@
 </pre></div>
 </div>
 </div>
+</section>
 <section id="component-data-file-s">
 <h2>Component Data File(s)<a class="headerlink" href="#component-data-file-s" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="c1">#####################################</span>
-<span class="o">//</span> <span class="n">wing</span><span class="o">.</span><span class="n">data</span>
-<span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">by</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
-<span class="o">//=====================================</span>
-<span class="n">include</span> <span class="o">&lt;../</span><span class="n">constraints</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
-
-<span class="o">//</span> <span class="n">center</span> <span class="n">section</span> <span class="n">dimensions</span>
-<span class="n">center_span</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
-<span class="n">spar_size</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
-<span class="n">rib_chord</span> <span class="o">=</span> <span class="n">max_wing_chord</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">spar_size</span><span class="p">;</span>
-<span class="n">rib_camber</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-<span class="n">num_center_ribs</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-
-<span class="o">//</span> <span class="n">tip</span> <span class="n">section</span> <span class="n">dimensions</span>
-<span class="n">tip_dihedral</span> <span class="o">=</span> <span class="mf">1.75</span><span class="p">;</span>
-<span class="n">tip_radius</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">tip_dihedral</span><span class="p">;</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_projected_wing_span</span> <span class="o">-</span> <span class="n">center_span</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-<span class="n">tip_span</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="p">);</span>
-<span class="n">tip_dihedral_angle</span> <span class="o">=</span> <span class="n">atan2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
-<span class="n">tip_le_span</span> <span class="o">=</span> <span class="n">tip_span</span> <span class="o">-</span> <span class="n">tip_radius</span><span class="p">;</span>
-<span class="n">tip_rib_chord</span> <span class="o">=</span> <span class="n">max_wing_chord</span> <span class="o">-</span> <span class="n">tip_radius</span> <span class="o">-</span> <span class="n">spar_size</span><span class="p">;</span>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">wing/wing_data.scad</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">#####################################</span>
+<span class="linenos"> 2</span><span class="o">//</span> <span class="n">wing</span><span class="o">.</span><span class="n">data</span>
+<span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">by</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
+<span class="linenos"> 4</span><span class="o">//=====================================</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;../</span><span class="n">constraints</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="o">//</span> <span class="n">center</span> <span class="n">section</span> <span class="n">dimensions</span>
+<span class="linenos"> 8</span><span class="n">center_span</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="n">spar_size</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+<span class="linenos">10</span><span class="n">rib_chord</span> <span class="o">=</span> <span class="n">max_wing_chord</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">spar_size</span><span class="p">;</span>
+<span class="linenos">11</span><span class="n">rib_camber</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="linenos">12</span><span class="n">num_center_ribs</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="o">//</span> <span class="n">tip</span> <span class="n">section</span> <span class="n">dimensions</span>
+<span class="linenos">15</span><span class="n">tip_dihedral</span> <span class="o">=</span> <span class="mf">1.75</span><span class="p">;</span>
+<span class="linenos">16</span><span class="n">tip_radius</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="linenos">17</span><span class="n">a</span> <span class="o">=</span> <span class="n">tip_dihedral</span><span class="p">;</span>
+<span class="linenos">18</span><span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_projected_wing_span</span> <span class="o">-</span> <span class="n">center_span</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos">19</span><span class="n">tip_span</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="p">);</span>
+<span class="linenos">20</span><span class="n">tip_dihedral_angle</span> <span class="o">=</span> <span class="n">atan2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="linenos">21</span><span class="n">tip_le_span</span> <span class="o">=</span> <span class="n">tip_span</span> <span class="o">-</span> <span class="n">tip_radius</span><span class="p">;</span>
+<span class="linenos">22</span><span class="n">tip_rib_chord</span> <span class="o">=</span> <span class="n">max_wing_chord</span> <span class="o">-</span> <span class="n">tip_radius</span> <span class="o">-</span> <span class="n">spar_size</span><span class="p">;</span>
 </pre></div>
+</div>
 </div>
 </section>
 <section id="components">
@@ -205,6 +217,27 @@
 <li class="toctree-l1"><a class="reference internal" href="right_tip/index.html">part: right_tip</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Wing_mount/index.html">part: wing_mount</a></li>
 </ul>
+</div>
+</section>
+<section id="component-position-file">
+<h2>Component Position File<a class="headerlink" href="#component-position-file" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">wing/wing_pos.scad</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span><span class="c1">########################################</span>
+<span class="linenos"> 2</span><span class="o">//</span> <span class="n">wing_pos</span><span class="o">.</span><span class="n">scad</span>
+<span class="linenos"> 3</span><span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="o">-</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
+<span class="linenos"> 4</span><span class="o">//****************************************</span>
+<span class="linenos"> 5</span><span class="n">include</span> <span class="o">&lt;./</span><span class="n">wing_data</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 6</span><span class="n">include</span> <span class="o">&lt;../</span><span class="n">materials</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="n">center_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos">10</span><span class="n">left_tip_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">center_span</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">tip_dihedral_angle</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos">11</span><span class="n">right_tip_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_span</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tip_dihedral_angle</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos">12</span><span class="n">wing_le_mount_pos</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">post_diameter</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">tube_thickness</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="linenos">13</span><span class="n">wing_te_mount_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">max_wing_chord</span><span class="o">+</span><span class="n">post_diameter</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">tube_thickness</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+</pre></div>
+</div>
 </div>
 </section>
 </section>

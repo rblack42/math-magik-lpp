@@ -1,7 +1,10 @@
 part: blade
 ###########
 
-This part is created with the following file:
+..  include::  design_notes.rst
+
+part Design File
+****************
 
 ..  literalinclude::  ../../../../scad/prop/blade/blade.scad
     :linenos:

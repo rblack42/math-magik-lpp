@@ -1,7 +1,10 @@
 assembly: fuselage
 ##################
 
-This assembly is created with the following file:
+..  include::  design_notes.rst
+
+assembly Design File
+********************
 
 ..  literalinclude::  ../../../scad/fuselage/fuselage.scad
     :linenos:
@@ -11,6 +14,8 @@ Component Data File(s)
 **********************
 
 ..  literalinclude::  ../../../scad/fuselage/fuselage_data.scad
+    :linenos:
+    :caption: fuselage/fuselage_data.scad
 
 
 Components
@@ -26,3 +31,11 @@ Components
     wing_post/index
     stab_post/index
     motor_stick/index
+
+Component Position File
+***********************
+
+..  literalinclude::  ../../../scad/fuselage/fuselage_pos.scad
+    :linenos:
+    :caption: fuselage/fuselage_pos.scad
+

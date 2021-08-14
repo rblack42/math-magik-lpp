@@ -1,7 +1,10 @@
 assembly: fin
 #############
 
-This assembly is created with the following file:
+..  include::  design_notes.rst
+
+assembly Design File
+********************
 
 ..  literalinclude::  ../../../../scad/fuselage/fin/fin.scad
     :linenos:
@@ -11,6 +14,8 @@ Component Data File(s)
 **********************
 
 ..  literalinclude::  ../../../../scad/fuselage/fin/fin_data.scad
+    :linenos:
+    :caption: fuselage/fin/fin_data.scad
 
 
 Components
@@ -25,3 +30,11 @@ Components
     arc/index
     trailing_edge/index
     covering/index
+
+Component Position File
+***********************
+
+..  literalinclude::  ../../../../scad/fuselage/fin/fin_pos.scad
+    :linenos:
+    :caption: fuselage/fin/fin_pos.scad
+

@@ -25,7 +25,8 @@ class DataCataloger(object):
                     'data': [],
                     'pos': [],
                     'parts': [],
-                    'dirname': ""
+                    'dirname': "",
+                    'cname': ""
             }
 
             for d in dirnames:
@@ -46,13 +47,14 @@ class DataCataloger(object):
                             or f == 'materials.scad':
                     design_dirs[dirpath]['data'].append(f)
                     data_files.append(mmfn)
-                elif "pos" in f:
+                elif "pos" in f and not "post" in f:
                     design_dirs[dirpath]['pos'].append(f)
                     position_files.append(mmfn)
                 else:
-                    print("design file:",f)
+                    #print("design file:",f)
                     b,e = f.split('.')
                     design_dirs[dirpath]['design'].append(f)
+                    design_dirs[dirpath]['cname'] = b
                     design_files.append(fn)
         self.position_files = position_files
         self.data_files = data_files
@@ -149,36 +151,79 @@ class DataCataloger(object):
 
 
     def gen_design_code_file_docs(self):
-        # generate design code doc files
         print("generating design file docs")
+        # generate design code doc files
+
         for d in self.design_dirs:
-            parts = d['design_file.split('/')
-            df_path = '/'.join(parts[self.path_parts:-1])
-            df_path = os.path.join('../rst/design_docs',df_path)
-            design_file = parts[-1]
-            os.makedirs(df_path)
-            ifn = os.path.join(df_path,'index.rst")
+            print(d)
+            # generate component path for this component file
+            parts = d.split('/')
+            if len(parts) == self.path_parts:
+                cpath = ""
+                depth = 0
+                depth_leadin = ""
+            else:
+                cpath_parts = parts[self.path_parts:]
+                depth = len(cpath_parts)
+                cpath = '/'.join(parts[self.path_parts:])
+            depth_leadin = "../" * (depth + 2)
+            print("\t",depth, depth_leadin, cpath)
+
+            # extract data dictionary for this component
+            data = self.design_dirs[d]
+            for cd in data:
+                print("\t",cd, data[cd])
+
+            # set code and doc file paths
+            code_path = os.path.join(depth_leadin, "scad", cpath)
+            doc_path = os.path.join("../", "rst", "design_docs", cpath)
+            print("\tcode_path:", code_path)
+            print("\tdoc_path:", doc_path)
+
+            cname = self.design_dirs[d]['cname']
+            ctype = self.design_dirs[d]['dftype']
+
+            print("creating:", cname, " path:", code_path, " type:", ctype)
+            components = self.design_dirs[d]['parts']
+            print("components",components)
+            print("")
+
+            # create component directory
+            os.makedirs(doc_path, exist_ok=True)
+
+            # generate the index file
+            ifn = os.path.join(doc_path,'index.rst')
             with open(ifn,'w') as fout:
-                title = self.design_dirs['dirname']'
+                title = ctype + ": " + cname
+                underbar = '#' * len(title)
                 fout.write("%s\n" % title)
-                fout.write("%s\n" % '#' * len(title))
-            print(df_path, design_file)
+                fout.write("%s\n\n" % underbar)
 
-        return
-        outfn = '../design_code/rst/data_catalog.rst'
-        with open(outfn,'w') as fout:
-            fout.write("Data Catalog\n")
-            fout.write("################\n\n")
-            fout.write("..  csv-table::\n")
-            fout.write("    :header: Name, Value, File\n\n")
+                # set up the include for this component file
+                fout.write("This %s is created with the following file:\n\n" % ctype)
+                scadpath = os.path.join(code_path, cname+'.scad')
+                fout.write("..  literalinclude::  %s\n" % scadpath)
+                captext = os.path.join(cpath, cname + '.scad')
+                fout.write("    :linenos:\n    :caption: %s\n\n" % captext)
 
-            for i in sorted(index.keys()):
-                val = index[i]
-                fout.write("    %s,,\n" % i)
-                for j in val:
-                    p = j[0]
-                    v = j[1]
-                    fout.write('    ,"%s",%s\n' % (v,p))
+                # show any data files
+                data_files = self.design_dirs[d]['data']
+                if len(data_files) > 0:
+                        fout.write("Component Data File(s)\n")
+                        fout.write("**********************\n\n")
+                        for df in data_files:
+                            scadpath = os.path.join(code_path, df)
+                            fout.write("..  literalinclude::  %s\n\n" % scadpath)
+
+                # show components, if any
+                if len(components) > 0:
+                    fout.write("\nComponents\n**********\n\n")
+                    fout.write("..  toctree::\n    :maxdepth: 1\n\n")
+                    for c in components:
+                        fout.write("    %s/index\n" % c)
+
+            print(cpath, cname)
+
 
     def get_design_dirs(self):
         return self.design_dirs
@@ -192,8 +237,9 @@ if __name__ == '__main__':
     #c.gen_pos_index()
     c.gen_design_code_file_docs()
     data = c.get_design_dirs()
-    for d in data:
-        print(d)
-        print("\tdesign:",data[d]['design'])
-        print("\tdata:",data[d]['data'])
-        print("\tpos:",data[d]['pos'])
+
+    #for d in data:
+    #    print(d)
+    #    print("\tdesign:",data[d]['design'])
+    #    print("\tdata:",data[d]['data'])
+    #    print("\tpos:",data[d]['pos'])

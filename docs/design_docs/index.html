@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>assembly: math_magik_lpp &#8212; Math Magik LPP 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="assembly: prop" href="prop/index.html" />
+    <link rel="prev" title="Library Parts" href="../appendix/01-library-parts.html" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/logo.png" alt="PyLiT" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="prop/index.html" title="assembly: prop"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../appendix/01-library-parts.html" title="Library Parts"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">assembly: math_magik_lpp</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../contents.html">
+              <img class="logo" src="../_static/badge.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">assembly: math_magik_lpp</a><ul>
+<li><a class="reference internal" href="#component-data-file-s">Component Data File(s)</a></li>
+<li><a class="reference internal" href="#components">Components</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../appendix/01-library-parts.html"
+                        title="previous chapter">Library Parts</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="prop/index.html"
+                        title="next chapter">assembly: prop</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/design_docs/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>Read time: 0.1 minutes (8 words)</p>
+<section id="assembly-math-magik-lpp">
+<h1>assembly: math_magik_lpp<a class="headerlink" href="#assembly-math-magik-lpp" title="Permalink to this headline">¶</a></h1>
+<p>This assembly is created with the following file:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">math_magik_lpp.scad</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>//####################################
+<span class="linenos"> 2</span>// math-magik-lpp.scad
+<span class="linenos"> 3</span>// (c) 2021 - Roie R. Black
+<span class="linenos"> 4</span>//************************************
+<span class="linenos"> 5</span>include &lt;math_magik_lpp_pos.scad&gt;
+<span class="linenos"> 6</span>use &lt;MMlib/position.scad&gt;
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>use &lt;prop/prop.scad&gt;
+<span class="linenos">10</span>use &lt;fuselage/fuselage.scad&gt;
+<span class="linenos">11</span>use &lt;wing/wing.scad&gt;
+<span class="linenos">12</span>use &lt;stab/stab.scad&gt;
+<span class="linenos">13</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>module spinning_prop(ang=$t*360) {
+<span class="linenos">16</span>  align(prop_pos)
+<span class="linenos">17</span>    rotate([-ang,0,0])
+<span class="linenos">18</span>      prop();
+<span class="linenos">19</span>}
+<span class="linenos">20</span>
+<span class="linenos">21</span>module math_magik_lpp() {
+<span class="linenos">22</span>  align(fuse_pos) fuselage();
+<span class="linenos">23</span>  align(wing_pos) wing();
+<span class="linenos">24</span>  align(stab_pos) stab();
+<span class="linenos">25</span>  spinning_prop();
+<span class="linenos">26</span>}
+<span class="linenos">27</span>
+<span class="linenos">28</span>//-------------------------------------
+<span class="linenos">29</span>// debug display
+<span class="linenos">30</span>
+<span class="linenos">31</span>math_magik_lpp();
+<span class="linenos">32</span>
+</pre></div>
+</div>
+</div>
+<section id="component-data-file-s">
+<h2>Component Data File(s)<a class="headerlink" href="#component-data-file-s" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="c1">####################################</span>
+<span class="o">//</span> <span class="n">math</span><span class="o">-</span><span class="n">magik</span><span class="o">-</span><span class="n">lpp_data</span><span class="o">.</span><span class="n">scad</span>
+<span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="o">-</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
+<span class="o">//************************************</span>
+<span class="n">include</span> <span class="o">&lt;</span><span class="n">constraints</span><span class="o">.</span><span class="n">scad</span><span class="o">&gt;</span>
+
+<span class="o">//</span> <span class="n">calculated</span> <span class="n">prop</span> <span class="n">width</span>
+<span class="n">prop_x_width</span> <span class="o">=</span> <span class="mf">1.3287</span><span class="p">;</span>
+<span class="n">prop_x_offset</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">32</span><span class="p">;</span>
+<span class="n">prop_z_offset</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">fuselage</span> <span class="n">data</span>
+<span class="n">thrust_bearing_x_offset</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">wing</span> <span class="n">design</span> <span class="n">constants</span>
+<span class="n">wing_x_offset</span> <span class="o">=</span> <span class="mf">1.625</span><span class="p">;</span>
+<span class="n">wing_elevation</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">wing_rib_camber</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="n">wing_center_span</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<span class="n">wing_tip_radius</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">wing_spar_size</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+
+
+<span class="o">//</span> <span class="n">stab</span> <span class="n">dimensions</span>
+<span class="n">stab_x_offset</span> <span class="o">=</span> <span class="n">max_overall_length</span> <span class="o">-</span> <span class="n">prop_x_width</span> <span class="o">-</span> <span class="n">max_stab_chord</span><span class="p">;</span>
+<span class="n">stab_center_span</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="n">stab_rib_camber</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">stab_tip_radius</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+<span class="n">stab_elevation</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">motor</span> <span class="n">stick</span> <span class="n">dimensions</span>
+<span class="n">motor_stick_thickness</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">post</span> <span class="n">size</span>
+<span class="n">post_size</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+
+
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="c1">####################################</span>
+<span class="o">//</span> <span class="n">Math</span><span class="o">-</span><span class="n">Magik</span> <span class="n">LPP</span> <span class="o">-</span> <span class="n">Design</span> <span class="n">Constraints</span>
+<span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">by</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
+<span class="o">//====================================</span>
+
+<span class="o">//</span> <span class="n">AMA</span> <span class="n">Rules</span> <span class="k">for</span> <span class="n">event</span> <span class="mi">208</span>
+<span class="o">//------------------------------------</span>
+
+<span class="n">max_overall_length</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="n">max_projected_wing_span</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+<span class="n">max_bearing_to_rear_hook</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">max_wing_chord</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">max_stab_span</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<span class="n">max_stab_chord</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="n">max_prop_diameter</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+
+
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="c1">###########################################</span>
+<span class="o">//</span> <span class="n">materials</span><span class="o">.</span><span class="n">scad</span>
+<span class="o">//</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2021</span> <span class="o">-</span> <span class="n">Roie</span> <span class="n">R</span><span class="o">.</span> <span class="n">Black</span>
+<span class="o">//*******************************************</span>
+
+<span class="n">tube_thickness</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">64</span><span class="p">;</span>
+<span class="n">tube_height</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">;</span>
+<span class="n">post_diameter</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">16</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="prop/index.html">assembly: prop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stab/index.html">assembly: stab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fuselage/index.html">assembly: fuselage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rubber_motor/index.html">part: rubber_motor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wing/index.html">assembly: wing</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="prop/index.html" title="assembly: prop"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../appendix/01-library-parts.html" title="Library Parts"
+             >previous</a> |</li>
+        <li><a href="../index.html">Home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">assembly: math_magik_lpp</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Roie R. Black.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+    </div>
+  </body>
+</html>

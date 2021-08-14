@@ -1,2 +1,0 @@
-MMlpp Vertical Fin
-##################
